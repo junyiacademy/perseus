@@ -2,7 +2,7 @@ var React = require("react");
 var _ = require("underscore");
 
 var BlurInput    = require("react-components/js/blur-input.jsx");
-var FileInput    = require("react-components/js/file-input.jsx");
+var FileInput    = require("../file-input.jsx");
 var InfoTip      = require("react-components/js/info-tip.jsx");
 
 var Changeable   = require("../mixins/changeable.jsx");
