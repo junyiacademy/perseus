@@ -281,11 +281,6 @@
 .content-editor .perseus-textarea-underlay {
   overflow: hidden;
 }
-.perseus-widget-radio div,
-.perseus-widget-radio div > p {
-  /* TODO(alpert): Find a better way of doing inline renderers */
-  display: inline;
-}
 .perseus-widget-radio li {
   padding: 7px 0;
   margin-left: 20px;

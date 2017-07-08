@@ -1,6 +1,3 @@
-/*! Perseus | http://github.com/Khan/perseus */
-// commit 618632ca08c12640a745ebc114a04a6ec0d4f539
-// branch add-unresizable-image-to-radio
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Perseus = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -27210,7 +27207,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var Widgets = require("./widgets.js");
 
-_.each([require("./widgets/categorizer.jsx"), require("./widgets/dropdown.jsx"), require("./widgets/example-widget.jsx"), require("./widgets/example-graphie-widget.jsx"), [require("./widgets/explanation.jsx"), require("./widgets/explanation-editor.jsx")], require("./widgets/expression.jsx"), require("./widgets/iframe.jsx"), require("./widgets/input-number.jsx"), require("./widgets/interactive-graph.jsx"), require("./widgets/interactive-number-line.jsx"), require("./widgets/lights-puzzle.jsx"), require("./widgets/matcher.jsx"), require("./widgets/matrix.jsx"), require("./widgets/measurer.jsx"), require("./widgets/number-line.jsx"), require("./widgets/numeric-input.jsx"), require("./widgets/orderer.jsx"), require("./widgets/plotter.jsx"), require("./widgets/radio.jsx"), require("./widgets/sorter.jsx"), require("./widgets/table.jsx"), require("./widgets/transformer.jsx"), require("./widgets/image.jsx"), require("./widgets/speaking-text-input.jsx"), require("./widgets/speaking-voice.jsx")], function (_widget) {
+_.each([require("./widgets/categorizer.jsx"), require("./widgets/dropdown.jsx"), require("./widgets/example-graphie-widget.jsx"), [require("./widgets/explanation.jsx"), require("./widgets/explanation-editor.jsx")], require("./widgets/expression.jsx"), require("./widgets/iframe.jsx"), require("./widgets/image.jsx"), require("./widgets/input-number.jsx"), require("./widgets/interactive-graph.jsx"), require("./widgets/interactive-number-line.jsx"), require("./widgets/lights-puzzle.jsx"), require("./widgets/matcher.jsx"), require("./widgets/matrix.jsx"), require("./widgets/measurer.jsx"), [require("./widgets/molecule.jsx"), require("./widgets/molecule-editor.jsx")], require("./widgets/number-line.jsx"), require("./widgets/numeric-input.jsx"), require("./widgets/orderer.jsx"), require("./widgets/plotter.jsx"), require("./widgets/radio.jsx"), [require("./widgets/reaction-diagram.jsx"), require("./widgets/reaction-diagram-editor.jsx")], require("./widgets/sorter.jsx"), require("./widgets/table.jsx"), require("./widgets/transformer.jsx"), require("./widgets/speaking-text-input.jsx"), require("./widgets/speaking-voice.jsx")], function (_widget) {
     if (Array.isArray(_widget)) {
         var _widget2 = _slicedToArray(_widget, 2),
             _widget2$ = _widget2[0],
@@ -27225,7 +27222,7 @@ _.each([require("./widgets/categorizer.jsx"), require("./widgets/dropdown.jsx"),
     Widgets.register(name, widget, editor);
 });
 
-},{"./widgets.js":308,"./widgets/categorizer.jsx":309,"./widgets/dropdown.jsx":310,"./widgets/example-graphie-widget.jsx":311,"./widgets/example-widget.jsx":312,"./widgets/explanation-editor.jsx":313,"./widgets/explanation.jsx":314,"./widgets/expression.jsx":315,"./widgets/iframe.jsx":316,"./widgets/image.jsx":317,"./widgets/input-number.jsx":318,"./widgets/interactive-graph.jsx":319,"./widgets/interactive-number-line.jsx":320,"./widgets/lights-puzzle.jsx":321,"./widgets/matcher.jsx":322,"./widgets/matrix.jsx":323,"./widgets/measurer.jsx":324,"./widgets/number-line.jsx":325,"./widgets/numeric-input.jsx":326,"./widgets/orderer.jsx":327,"./widgets/plotter.jsx":328,"./widgets/radio.jsx":329,"./widgets/sorter.jsx":330,"./widgets/speaking-text-input.jsx":331,"./widgets/speaking-voice.jsx":332,"./widgets/table.jsx":333,"./widgets/transformer.jsx":334}],252:[function(require,module,exports){
+},{"./widgets.js":308,"./widgets/categorizer.jsx":309,"./widgets/dropdown.jsx":310,"./widgets/example-graphie-widget.jsx":311,"./widgets/explanation-editor.jsx":312,"./widgets/explanation.jsx":313,"./widgets/expression.jsx":314,"./widgets/iframe.jsx":315,"./widgets/image.jsx":316,"./widgets/input-number.jsx":317,"./widgets/interactive-graph.jsx":318,"./widgets/interactive-number-line.jsx":319,"./widgets/lights-puzzle.jsx":320,"./widgets/matcher.jsx":321,"./widgets/matrix.jsx":322,"./widgets/measurer.jsx":323,"./widgets/molecule-editor.jsx":324,"./widgets/molecule.jsx":325,"./widgets/number-line.jsx":329,"./widgets/numeric-input.jsx":330,"./widgets/orderer.jsx":331,"./widgets/plotter.jsx":332,"./widgets/radio.jsx":333,"./widgets/reaction-diagram-editor.jsx":334,"./widgets/reaction-diagram.jsx":335,"./widgets/sorter.jsx":336,"./widgets/speaking-text-input.jsx":337,"./widgets/speaking-voice.jsx":338,"./widgets/table.jsx":339,"./widgets/transformer.jsx":340}],252:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -30820,7 +30817,7 @@ function getTextWidth(text) {
     if (!textWidthCache[text]) {
         // Hacky way to guess the width of an input box
         var $test = $("<span>").text(text).appendTo("body");
-        textWidthCache[text] = $test.width() + 5;
+        textWidthCache[text] = $test.width() + 20;
         $test.remove();
     }
     return textWidthCache[text];
@@ -31978,9 +31975,6 @@ var DragTarget = require("react-components/js/drag-target.jsx");
 // like [[snowman input-number 1]]
 var rWidgetSplit = /(\[\[\u2603 [a-z-]+ [0-9]+\]\])/g;
 
-// widgets junyi can use now:
-var widgetsInEditor = ['image', 'categorizer', 'dropdown', 'explanation', 'expression', 'input-number', 'interactive-graph', 'interactive-number-line', 'lights-puzzle', 'matrix', 'measurer', 'number-line', 'iframe', 'numeric-input', 'plotter', 'radio', 'sorter', 'table', 'transformer', 'matcher', 'speaking-text-input', 'speaking-voice'];
-
 var WidgetSelect = React.createClass({
     displayName: "WidgetSelect",
 
@@ -32001,9 +31995,8 @@ var WidgetSelect = React.createClass({
     },
     render: function render() {
         var widgets = Widgets.getPublicWidgets();
-        var junyiValidWidgets = _.pick(widgets, widgetsInEditor);
-        var orderedWidgetNames = _.sortBy(_.keys(junyiValidWidgets), function (name) {
-            return junyiValidWidgets[name].displayName;
+        var orderedWidgetNames = _.sortBy(_.keys(widgets), function (name) {
+            return widgets[name].displayName;
         });
 
         return React.createElement(
@@ -35359,7 +35352,7 @@ var Renderer = React.createClass({
     _onWidgetFocus: function _onWidgetFocus(id, focusPath, element) {
         if (focusPath === undefined && element === undefined) {
             focusPath = [];
-            element = ReactDOM.findDOMNode(this.refs[id]);
+            element = ReactDOM.findDOMNode(this.getWidgetInstance(id));
         } else {
             if (!_.isArray(focusPath)) {
                 throw new Error("widget props.onFocus focusPath must be an Array, " + "but was" + JSON.stringify(focusPath));
@@ -35627,7 +35620,7 @@ var Renderer = React.createClass({
                 // TODO(jack): Figure out why this is happening and fix it
                 // As far as I can tell, this is only an issue in the
                 // editor-page, so doing this shouldn't break clients hopefully
-                var element = _this5.refs[id] ? ReactDOM.findDOMNode(_this5.getWidgetInstance(id)) : null;
+                var element = _this5.getWidgetInstance(id) ? ReactDOM.findDOMNode(_this5.getWidgetInstance(id)) : null;
                 _this5._setCurrentFocus([id], element);
             }
         });
@@ -35654,7 +35647,7 @@ var Renderer = React.createClass({
     showGuess: function showGuess(answerData) {
         if (!answerData) return {};
         return _.map(this.widgetIds, function (id, index) {
-            if (this.refs[id].setAnswerFromJSON === undefined) {
+            if (this.getWidgetInstance(id).setAnswerFromJSON === undefined) {
                 // Target widget cannot show answer.
                 return { showSuccess: false, err: 'no setAnswerFromJSON implemented for ' + id + ' widget' };
             } else {
@@ -35663,8 +35656,8 @@ var Renderer = React.createClass({
                     console.log("showGuess err");
                     return {};
                 }
-                widgetAnswerData = answerData[0][index];
-                this.refs[id].setAnswerFromJSON(widgetAnswerData);
+                var widgetAnswerData = answerData[0][index];
+                this.getWidgetInstance(id).setAnswerFromJSON(widgetAnswerData);
                 return { showSuccess: true };
             }
         }, this);
@@ -35673,7 +35666,7 @@ var Renderer = React.createClass({
     canShowAllHistoryWidgets: function canShowAllHistoryWidgets(answerData) {
         var r = true;
         _.map(this.widgetIds, function (id, index) {
-            if (this.refs[id].setAnswerFromJSON === undefined) {
+            if (this.getWidgetInstance(id).setAnswerFromJSON === undefined) {
                 if (id !== 'image 1') {
                     r = false;
                 }
@@ -35687,10 +35680,13 @@ var Renderer = React.createClass({
         var onInputError = this.props.apiOptions.onInputError || function () {};
 
         var totalGuess = _.map(this.widgetIds, function (id) {
-            if (id.indexOf('lights-puzzle') > -1 || id.indexOf('transformer') > -1 || id.indexOf('image') > -1) {
+            if (widgetProps[id].graded === false || id.indexOf('lights-puzzle') > -1 || id.indexOf('transformer') > -1 || id.indexOf('image') > -1) {
                 return 'no save ' + id + ' widget';
             }
-            return this.getWidgetInstance(id).toJSON();
+            var widget = this.getWidgetInstance(id);
+            return (widget.toJSON || widget.getUserInput || function () {
+                return {};
+            })();
         }, this);
 
         var totalScore = _.chain(this.widgetIds).filter(function (id) {
@@ -36748,16 +36744,12 @@ var WidgetContainer = React.createClass({
             return React.createElement("div", { className: className });
         }
 
-        if (WidgetType.displayMode == null) {
-            throw new Error("You didn't specify a displayMode in the " + "statics for " + WidgetType.displayName + ".");
-        }
-
         return React.createElement(
             "div",
             { className: className,
-                style: {
+                style: WidgetType.displayMode ? {
                     display: WidgetType.displayMode
-                } },
+                } : {} },
             React.createElement(WidgetType, _extends({}, this.props.initialProps, { ref: "widget" }))
         );
     },
@@ -36879,11 +36871,13 @@ var Widgets = {
                 }
             }
         }
+        var graded = true;
+        if (widgetExports.graded != null) graded = widgetExports.graded;else if (oldWidgetInfo.graded != null) graded = oldWidgetInfo.graded;
 
         return _.extend({}, oldWidgetInfo, { // maintain other info, like type
             version: latestVersion,
             // Default graded to true (so null/undefined becomes true):
-            graded: oldWidgetInfo.graded != null ? oldWidgetInfo.graded : true,
+            graded: graded,
             options: newEditorProps
         });
     },
@@ -37629,202 +37623,12 @@ var ExampleGraphieWidgetEditor = React.createClass({
 module.exports = {
     name: "example-graphie-widget",
     displayName: "Example Graphie Widget",
-    hidden: false, // Hides this widget from the Perseus.Editor widget select
+    hidden: true, // Hides this widget from the Perseus.Editor widget select
     widget: ExampleGraphieWidget,
     editor: ExampleGraphieWidgetEditor
 };
 
 },{"../components/graphie.jsx":259,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248}],312:[function(require,module,exports){
-"use strict";
-
-/**
- * This is a simple number-entry widget
- * It is not as powerful as number-input, but has a simpler, more
- * representative structure as an example widget, and is easier to
- * test new ideas on.
- *
- * TODO(jack): Add more comments
- */
-
-var React = require('react');
-var Changeable = require("../mixins/changeable.jsx");
-var JsonifyProps = require("../mixins/jsonify-props.jsx");
-
-var TextInput = React.createClass({
-    displayName: "TextInput",
-
-    render: function render() {
-        return React.createElement("input", {
-            ref: "input",
-            value: this.props.value || "",
-            onChange: this.changeValue });
-    },
-
-    focus: function focus() {
-        this.refs.input.focus();
-        return true;
-    },
-
-    changeValue: function changeValue(e) {
-        // Translating from the js event e to the value
-        // of the textbox to send to onChange
-        this.props.onChange(e.target.value);
-    },
-
-    statics: {
-        displayMode: "inline-block"
-    }
-});
-
-/**
- * This is the widget's renderer. It shows up in the right column
- * in test.html, and is what is visible to users, and where
- * users enter their answers.
- */
-var ExampleWidget = React.createClass({
-    displayName: "ExampleWidget",
-
-    propTypes: {
-        value: React.PropTypes.string
-    },
-
-    getDefaultProps: function getDefaultProps() {
-        return {
-            value: ""
-        };
-    },
-
-    /**
-     * Changeling creates this.change() to tell our parent to update our props
-     *
-     * JsonifyProps creates this.toJSON() which returns the state of the widget
-     * for checking the answer in simpleValidate
-     */
-    mixins: [Changeable, JsonifyProps],
-
-    render: function render() {
-        return React.createElement(TextInput, {
-            ref: "input",
-            value: this.props.value,
-            onChange: this.change("value") });
-    },
-
-    /**
-     * Widgets that are focusable should add a focus method that returns
-     * true if focusing succeeded. The first such widget found will be
-     * focused on page load.
-     */
-    focus: function focus() {
-        this.refs.input.focus();
-        return true;
-    },
-
-    /**
-     * simpleValidate is called for grading. Rubric is the result of calling
-     * toJSON() on the editor that created this widget.
-     *
-     * Should return an object representing the grading result, such as
-     * {
-     *     type: "points",
-     *     earned: 1,
-     *     total: 1,
-     *     message: null
-     * }
-     */
-    simpleValidate: function simpleValidate(rubric) {
-        return ExampleWidget.validate(this.toJSON(), rubric);
-    }
-});
-
-/**
- * This is the widget's grading function
- */
-_.extend(ExampleWidget, {
-    /**
-     * simpleValidate generally defers to this function
-     *
-     * state is usually the result of toJSON on the widget
-     * rubric is the result of calling toJSON() on the editor
-     */
-    validate: function validate(state, rubric) {
-        if (state.value === "") {
-            return {
-                type: "invalid",
-                message: "It looks like you haven't answered all of the " + "question yet."
-            };
-        } else if (state.value === rubric.correct) {
-            return {
-                type: "points",
-                earned: 1,
-                total: 1,
-                message: null
-            };
-        } else {
-            return {
-                type: "points",
-                earned: 0,
-                total: 1,
-                message: null
-            };
-        }
-    }
-});
-
-/**
- * This is the widget's editor. This is what shows up on the left side
- * of the screen in test.html. Only the question writer sees this.
- */
-var ExampleWidgetEditor = React.createClass({
-    displayName: "ExampleWidgetEditor",
-
-    mixins: [Changeable, JsonifyProps],
-
-    getDefaultProps: function getDefaultProps() {
-        return {
-            correct: ""
-        };
-    },
-
-    handleAnswerChange: function handleAnswerChange(event) {
-        this.change({
-            correct: event.target.value
-        });
-    },
-
-    render: function render() {
-        return React.createElement(
-            "div",
-            null,
-            React.createElement(
-                "label",
-                null,
-                "Correct answer:",
-                React.createElement("input", {
-                    value: this.props.correct,
-                    onChange: this.handleAnswerChange,
-                    ref: "input" })
-            )
-        );
-    },
-
-    focus: function focus() {
-        this.refs.input.focus();
-        return true;
-    }
-});
-
-/**
- * For this widget to work, we must require() this file in src/all-widgets.js
- */
-module.exports = {
-    name: "example-widget",
-    displayName: "Example Widget",
-    hidden: false, // Hides this widget from the Perseus.Editor widget select
-    widget: ExampleWidget,
-    editor: ExampleWidgetEditor
-};
-
-},{"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248}],313:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -37925,7 +37729,7 @@ var ExplanationEditor = React.createClass({
 
 module.exports = ExplanationEditor;
 
-},{"../components/text-input.jsx":268,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"underscore":250}],314:[function(require,module,exports){
+},{"../components/text-input.jsx":268,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"underscore":250}],313:[function(require,module,exports){
 "use strict";
 
 var _explanationLink, _mobileExplanationLin;
@@ -38187,13 +37991,14 @@ _.extend(Explanation, {
 
 module.exports = {
     name: "explanation",
-    displayName: "Explanation (for hints)",
+    displayName: "Explanation/解釋",
     defaultAlignment: "inline",
+    graded: false,
     widget: Explanation,
     transform: _.identity
 };
 
-},{"../mixins/changeable.jsx":293,"../perseus-api.jsx":296,"../renderer.jsx":300,"../styles/constants.js":302,"../styles/media-queries.js":303,"aphrodite":5,"react":248,"underscore":250}],315:[function(require,module,exports){
+},{"../mixins/changeable.jsx":293,"../perseus-api.jsx":296,"../renderer.jsx":300,"../styles/constants.js":302,"../styles/media-queries.js":303,"aphrodite":5,"react":248,"underscore":250}],314:[function(require,module,exports){
 "use strict";
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -38750,7 +38555,7 @@ module.exports = {
     propUpgrades: propUpgrades
 };
 
-},{"../components/input-with-examples.jsx":260,"../components/math-input.jsx":261,"../components/prop-check-box.jsx":264,"../components/tex-buttons.jsx":267,"../enabled-features.jsx":278,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../perseus-api.jsx":296,"../tex.jsx":304,"../util.js":305,"classnames":12,"react":248,"react-components/js/info-tip.jsx":69,"react-components/js/tooltip.jsx":73,"react-dom":96}],316:[function(require,module,exports){
+},{"../components/input-with-examples.jsx":260,"../components/math-input.jsx":261,"../components/prop-check-box.jsx":264,"../components/tex-buttons.jsx":267,"../enabled-features.jsx":278,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../perseus-api.jsx":296,"../tex.jsx":304,"../util.js":305,"classnames":12,"react":248,"react-components/js/info-tip.jsx":69,"react-components/js/tooltip.jsx":73,"react-dom":96}],315:[function(require,module,exports){
 "use strict";
 
 /**
@@ -39024,7 +38829,7 @@ module.exports = {
     editor: IframeEditor
 };
 
-},{"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/blur-input.jsx":66}],317:[function(require,module,exports){
+},{"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/blur-input.jsx":66}],316:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -39416,7 +39221,7 @@ module.exports = {
     editor: ImageEditor
 };
 
-},{"../components/graphie.jsx":259,"../components/range-input.jsx":265,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/info-tip.jsx":69,"underscore":250}],318:[function(require,module,exports){
+},{"../components/graphie.jsx":259,"../components/range-input.jsx":265,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/info-tip.jsx":69,"underscore":250}],317:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -39781,13 +39586,13 @@ var propTransform = function propTransform(editorProps) {
 
 module.exports = {
     name: "input-number",
-    displayName: "Number text box",
+    displayName: "input-number/數值填充",
     widget: InputNumber,
     editor: InputNumberEditor,
     transform: propTransform
 };
 
-},{"../components/input-with-examples.jsx":260,"../enabled-features.jsx":278,"../perseus-api.jsx":296,"../renderer.jsx":300,"../tex.jsx":304,"../util.js":305,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/info-tip.jsx":69,"react-dom":96}],319:[function(require,module,exports){
+},{"../components/input-with-examples.jsx":260,"../enabled-features.jsx":278,"../perseus-api.jsx":296,"../renderer.jsx":300,"../tex.jsx":304,"../util.js":305,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/info-tip.jsx":69,"react-dom":96}],318:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -42344,7 +42149,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/graph-settings.jsx":255,"../components/graph.jsx":256,"../components/number-input.jsx":263,"../interactive2.js":282,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],320:[function(require,module,exports){
+},{"../components/graph-settings.jsx":255,"../components/graph.jsx":256,"../components/number-input.jsx":263,"../interactive2.js":282,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],319:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -42889,7 +42694,7 @@ module.exports = {
     editor: InteractiveNumberLineEditor
 };
 
-},{"../components/prop-check-box.jsx":264,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96,"underscore":250}],321:[function(require,module,exports){
+},{"../components/prop-check-box.jsx":264,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96,"underscore":250}],320:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -43365,7 +43170,7 @@ module.exports = {
     transform: transformProps
 };
 
-},{"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/info-tip.jsx":69}],322:[function(require,module,exports){
+},{"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/info-tip.jsx":69}],321:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -43664,7 +43469,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/prop-check-box.jsx":264,"../components/sortable.jsx":266,"../components/text-list-editor.jsx":269,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],323:[function(require,module,exports){
+},{"../components/prop-check-box.jsx":264,"../components/sortable.jsx":266,"../components/text-list-editor.jsx":269,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],322:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -43680,6 +43485,7 @@ var _ = require("underscore");
 
 var Renderer = require("../renderer.jsx");
 var TextInput = require("../components/text-input.jsx");
+var NumberInput = require("../components/number-input.jsx");
 
 var ApiOptions = require("../perseus-api.jsx").Options;
 var KhanAnswerTypes = Khan.answerTypes;
@@ -43910,7 +43716,12 @@ var Matrix = React.createClass({
                                 }
                             };
 
-                            var MatrixInput = React.createElement(TextInput, inputProps);
+                            var MatrixInput = void 0;
+                            if (_this.props.numericInput) {
+                                MatrixInput = React.createElement(NumberInput, inputProps);
+                            } else {
+                                MatrixInput = React.createElement(TextInput, inputProps);
+                            }
                             return React.createElement(
                                 "span",
                                 {
@@ -44061,6 +43872,10 @@ var Matrix = React.createClass({
         return {
             answers: this.props.answers
         };
+    },
+
+    setAnswerFromJSON: function setAnswerFromJSON(answers) {
+        this.props.onChange(answers);
     },
 
     simpleValidate: function simpleValidate(rubric) {
@@ -44291,7 +44106,7 @@ module.exports = {
     staticTransform: staticTransform
 };
 
-},{"../components/range-input.jsx":265,"../components/text-input.jsx":268,"../editor.jsx":277,"../interactive2/interactive-util.js":283,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../perseus-api.jsx":296,"../renderer.jsx":300,"../util.js":305,"classnames":12,"react":248,"react-dom":96,"underscore":250}],324:[function(require,module,exports){
+},{"../components/number-input.jsx":263,"../components/range-input.jsx":265,"../components/text-input.jsx":268,"../editor.jsx":277,"../interactive2/interactive-util.js":283,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../perseus-api.jsx":296,"../renderer.jsx":300,"../util.js":305,"classnames":12,"react":248,"react-dom":96,"underscore":250}],323:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -44708,7 +44523,1060 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../components/range-input.jsx":265,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],325:[function(require,module,exports){
+},{"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../components/range-input.jsx":265,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],324:[function(require,module,exports){
+"use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require("react");
+
+var JsonifyProps = require("../mixins/jsonify-props.jsx");
+var Changeable = require("../mixins/changeable.jsx");
+var NumberInput = require("../components/number-input.jsx");
+var TextInput = require("../components/text-input.jsx");
+
+var MoleculeWidgetEditor = React.createClass({
+    displayName: "MoleculeWidgetEditor",
+
+    propTypes: _extends({}, Changeable.propTypes, {
+        rotationAngle: React.PropTypes.number,
+        smiles: React.PropTypes.string
+    }),
+
+    change: function change() {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return Changeable.change.apply(this, args);
+    },
+
+
+    updateMolecule: function updateMolecule(newValue) {
+        this.change({ smiles: newValue });
+    },
+
+    updateRotation: function updateRotation(newValue) {
+        this.change({ rotationAngle: newValue });
+    },
+
+    toJSON: function toJSON() {
+        return JsonifyProps.toJSON.call(this);
+    },
+
+
+    render: function render() {
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "SMILES:\xA0",
+                    React.createElement(TextInput, {
+                        onChange: this.updateMolecule,
+                        value: this.props.smiles
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "Rotation (deg):\xA0",
+                    React.createElement(NumberInput, {
+                        onChange: this.updateRotation,
+                        value: this.props.rotationAngle
+                    })
+                )
+            )
+        );
+    }
+});
+
+module.exports = MoleculeWidgetEditor;
+
+},{"../components/number-input.jsx":263,"../components/text-input.jsx":268,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248}],325:[function(require,module,exports){
+"use strict";
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
+/* eslint-disable brace-style, object-curly-spacing */
+/* To fix, remove an entry above, run ka-lint, and fix errors. */
+
+var React = require("react");
+
+var draw = require("./molecule/molecule-drawing.jsx");
+
+var _require = require("./molecule/molecule-layout.jsx"),
+    layout = _require.layout;
+
+var SmilesParser = require("./molecule/smiles-parser.jsx");
+
+var parse = SmilesParser.parse;
+var ParseError = SmilesParser.ParseError;
+
+var borderSize = 30;
+
+var Molecule = React.createClass({
+    displayName: "Molecule",
+
+    propTypes: {
+        id: React.PropTypes.string.isRequired,
+        rotationAngle: React.PropTypes.number,
+        smiles: React.PropTypes.string
+    },
+
+    getInitialState: function getInitialState() {
+        return { parsedSmiles: null, error: null };
+    },
+
+    componentWillMount: function componentWillMount() {
+        this.stateFromSmiles(this.props.smiles);
+    },
+
+    componentDidMount: function componentDidMount() {
+        this.canvasRender();
+    },
+
+    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+        this.stateFromSmiles(nextProps.smiles);
+    },
+
+    componentDidUpdate: function componentDidUpdate() {
+        this.canvasRender();
+    },
+
+    stateFromSmiles: function stateFromSmiles(smiles) {
+        try {
+            this.setState({
+                parsedSmiles: parse(smiles),
+                error: null
+            });
+        } catch (e) {
+            if (e instanceof ParseError) {
+                this.setState({ error: e.message });
+            } else {
+                throw e;
+            }
+        }
+    },
+
+    setCanvasBounds: function setCanvasBounds(canvas, items) {
+        var xmax = Math.max.apply(Math, _toConsumableArray(items.map(function (item) {
+            return item.pos ? item.pos[0] : -Infinity;
+        })));
+        var ymax = Math.max.apply(Math, _toConsumableArray(items.map(function (item) {
+            return item.pos ? item.pos[1] : -Infinity;
+        })));
+        var xmin = Math.min.apply(Math, _toConsumableArray(items.map(function (item) {
+            return item.pos ? item.pos[0] : Infinity;
+        })));
+        var ymin = Math.min.apply(Math, _toConsumableArray(items.map(function (item) {
+            return item.pos ? item.pos[1] : Infinity;
+        })));
+        var width = xmax - xmin + 2 * borderSize;
+        var height = ymax - ymin + 2 * borderSize;
+        canvas.width = width;
+        canvas.height = height;
+        return [borderSize - xmin, borderSize - ymin];
+    },
+
+    canvasRender: function canvasRender() {
+        // Since canvas drawing happens only through an imperative API, we sync
+        // up the component with the canvas here, which happens when the
+        // component mounts or updates.
+        if (!!this.state.error || !this.state.parsedSmiles) {
+            return;
+        }
+        var items = layout(this.state.parsedSmiles, this.props.rotationAngle);
+        var canvas = this.refs.canvas;
+        var translation = this.setCanvasBounds(canvas, items);
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(translation[0], translation[1]);
+        draw(ctx, items);
+        ctx.restore();
+    },
+    render: function render() {
+        // TODO(colin): escape the punctuation in the SMILES alt text for
+        // screen readers?
+        var content = React.createElement(
+            "canvas",
+            {
+                className: "molecule-canvas",
+                id: this.props.id + "-molecule",
+                ref: "canvas"
+            },
+            "A molecular structure drawing.  SMILES notation:",
+            this.props.smiles,
+            "."
+        );
+        if (this.state.error) {
+            content = React.createElement(
+                "div",
+                { className: "error" },
+                this.state.error
+            );
+        }
+        return React.createElement(
+            "div",
+            { className: "molecule-canvas" },
+            content
+        );
+    }
+});
+
+var MoleculeWidget = React.createClass({
+    displayName: "MoleculeWidget",
+
+    propTypes: {
+        rotationAngle: React.PropTypes.number,
+        smiles: React.PropTypes.string,
+        widgetId: React.PropTypes.string
+    },
+
+    getDefaultProps: function getDefaultProps() {
+        return { rotationAngle: 0 };
+    },
+
+    simpleValidate: function simpleValidate() {
+        return { type: "points", earned: 0, total: 0, message: null };
+    },
+
+    getUserInput: function getUserInput() {
+        return [];
+    },
+
+    validate: function validate(state, rubric) {
+        // TODO(colin): this is here as part of the interface for a component.
+        // Figure out if there is something more appropriate that this should
+        // return.
+        return {
+            type: "points",
+            earned: 0,
+            total: 0,
+            message: null
+        };
+    },
+
+    render: function render() {
+        return React.createElement(Molecule, {
+            id: this.props.widgetId,
+            smiles: this.props.smiles,
+            rotationAngle: this.props.rotationAngle
+        });
+    }
+});
+
+module.exports = {
+    name: "molecule-renderer",
+    displayName: "Molecule renderer/分子式",
+    hidden: false,
+    widget: MoleculeWidget,
+    molecule: Molecule
+};
+
+},{"./molecule/molecule-drawing.jsx":326,"./molecule/molecule-layout.jsx":327,"./molecule/smiles-parser.jsx":328,"react":248}],326:[function(require,module,exports){
+"use strict";
+
+/* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
+/* eslint-disable brace-style */
+/* To fix, remove an entry above, run ka-lint, and fix errors. */
+
+/**
+ * Draw some text into a 2D canvas drawing context.
+ *
+ * Args:
+ *     ctx: the 2D drawing context
+ *     item: the rendering instruction for the text.  Must look like: {
+ *         type: "text",
+ *         pos: [x, y],
+ *         value: "some text to draw",
+ *     }
+ *
+ */
+function drawText(ctx, item) {
+    if (item.value === null) {
+        return;
+    }
+    ctx.fillStyle = styles.fgColor;
+    ctx.font = styles.font;
+    ctx.fillText(item.value, item.pos[0] - styles.fontSizePx * item.value.length / 2 + 1, item.pos[1] + styles.fontSizePx / 2);
+}
+
+/**
+ * Draw a double line into a 2D canvas drawing context.
+ *
+ * Apparently the way you do this is to stroke an extra-wide line in the
+ * foreground color and then a smaller line in the background color. 5:3
+ * foreground:background width looks reasonable for drawing chemical bonds.
+ *
+ * Args:
+ *     ctx: the 2D drawing context
+ *     item: the rendering instruction for the line.  Must look like: {
+ *         type: "line:double",
+ *         startPos: [x, y],
+ *         endPos: [x, y],
+ *     }
+ */
+function drawDoubleLine(ctx, item) {
+    // Outer line that forms both of the bond lines.
+    var path = new Path2D();
+    ctx.lineWidth = 5 * styles.lineWidth;
+    ctx.strokeStyle = styles.fgColor;
+    path.moveTo(item.startPos[0], item.startPos[1]);
+    path.lineTo(item.endPos[0], item.endPos[1]);
+    ctx.stroke(path);
+
+    // Inner white line that separates the two bond lines.
+    path = new Path2D();
+    ctx.lineWidth = 3 * styles.lineWidth;
+    ctx.strokeStyle = styles.bgColor;
+    path.moveTo(item.startPos[0], item.startPos[1]);
+    path.lineTo(item.endPos[0], item.endPos[1]);
+    ctx.stroke(path);
+}
+
+/**
+ * Draw a triple line into a 2D canvas drawing context.
+ *
+ * Following the strategy for the double line, we stroke a very wide
+ * foreground-color line, then a medium background-color line, then a narrow
+ * foreground-color line.
+ *
+ * Args:
+ *     ctx: the 2D drawing context
+ *     item: the rendering instruction for the line.  Must look like: {
+ *         type: "line:triple",
+ *         startPos: [x, y],
+ *         endPos: [x, y],
+ *     }
+ */
+function drawTripleLine(ctx, item) {
+    // TODO(colin): consolidate duplicated code from the three line drawing
+    // functions.
+
+    // Outer line that will form the two outer bond lines.
+    var path = new Path2D();
+    ctx.lineWidth = 7 * styles.lineWidth;
+    ctx.strokeStyle = styles.fgColor;
+    path.moveTo(item.startPos[0], item.startPos[1]);
+    path.lineTo(item.endPos[0], item.endPos[1]);
+    ctx.stroke(path);
+
+    // Middle white line that separates the bonds
+    path = new Path2D();
+    ctx.lineWidth = 5 * styles.lineWidth;
+    ctx.strokeStyle = styles.bgColor;
+    path.moveTo(item.startPos[0], item.startPos[1]);
+    path.lineTo(item.endPos[0], item.endPos[1]);
+    ctx.stroke(path);
+
+    // Inner line that forms the middle bond line.
+    drawLine(ctx, item);
+}
+
+/**
+ * Draw a single line into a 2D canvas drawing context
+ *
+ * Args:
+ *     ctx: the 2D drawing context
+ *     item: the rendering instruction for the line.  Must look like: {
+ *         type: "line:single",
+ *         startPos: [x, y],
+ *         endPos: [x, y],
+ *     }
+ */
+function drawLine(ctx, item) {
+    var path = new Path2D();
+    ctx.lineWidth = styles.lineWidth;
+    ctx.strokeStyle = styles.fgColor;
+    path.moveTo(item.startPos[0], item.startPos[1]);
+    path.lineTo(item.endPos[0], item.endPos[1]);
+    ctx.stroke(path);
+}
+
+/**
+ * Lookup table that maps drawing instruction types to the functions that
+ * render them.
+ */
+var drawingFuncs = {
+    text: drawText,
+    "line:single": drawLine,
+    "line:double": drawDoubleLine,
+    "line:triple": drawTripleLine
+};
+
+/**
+ * Draw a single rendering instruction into a 2D canvas drawing context.
+ */
+function drawItem(ctx) {
+    return function (item) {
+        drawingFuncs[item.type](ctx, item);
+    };
+}
+
+/**
+ * Lookup table for drawing priorities.
+ *
+ * Types with lower priorities are drawn first.
+ */
+var ordering = {
+    "line:single": 0,
+    "line:double": 0,
+    "line:triple": 0,
+    text: 1
+};
+
+/**
+ * Sorting comparison function that orders rendering instructions according to
+ * their type's priority.
+ */
+function compareElements(item0, item1) {
+    return ordering[item0.type] - ordering[item1.type];
+}
+
+/**
+ * Draw an array of rendering instructions into a 2D canvas drawing context.
+ */
+function draw(ctx, items) {
+    items.sort(compareElements).forEach(drawItem(ctx));
+}
+
+var styles = {
+    bgColor: 'rgb(255, 255, 255)',
+    fgColor: 'rgb(0, 0, 0)',
+    fontSizePx: 12,
+    lineWidth: 1
+};
+
+styles.font = styles.fontSizePx + "px sans";
+
+module.exports = draw;
+
+},{}],327:[function(require,module,exports){
+"use strict";
+
+/* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
+/* eslint-disable brace-style */
+/* To fix, remove an entry above, run ka-lint, and fix errors. */
+
+/**
+ * A molecule layout engine.
+ *
+ * This module transforms the SMILES syntax tree into a set of rendering
+ * instructions.  A rendering instruction is an object indicating what type of
+ * thing to render (e.g. text or line), where to render it, and any other style
+ * properties needed.
+ *
+ * For instance, an oxygen atom might be rendered as
+ * {type: "text", value: "O", pos: [0, 0], idx: "1,0"}
+ */
+
+// Default length of the bond.  This currently corresponds directly to pixels
+// in the renderer, but we may want this just to be arbitrary in the future.
+var bondLength = 30;
+
+// hide carbon
+var hideC = false;
+
+/**
+ * Compute a coordinate by moving an angle and length from an origin point.
+ *
+ * Args:
+ *     origin: a list of the [x, y] coordinates of the origin
+ *     angle: an angle in degrees from the origin, following the typical
+ *         convention of +x axis = 0 degrees, +y axis = 90 degrees.
+ *     length: the distance to the new point
+ * Return:
+ *     a two-element list containing the [x, y] coordinates of the point.
+ */
+function polarAdd(origin, angle, length) {
+    var x = origin[0];
+    var y = origin[1];
+    return [x + Math.cos(angle * 2 * Math.PI / 360) * length, y + -1.0 * Math.sin(angle * 2 * Math.PI / 360) * length];
+}
+
+/**
+ * Compute the layout for a single atom.
+ *
+ * Args:
+ *     atom: the atom node for which layout is being created, as returned from
+ *         convertTree; the computed position of this atom is added to this
+ *         object in place, in addition to being returned in the layout
+ *         instruction.
+ *         TODO(colin): refactor so that we don't need to modify this in place
+ *     atoms: the list of all atoms, as returned from convertTree, used to
+ *         position this atom appropriately relative to its neighbors
+ *     bonds: the list of all bonds, as returned from convertTree, used to
+ *         determine the geometry based on bond type
+ *     rotationAngle: a constant rotation for the whole molecule (in degrees)
+ *
+ * Return:
+ *     a rendering instruction for the atom, containing a type (text), the text
+ *     to render, the position, and the atom index
+ */
+function atomLayout(atom, atoms, bonds, rotationAngle) {
+    var textValue = atom.symbol;
+    if (hideC && textValue === "C" && Object.keys(atoms).length !== 1) {
+        // By convention, don't render the C for carbon in a chain.
+        textValue = null;
+    }
+
+    if (atom.idx === "1,0") {
+        // The first atom is special-cased because there are no neighbors for
+        // relative positioning.
+        var _pos = [0, 0];
+        atom.pos = _pos;
+        // Conventionally, molecules are rendered where the first bond is not
+        // horizontal, but at a 30 degree angle, so subtract 30 degrees for the
+        // first atom's direction.
+        atom.baseAngle = -30 + rotationAngle;
+        return { type: "text", value: textValue, pos: _pos, idx: atom.idx };
+    }
+    // If we're an atom with any other index than the case just handled, we're
+    // guaranteed to have a neighbor who has a defined position.
+    var prevPositionedAtom = atoms[atom.connections.find(function (c) {
+        return atoms[c].pos;
+    })];
+
+    // Find this atom's index in the previous atom's connections
+    var myIndex = prevPositionedAtom.connections.indexOf(atom.idx);
+
+    var baseAngleIncrement = 60;
+    var angleIncrement = 120;
+    if (prevPositionedAtom.connections.length === 4) {
+        // By convention, if an atom has 4 bonds, we represent it with 90
+        // degree angles in 2D, even though it would have tetrahedral geometry
+        // with ~110 degree angles in 3D.
+        angleIncrement = 90;
+        baseAngleIncrement = 90;
+    } else if (bonds.find(function (bond) {
+        return bond.bondType === "triple" && bond.to === atom.idx;
+    }) || bonds.find(function (bond) {
+        return bond.bondType === "triple" && bond.to === prevPositionedAtom.idx;
+    })) {
+        // Triple bonds have a bond angle of 180 degrees, so don't change the
+        // direction in which we made the previous bond.
+        angleIncrement = 0;
+        baseAngleIncrement = 0;
+    }
+
+    var angle = 0;
+    var idxPath = prevPositionedAtom.idx.split(":");
+    var lastAtomIdx = idxPath[idxPath.length - 1].split(",")[0];
+
+    // Conventionally, a single chain of atoms is rendered as a zig-zag pattern
+    // with 120 degree angles.  This means we need to flip the angle every
+    // other atom.  The parser ensures that indices always alternate odd-even,
+    // including taking into account branch points.
+    // TODO(colin): don't depend on the parser's indexing scheme and just track
+    // this entirely in the layout engine.
+    if (parseInt(lastAtomIdx) % 2 !== 0) {
+        angle = prevPositionedAtom.baseAngle - (baseAngleIncrement - angleIncrement * myIndex);
+    } else {
+        angle = prevPositionedAtom.baseAngle + (baseAngleIncrement - angleIncrement * myIndex);
+    }
+
+    var pos = polarAdd(prevPositionedAtom.pos, angle, bondLength);
+
+    atom.pos = pos;
+    atom.baseAngle = angle;
+
+    return { type: "text", value: textValue, pos: pos, idx: atom.idx };
+}
+
+/**
+ * Get the start and end position for a bond connecting two atoms.
+ *
+ * If we have non-carbon atoms that render with explicit letters connected by a
+ * bond, we don't want the line for the bond to extend into the lettering for
+ * the atom.
+ *
+ * This function returns the start and end positions of the bond's line, taking
+ * into account that one or both end points might need to be moved to make room
+ * for text.
+ *
+ * TODO(colin): this makes assumptions about the relative sizes of the length
+ * of a bond and the text.  Think about alternate ways to represent this that
+ * might not have that problem.
+ */
+function maybeShrinkLines(fromAtom, toAtom) {
+    var shrinkFactor = 0.25;
+    var fromPos = [fromAtom.pos[0], fromAtom.pos[1]];
+    var toPos = [toAtom.pos[0], toAtom.pos[1]];
+    if (!hideC || fromAtom.symbol !== "C") {
+        fromPos = [toAtom.pos[0] - (1 - shrinkFactor) * (toAtom.pos[0] - fromAtom.pos[0]), toAtom.pos[1] - (1 - shrinkFactor) * (toAtom.pos[1] - fromAtom.pos[1])];
+    }
+    if (!hideC || toAtom.symbol !== "C") {
+        // For carbon atoms, conventionally we don't draw any letter, so this
+        // special cases drawing the bond lines all the way to the point where
+        // they meet.
+        toPos = [fromAtom.pos[0] - (1 - shrinkFactor) * (fromAtom.pos[0] - toAtom.pos[0]), fromAtom.pos[1] - (1 - shrinkFactor) * (fromAtom.pos[1] - toAtom.pos[1])];
+    }
+    return [fromPos, toPos];
+}
+
+/**
+ * Compute the layout for a bond between two atoms.
+ *
+ * Args:
+ *     bond: the bond node for which the layout is being computed, as returned
+ *         by convertTree
+ *     atoms: the list of all atoms returned by convertTree, which should
+ *         already have been processed for layout and thus have positions set
+ *
+ * Return:
+ *     a rendering instruction for the bond containing a type
+ *     (line:{single,double,triple}) and the line's endpoints
+ */
+function bondLayout(bond, atoms) {
+    var fromAtom = atoms[bond.from];
+    var toAtom = atoms[bond.to];
+    var startAndEndPos = maybeShrinkLines(fromAtom, toAtom);
+    return {
+        type: "line:" + bond.bondType,
+        startPos: startAndEndPos[0],
+        endPos: startAndEndPos[1]
+    };
+}
+
+/**
+ * Convert an array of atom indices to a single string unique identifier.
+ *
+ * For linear molecules, or for atoms in the main chain, this will just be the
+ * atom index, something like "0,1".  For branched molecules, however, we
+ * uniquely identify atoms by an array of atoms where the branching happened,
+ * followed by the index in the current branch (like ["0,1", "1,2", "1,1"]).
+ * This function just joins the parts with a colon so that we can have nice
+ * object keys that still track the series of branches to get to an atom, which
+ * is guaranteed to be a unique identifier.
+ *
+ */
+function idxString(idx) {
+    return idx.join(":");
+}
+
+/**
+ * Convert the parse tree output by the parser into an ordered list of atoms
+ * and bonds to render.
+ *
+ * Args:
+ *     atoms: the output list of atoms that we're in the process of building.
+ *         This should be the empty list if not being called recursively.
+ *     bonds: the output list of bonds that we're in the process of building.
+ *         This should be the empty list if not being called recursively.
+ *     tree: the parse tree generated by the SMILES parser module.
+ *
+ * Return:
+ *     the final value of atoms and bonds, which are lists of all the atom
+ *     nodes and bond nodes, respectively, that need to be rendered.
+ */
+function convertTree(atoms, bonds, tree) {
+    if (tree === null) {
+        return [atoms, bonds];
+    }
+    if (tree.type === "atom") {
+        var treeIdx = idxString(tree.idx);
+        atoms[treeIdx] = { idx: treeIdx, symbol: tree.symbol, connections: [] };
+        if (tree.bonds) {
+            tree.bonds.forEach(function (b) {
+                if (b === null) return;
+                var toIdx = idxString(b.to.idx);
+                atoms[treeIdx].connections.push(toIdx);
+                bonds.push({ from: treeIdx, to: toIdx, bondType: b.bondType });
+                convertTree(atoms, bonds, b.to);
+                atoms[toIdx].connections.push(treeIdx);
+            });
+        }
+    }
+    return [atoms, bonds];
+}
+
+/**
+ * Recursively process the queue of atoms that need to have layout computed.
+ *
+ * Args:
+ *     outputs: the array of atom rendering instructions we're in the process
+ *         of building.  This should be the empty array if not being called
+ *         recursively.
+ *     atomProcessingQueue: the array of unique identifier strings (see the
+ *         comment for idxString for more information about these) of atoms
+ *         currently in line to be processed.  When not being called
+ *         recursively, this should be a array with a single element, the
+ *         unique identifier of the first atom in the structure ("1,0" in the
+ *         current scheme).
+ *     atoms: the array of all atom nodes to be rendered, as returned by
+ *         convertTree
+ *     bonds: the array of all bond nodes to be rendered, as returned by
+ *         convertTree
+ *
+ * Return:
+ *     an array of rendering instructions for all the atoms in the molecule
+ */
+function atomLayoutHelper(outputs, atomProcessingQueue, atoms, bonds, rotationAngle) {
+    if (atomProcessingQueue.length === 0) {
+        return outputs;
+    }
+
+    var queuedAtomIdx = atomProcessingQueue.shift();
+    var atom = atoms[queuedAtomIdx];
+    atom.connections.forEach(function (c) {
+        if (!atoms[c].pos) {
+            atomProcessingQueue.push(c);
+        }
+    });
+    return atomLayoutHelper(outputs.concat(atomLayout(atom, atoms, bonds, rotationAngle)), atomProcessingQueue, atoms, bonds, rotationAngle);
+}
+
+/**
+ * Recursively process the queue of bonds that need to have layout computed.
+ *
+ * Args:
+ *     outputs: the array of bond rendering instructions we're in the process
+ *         of building.  This should be the empty array or the array of all
+ *         atom rendering instructions if not being called recursively.
+ *     atoms: the array of all atom nodes to be rendered, as returned by
+ *         convertTree
+ *     bonds: the array of all bond nodes to be rendered, as returned by
+ *         convertTree
+ *
+ * Return:
+ *     an array of rendering instructions for all the bonds in the molecule
+ *     concatenated to the initial value of outputs
+ */
+function bondLayoutHelper(outputs, atoms, bonds) {
+    if (bonds.length === 0) {
+        return outputs;
+    }
+    return bondLayoutHelper(outputs.concat(bondLayout(bonds[0], atoms)), atoms, bonds.slice(1));
+}
+
+/**
+ * Compute an array of rendering instructions from the parse tree of a molecule.
+ *
+ * Args:
+ *     tree: the parse tree as returned by the SMILES parser module
+ *     rotationAngle: a global rotation (in degrees) to be applied to the whole
+ *         molecule; this is manually adjustable in the widget.
+ *
+ * Return:
+ *     an array of rendering instructions for all the atoms and bonds in the
+ *     molecule suitable for processing by the renderer
+ */
+function layout(tree, rotationAngle) {
+    var converted = convertTree({}, [], tree);
+    var atoms = converted[0];
+    var bonds = converted[1];
+    var outputs = atomLayoutHelper([], ["1,0"], atoms, bonds, rotationAngle);
+    return bondLayoutHelper(outputs, atoms, bonds);
+}
+
+module.exports = {
+    layout: layout,
+    // The remainder are exported for testing and are not intended for external
+    // use.
+    _atomLayout: atomLayout,
+    _bondLayout: bondLayout,
+    _bondLength: bondLength,
+    _convertTree: convertTree
+};
+
+},{}],328:[function(require,module,exports){
+"use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+// Regexp defining characters that are valid SMILES characters that this parser
+// can parse.  In addition to serving as a sort of validation, this also keeps
+// out unimplemented features (like cycles and stereochemistry), which use
+// additional characters.
+var smilesRe = new RegExp("^[A-Za-z\\[\\]()=#+-]*$");
+
+// Regexp defining what characters are valid as atom names.  This includes
+// common 1-character elements, Cl and Br for convenience, and the open
+// bracket, which can be used to include anything as an atom name.
+var atomRe = new RegExp("^(Cl|Br|OH|[CHONPSFBI]|\\[)");
+
+function ParseError(message) {
+    this.message = message;
+}
+
+/**
+ * Perform a functional update of a possibly nested object.
+ *
+ * Args:
+ *     obj: an object, will not be modified
+ *     keylist: a list of keys whose values will be updated in the object.
+ *         This represents a path to a value inside nested objects.  For
+ *         example, if keylist == ["a", "b", "c"], then a new object is
+ *         returned with obj["a"]["b"]["c"] updated.  Note that if any of the
+ *         keys is not already present, this will insert {} as a default value
+ *         for that key.
+ *     val: the new value to associate with the keypath
+ *
+ * Return: a new object, which is a shallow copy of the original with the value
+ *     at the specified keypath replaced.
+ */
+function _mset(obj, keylist, val) {
+    var k0 = keylist[0];
+    var rest = keylist.slice(1);
+    var newObj = void 0;
+    if (Array.isArray(obj)) {
+        newObj = [].concat(_toConsumableArray(obj));
+    } else {
+        newObj = _extends({}, obj || {});
+    }
+    var newVal = val;
+    if (rest.length > 0) {
+        newVal = _mset(newObj[k0], rest, val);
+    }
+    newObj[k0] = newVal;
+    return newObj;
+}
+
+/**
+ * Perform a functional increment of a value in a nested object.
+ *
+ * Args:
+ *     obj: an object; this will not be modified
+ *     keylist: a list of keys representing a path into a nested object.  (See
+ *         `_mset` for examples.)
+ *
+ * Return:
+ *     an object that is a shallow copy of obj, with the value at the specified
+ *     path incremeneted.
+ */
+function _inc(obj, keylist) {
+    var val = keylist.reduce(function (acc, elt) {
+        return acc[elt];
+    }, obj);
+
+    return _mset(obj, keylist, val + 1);
+}
+
+function validate(smiles) {
+    return smilesRe.test(smiles);
+}
+
+/**
+ * Parse a bond modifier character, updating the context object so that the
+ * next bond created has this modifier.
+ */
+function parseBondModifier(smiles, ctx) {
+    var firstChar = smiles[0];
+    var rest = smiles.slice(1);
+    if (firstChar === "=") {
+        return parse(rest, _mset(ctx, ["bond", "bondType"], "double"));
+    } else if (firstChar === "#") {
+        return parse(rest, _mset(ctx, ["bond", "bondType"], "triple"));
+    }
+    throw new ParseError("Invalid character: " + firstChar);
+}
+
+/**
+ * Slice the input string, removing a parenthesized expression.
+ * (Will handle nested parentheses.)
+ *
+ * parenStack should be a list containing any open parentheses already
+ * encountered.  (Usually, this will be ["("])
+ */
+function sliceFromMatchingCloseParen(smiles, parenStack) {
+    if (parenStack.length === 0) {
+        return smiles;
+    }
+
+    if (smiles === "") {
+        throw new ParseError("Mismatched parentheses");
+    }
+
+    var firstChar = smiles[0];
+    var rest = smiles.slice(1);
+
+    if (firstChar === "(") {
+        return sliceFromMatchingCloseParen(rest, parenStack.concat(firstChar));
+    }
+
+    if (firstChar === ")") {
+        return sliceFromMatchingCloseParen(rest, parenStack.slice(1));
+    }
+
+    return sliceFromMatchingCloseParen(rest, parenStack);
+}
+
+/**
+ * Parse a branch, as indicated by the presence of a parenthesized experession.
+ *
+ * This returns a list of all branches (including the continuation of the
+ * backbone) that should be added to the previous atom's bond list.
+ */
+function parseParenthesizedExpression(smiles, ctx) {
+    var firstChar = smiles[0];
+    var rest = smiles.slice(1);
+    if (firstChar === "(") {
+        var newCtx = _extends({}, ctx, { parens: ctx.parens + "(" });
+        // increment the branch index
+        newCtx = _inc(ctx, ["idx", ctx.idx.length - 1, 1]);
+
+        var inBranchIdx = -1;
+        if (ctx.idx[ctx.idx.length - 1][0] % 2 === 0) {
+            // HACK(colin): this is so that we preserve the odd/even series in
+            // indices in branches; the layout engine uses this to select
+            // angles, and if we don't do this, editing one part of a molecule
+            // can cause another to flop around oddly.
+            // TODO(colin): this should just start at 0 all the time, and the
+            // layout engine should figure out continuity.
+            inBranchIdx = 0;
+        }
+        var parenCtx = _extends({}, newCtx, {
+            idx: newCtx.idx.concat([[inBranchIdx, 0]]),
+            parens: newCtx.parens.concat("(")
+        });
+        var parenExpr = parse(rest, parenCtx);
+        var remainder = parse(sliceFromMatchingCloseParen(rest, ["("]), newCtx);
+        return [parenExpr].concat(remainder);
+    } else if (firstChar === ")") {
+        if (ctx.parens[ctx.parens.length - 1] !== "(") {
+            throw new ParseError("Mismatched parentheses");
+        }
+        return null;
+    } else {
+        throw new ParseError("Invalid bare character: " + firstChar);
+    }
+}
+
+/**
+ * Get the symbol of the next atom in the molecule.
+ *
+ * Return a 2-element list containing that symbol and the remainder of the
+ * molecule.
+ */
+function readAtomSymbol(smiles, _ctx) {
+    var sym = null;
+    var rest = null;
+    if (smiles[0] === "[") {
+        var closingIdx = smiles.indexOf("]");
+        if (closingIdx === -1) {
+            return ["", smiles];
+        }
+        sym = smiles.slice(1, closingIdx);
+        rest = smiles.slice(closingIdx + 1);
+    } else {
+        var match = atomRe.exec(smiles);
+        sym = match[1];
+        rest = smiles.slice(sym.length);
+    }
+
+    return [sym, rest];
+}
+
+/**
+ * Parse the next atom in the molecule, returning an atom object if this is the
+ * first atom in the molecule, or a bond object with this atom as the
+ * destination of the bond if this is not the first atom.
+ */
+function parseAtom(smiles, ctx) {
+    var symbolInfo = readAtomSymbol(smiles, ctx);
+    var atom = symbolInfo[0];
+    if (atom === "") {
+        return ["error", "Unable to parse bracketed atom."];
+    }
+    var rest = symbolInfo[1];
+
+    // Atoms are indexed by a list of two-element lists.  In each two-element
+    // list, the first element is the atom counter, and the second element is
+    // the branch counter.  Branches are 1-indexed so that the main chain of
+    // the molecule can be indicated by 0.  Atoms may be either 0- or
+    // 1-indexed, defaulting to 1, to maintain a alternating pattern of
+    // odd/even indices. So, for example, if an atom has a branch off the main
+    // chain, and its atom index is x, then the indices of atoms are:
+    //     Atom where branch occurs: [[x, 0]]
+    //     First atom in the branch: [[x, 1], [1, 0]]  (assuming x is even)
+    //     Next atom in the main chain: [[x + 1, 0]]
+
+    // increment the atom counter and reset the branch counter
+    var newCtx = _mset(ctx, ["idx", ctx.idx.length - 1], [1 + ctx.idx[ctx.idx.length - 1][0], 0]);
+    var restOfMolecule = parse(rest, _mset(newCtx, ["bond", "bondType"], "single"));
+    if (!Array.isArray(restOfMolecule) && !!restOfMolecule) {
+        //TODO(colin): fix this awkwardness.
+        restOfMolecule = [restOfMolecule];
+    }
+    var atomObj = {
+        type: "atom",
+        symbol: atom,
+        bonds: restOfMolecule,
+        idx: newCtx.idx
+    };
+    if (ctx.bond) {
+        return {
+            type: "bond",
+            bondType: ctx.bond.bondType,
+            to: atomObj
+        };
+    }
+    return atomObj;
+}
+
+function startsWithAtom(s) {
+    return atomRe.test(s);
+}
+
+function isModifierChar(s) {
+    return s === "=" || s === "#";
+}
+
+/**
+ * Parse a SMILES string to an internal tree representation.
+ *
+ * Args:
+ *   smiles [string]: a string representing the molecule.
+ *
+ * Returns: the parse tree (see top-of file docstring for details).
+ *
+ * Throws:
+ *     ParseError: if the input is not valid SMILES or contains features not
+ *         yet implemented.
+ */
+function parse(smiles, ctx) {
+    if (!validate(smiles)) {
+        throw new ParseError("Invalid input.");
+    }
+
+    if (!smiles || smiles.length === 0) {
+        return null;
+    }
+
+    if (startsWithAtom(smiles)) {
+        return parseAtom(smiles, ctx || {
+            idx: [[0, 0]],
+            parens: [],
+            stack: [],
+            bondModifiers: []
+        });
+    } else if (isModifierChar(smiles[0])) {
+        // TODO(colin): add a better error message in the case where the input
+        // is invalid and starts with a modifier character?
+        return parseBondModifier(smiles, ctx);
+    } else {
+        // TODO(colin): add additional cases for unimplemented bits of SMILES
+        // syntax.
+        return parseParenthesizedExpression(smiles, ctx);
+    }
+}
+
+module.exports = { parse: parse, ParseError: ParseError };
+
+},{}],329:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -45687,7 +46555,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/graphie.jsx":259,"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../components/range-input.jsx":265,"../interactive2.js":282,"../interactive2/interactive-util.js":283,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69}],326:[function(require,module,exports){
+},{"../components/graphie.jsx":259,"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../components/range-input.jsx":265,"../interactive2.js":282,"../interactive2/interactive-util.js":283,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69}],330:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46240,14 +47108,14 @@ var propsTransform = function propsTransform(editorProps) {
 
 module.exports = {
     name: "numeric-input",
-    displayName: "Number text box (new)",
+    displayName: "numeric-input/進階數值填充",
     widget: NumericInput,
     editor: NumericInputEditor,
     transform: propsTransform,
     hidden: false
 };
 
-},{"../components/input-with-examples.jsx":260,"../components/multi-button-group.jsx":262,"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69,"underscore":250}],327:[function(require,module,exports){
+},{"../components/input-with-examples.jsx":260,"../components/multi-button-group.jsx":262,"../components/number-input.jsx":263,"../components/prop-check-box.jsx":264,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"../util.js":305,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69,"underscore":250}],331:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46423,7 +47291,7 @@ var Card = React.createClass({
         var loc = Util.extractPointerLocation(event);
         if (loc) {
             this.bindMouseMoveUp();
-            this.props.onMouseDown && this.props.onMouseDown(loc, this);
+            this.props.onMouseDown && this.props.onMouseDown(loc, ReactDOM.findDOMNode(this));
         }
     },
 
@@ -46607,7 +47475,7 @@ var Orderer = React.createClass({
     onRelease: function onRelease(loc) {
         var _this2 = this;
 
-        var draggable = this.refs.dragging;
+        var draggable = ReactDOM.findDOMNode(this.refs.dragging);
         if (draggable == null) {
             return;
         }
@@ -46650,13 +47518,13 @@ var Orderer = React.createClass({
             // one with the same content
             _.each(this.props.options, function (opt, i) {
                 if (opt.content === this.state.dragContent) {
-                    var card = this.refs["bank" + i];
+                    var card = ReactDOM.findDOMNode(this.refs["bank" + i]);
                     finalOffset = $(card).position();
                 }
             }, this);
         } else {
             // Otherwise, go to the position that the placeholder is at
-            finalOffset = $(this.refs.placeholder).position();
+            finalOffset = $(ReactDOM.findDOMNode(this.refs.placeholder)).position();
         }
 
         if (finalOffset == null) {
@@ -46676,7 +47544,7 @@ var Orderer = React.createClass({
     },
 
     onMouseMove: function onMouseMove(loc) {
-        var draggable = this.refs.dragging;
+        var draggable = ReactDOM.findDOMNode(this.refs.dragging);
         if (draggable == null) {
             return;
         }
@@ -46697,7 +47565,7 @@ var Orderer = React.createClass({
     findCorrectIndex: function findCorrectIndex(draggable, list) {
         // Find the correct index for a card given the current cards.
         var isHorizontal = this.props.layout === HORIZONTAL,
-            $dragList = $(this.refs.dragList),
+            $dragList = $(ReactDOM.findDOMNode(this.refs.dragList)),
             leftEdge = $dragList.offset().left,
             topEdge = $dragList.offset().top,
             midWidth = $(draggable).offset().left - leftEdge,
@@ -46708,7 +47576,7 @@ var Orderer = React.createClass({
 
         if (isHorizontal) {
             _.each(list, function (opt, i) {
-                var card = this.refs["sortable" + i];
+                var card = ReactDOM.findDOMNode(this.refs["sortable" + i]);
                 var outerWidth = $(card).outerWidth(true);
                 if (midWidth > sumWidth + outerWidth / 2) {
                     index += 1;
@@ -46717,7 +47585,7 @@ var Orderer = React.createClass({
             }, this);
         } else {
             _.each(list, function (opt, i) {
-                var card = this.refs["sortable" + i];
+                var card = ReactDOM.findDOMNode(this.refs["sortable" + i]);
                 var outerHeight = $(card).outerHeight(true);
                 if (midHeight > sumHeight + outerHeight / 2) {
                     index += 1;
@@ -46736,13 +47604,13 @@ var Orderer = React.createClass({
 
         var isHorizontal = this.props.layout === HORIZONTAL,
             $draggable = $(draggable),
-            $bank = $(this.refs.bank),
+            $bank = $(ReactDOM.findDOMNode(this.refs.bank)),
             draggableOffset = $draggable.offset(),
             bankOffset = $bank.offset(),
             draggableHeight = $draggable.outerHeight(true),
             bankHeight = $bank.outerHeight(true),
             bankWidth = $bank.outerWidth(true),
-            dragList = this.refs.dragList,
+            dragList = ReactDOM.findDOMNode(this.refs.dragList),
             dragListWidth = $(dragList).width(),
             draggableWidth = $draggable.outerWidth(true);
 
@@ -46754,9 +47622,26 @@ var Orderer = React.createClass({
     },
 
     toJSON: function toJSON(skipValidation) {
-        return { current: _.map(this.props.current, function (v) {
+        return { current: this.props.current.map(function (v) {
                 return v.content;
             }) };
+    },
+
+    setAnswerFromJSON: function setAnswerFromJSON(answerData) {
+        var _this3 = this;
+
+        var opt_content = this.props.options.map(function (opt) {
+            return opt.content;
+        });
+        var current = answerData.current.map(function (v) {
+            var width = ReactDOM.findDOMNode(_this3.refs["bank" + opt_content.indexOf(v)]).clientWidth;
+            return {
+                key: _.uniqueId("perseus_draggable_card_"),
+                content: v,
+                width: width
+            };
+        });
+        this.props.onChange({ current: current });
     },
 
     simpleValidate: function simpleValidate(rubric) {
@@ -46979,7 +47864,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/text-list-editor.jsx":269,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],328:[function(require,module,exports){
+},{"../components/text-list-editor.jsx":269,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],332:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48032,8 +48917,10 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/number-input.jsx":263,"../components/range-input.jsx":265,"../components/text-list-editor.jsx":269,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],329:[function(require,module,exports){
+},{"../components/number-input.jsx":263,"../components/range-input.jsx":265,"../components/text-list-editor.jsx":269,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],333:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -48076,7 +48963,7 @@ var BaseRadio = React.createClass({
 
         return React.createElement(
             'ul',
-            { className: "perseus-widget-radio " + "above-scratchpad blank-background" },
+            { className: "perseus-widget-radio " + "above-scratchpad" },
             this.props.multipleSelect && React.createElement(
                 'div',
                 { className: 'instructions' },
@@ -48085,6 +48972,7 @@ var BaseRadio = React.createClass({
             this.props.choices.map(function (choice, i) {
                 var _this = this;
 
+                // var content = <div className={css(styles.radioContent)}>
                 var content = React.createElement(
                     'div',
                     null,
@@ -48173,9 +49061,23 @@ var BaseRadio = React.createClass({
 var Radio = React.createClass({
     displayName: 'Radio',
 
+    mixins: [Changeable],
+    propTypes: {
+        choices: React.PropTypes.arrayOf(React.PropTypes.shape(_extends({}, Changeable.propTypes, {
+            content: React.PropTypes.string,
+            apiOptions: React.PropTypes.any,
+            clue: React.PropTypes.string,
+            correct: React.PropTypes.bool
+        }))),
+        widgets: React.PropTypes.object
+    },
+
     getDefaultProps: function getDefaultProps() {
         return {
-            choices: [{}],
+            choices: [{
+                content: ""
+            }],
+            widgets: {},
             displayCount: null,
             multipleSelect: false
         };
@@ -48202,9 +49104,13 @@ var Radio = React.createClass({
             }
             return {
                 // We need to make a copy, which _.pick does
-                content: React.createElement(Renderer, content),
+                content: React.createElement(Renderer, {
+                    content: choice.content,
+                    widgets: choice.widgets }),
                 checked: values[i],
+                apiOptions: React.createElement(Renderer, { apiOptions: choice.apiOptions }),
                 clue: React.createElement(Renderer, { content: choice.clue })
+
             };
         });
         choices = this.enforceOrdering(choices);
@@ -48218,6 +49124,7 @@ var Radio = React.createClass({
             choices: choices.map(function (choice) {
                 return _.pick(choice, "content", "checked", "clue");
             }),
+            widgets: this.props.widgets,
             onCheckedChange: this.onCheckedChange });
     },
 
@@ -48245,7 +49152,7 @@ var Radio = React.createClass({
 
     setAnswerFromJSON: function setAnswerFromJSON(answerData) {
         if (answerData === undefined) {
-            renderedAnswerData = { values: undefined };
+            var renderedAnswerData = { values: undefined };
         } else {
             var renderedAnswerData = { 'values': [] };
             for (var i = 0; i < this.props.choices.length; i++) {
@@ -48357,11 +49264,13 @@ var RadioEditor = React.createClass({
     mixins: [Changeable],
 
     propTypes: {
-        choices: React.PropTypes.arrayOf(React.PropTypes.shape({
+        choices: React.PropTypes.arrayOf(React.PropTypes.shape(_extends({}, Changeable.propTypes, {
             content: React.PropTypes.string,
+            apiOptions: React.PropTypes.any,
             clue: React.PropTypes.string,
             correct: React.PropTypes.bool
-        })),
+        }))),
+        widgets: React.PropTypes.object,
         displayCount: React.PropTypes.number,
         randomize: React.PropTypes.bool,
         noneOfTheAbove: React.PropTypes.bool,
@@ -48371,7 +49280,10 @@ var RadioEditor = React.createClass({
 
     getDefaultProps: function getDefaultProps() {
         return {
-            choices: [{}, {}],
+            choices: [{
+                content: ""
+            }],
+            widgets: {},
             displayCount: null,
             randomize: false,
             noneOfTheAbove: false,
@@ -48419,17 +49331,20 @@ var RadioEditor = React.createClass({
                     );
 
                     var editor = React.createElement(Editor, {
+                        apiOptions: this.props.choices[i].apiOptions,
+                        widgets: this.props.choices[i].widgets,
+                        widgetEnabled: true,
+                        immutableWidgets: false,
                         className: 'content-editor',
                         ref: "editor" + i,
-                        content: choice.content || "",
-                        widgetEnabled: false,
+                        content: this.props.choices[i].content || "",
                         placeholder: "請輸入選項內容",
                         onChange: function onChange(newProps) {
-                            if ("content" in newProps) {
-                                _this2.onContentChange(i, newProps.content);
+                            if ("content" in newProps || "widgets" in newProps) {
+                                _this2.onContentChange(i, newProps.content, newProps.widgets);
                             }
-                        }
-                    });
+                        } });
+
                     var clueEditor = React.createElement(Editor, {
                         ref: "clue-editor-" + i,
                         content: choice.clue || "",
@@ -48539,10 +49454,25 @@ var RadioEditor = React.createClass({
         this.props.onChange({ choices: choices });
     },
 
-    onContentChange: function onContentChange(choiceIndex, newContent) {
+    onContentChange: function onContentChange(choiceIndex, newContent, newWidgets) {
+        var choices = this.props.choices.slice();
+        if (newContent) {
+            choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
+                content: newContent
+            });
+        }
+        if (newWidgets) {
+            choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
+                widgets: newWidgets
+            });
+        }
+        this.props.onChange({ choices: choices });
+    },
+
+    onWidgetChange: function onWidgetChange(choiceIndex, newWidget) {
         var choices = this.props.choices.slice();
         choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
-            content: newContent
+            content: newWidget
         });
         this.props.onChange({ choices: choices });
     },
@@ -48634,6 +49564,13 @@ var choiceTransform = function choiceTransform(editorProps) {
     return _.pick(editorProps, "choices", "noneOfTheAbove", "onePerLine", "multipleSelect", "correctAnswer");
 };
 
+// const styles = StyleSheet.create({
+//     radioContent: {
+//         display: 'inline-block'
+//     }
+// });
+
+
 module.exports = {
     name: "radio",
     displayName: "Radio/選擇題",
@@ -48642,7 +49579,319 @@ module.exports = {
     transform: choiceTransform
 };
 
-},{"../components/prop-check-box.jsx":264,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../perseus-api.jsx":296,"../renderer.jsx":300,"../util.js":305,"classnames":12,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69,"react-dom":96}],330:[function(require,module,exports){
+},{"../components/prop-check-box.jsx":264,"../editor.jsx":277,"../mixins/changeable.jsx":293,"../perseus-api.jsx":296,"../renderer.jsx":300,"../util.js":305,"classnames":12,"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69,"react-dom":96}],334:[function(require,module,exports){
+"use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
+/* eslint-disable brace-style, no-var */
+/* To fix, remove an entry above, run ka-lint, and fix errors. */
+
+var React = require("react");
+
+var Changeable = require("../mixins/changeable.jsx");
+var JsonifyProps = require("../mixins/jsonify-props.jsx");
+
+var NumberInput = require("../components/number-input.jsx");
+var TextInput = require("../components/text-input.jsx");
+
+var ReactionDiagramWidgetEditor = React.createClass({
+    displayName: "ReactionDiagramWidgetEditor",
+
+    propTypes: _extends({}, Changeable.propTypes, {
+        rotationAngle: React.PropTypes.arrayOf(React.PropTypes.number),
+        separators: React.PropTypes.arrayOf(React.PropTypes.object),
+        smiles: React.PropTypes.arrayOf(React.PropTypes.string)
+    }),
+
+    getDefaultProps: function getDefaultProps() {
+        return {
+            smiles: ["", ""],
+            rotationAngle: [0, 0],
+            separators: [{ type: "right", topText: "", bottomText: "" }]
+        };
+    },
+
+    change: function change() {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return Changeable.change.apply(this, args);
+    },
+
+
+    updateMolecule: function updateMolecule(idx) {
+        return function (newValue) {
+            var newSmiles = [].concat(_toConsumableArray(this.props.smiles));
+            newSmiles[idx] = newValue;
+            this.change({ smiles: newSmiles });
+        }.bind(this);
+    },
+
+    updateRotation: function updateRotation(idx) {
+        return function (newValue) {
+            var newRot = [].concat(_toConsumableArray(this.props.rotationAngle));
+            newRot[idx] = newValue;
+            this.change({ rotationAngle: newRot });
+        }.bind(this);
+    },
+
+    updateSeparators: function updateSeparators(idx, propName) {
+        var _this = this;
+
+        return function (newValue) {
+            var newSep = _this.props.separators.map(function (sep) {
+                return _extends({}, sep);
+            });
+            newSep[idx][propName] = newValue;
+            _this.change({ separators: newSep });
+        };
+    },
+
+    toJSON: function toJSON() {
+        return JsonifyProps.toJSON.call(this);
+    },
+
+
+    render: function render() {
+        // TODO(colin): use styling instead of &nbsp hacks.
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "LHS SMILES:\xA0",
+                    React.createElement(TextInput, {
+                        onChange: this.updateMolecule(0),
+                        value: this.props.smiles[0]
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "LHS Rotation (deg):\xA0",
+                    React.createElement(NumberInput, {
+                        onChange: this.updateRotation(0),
+                        value: this.props.rotationAngle[0]
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "RHS SMILES:\xA0",
+                    React.createElement(TextInput, {
+                        onChange: this.updateMolecule(1),
+                        value: this.props.smiles[1]
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "RHS Rotation (deg):\xA0",
+                    React.createElement(NumberInput, {
+                        onChange: this.updateRotation(1),
+                        value: this.props.rotationAngle[1]
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "Top of arrow text:\xA0",
+                    React.createElement(TextInput, {
+                        onChange: this.updateSeparators(0, "topText"),
+                        value: this.props.separators[0].topText
+                    })
+                )
+            ),
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "label",
+                    null,
+                    "Bottom of arrow text:\xA0",
+                    React.createElement(TextInput, {
+                        onChange: this.updateSeparators(0, "bottomText"),
+                        value: this.props.separators[0].bottomText
+                    })
+                )
+            )
+        );
+    }
+});
+
+module.exports = ReactionDiagramWidgetEditor;
+
+},{"../components/number-input.jsx":263,"../components/text-input.jsx":268,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248}],335:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+
+var Molecule = require("./molecule.jsx").molecule;
+
+var Separator = React.createClass({
+    displayName: "Separator",
+
+    propTypes: {
+        // TODO(colin): figure out and add shape.
+        data: React.PropTypes.any,
+        index: React.PropTypes.number
+    },
+
+    componentDidMount: function componentDidMount() {
+        this.drawArrow();
+    },
+
+    componentDidUpdate: function componentDidUpdate() {
+        this.drawArrow();
+    },
+
+    arrowLength: 100,
+
+    drawArrow: function drawArrow() {
+        var canvas = this.refs["arrowCanvas" + this.props.index];
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var path = new Path2D();
+        ctx.strokeStyle = "rgb(0,0,0)";
+        ctx.lineWidth = 1.2;
+        ctx.lineCap = "round";
+        var offset = 5;
+        path.moveTo(offset, canvas.height / 2);
+        path.lineTo(canvas.width - offset, canvas.height / 2);
+        path.moveTo(canvas.width - 2 * offset, canvas.height / 2 - offset);
+        path.lineTo(canvas.width - offset, canvas.height / 2);
+        path.moveTo(canvas.width - 2 * offset, canvas.height / 2 + offset);
+        path.lineTo(canvas.width - offset, canvas.height / 2);
+        ctx.stroke(path);
+    },
+
+    render: function render() {
+        return React.createElement(
+            "div",
+            { className: "arrow-container" },
+            React.createElement(
+                "div",
+                { className: "above-text" },
+                this.props.data.topText
+            ),
+            React.createElement(
+                "canvas",
+                {
+                    height: "30",
+                    id: "arrowCanvas" + this.props.index,
+                    ref: "arrowCanvas" + this.props.index,
+                    width: this.arrowLength
+                },
+                "Reaction arrow pointing to the right."
+            ),
+            React.createElement(
+                "div",
+                { className: "below-text" },
+                this.props.data.bottomText
+            )
+        );
+    }
+});
+
+var ReactionDiagramWidget = React.createClass({
+    displayName: "ReactionDiagramWidget",
+
+    propTypes: {
+        // TODO(colin): at the moment, these must be arrays of two elements;
+        // we're limited to a single reaction step.  At some point, add support
+        // for more steps in the reaction.
+        rotationAngle: React.PropTypes.arrayOf(React.PropTypes.number),
+        separators: React.PropTypes.arrayOf(React.PropTypes.object),
+        smiles: React.PropTypes.arrayOf(React.PropTypes.string),
+        widgetId: React.PropTypes.string
+    },
+
+    getDefaultProps: function getDefaultProps() {
+        return { smiles: [], rotationAngle: [], separators: [] };
+    },
+
+    simpleValidate: function simpleValidate() {
+        return { type: "points", earned: 0, total: 0, message: null };
+    },
+
+    getUserInput: function getUserInput() {
+        return [];
+    },
+
+    validate: function validate(state, rubric) {
+        // TODO(colin): this appears to be part of the perseus interface.
+        // Figure out if there's a more appropriate value to return.
+        return {
+            type: "points",
+            earned: 0,
+            total: 0,
+            message: null
+        };
+    },
+
+    focus: function focus() {
+        return true;
+    },
+
+    render: function render() {
+        var _this = this;
+
+        return React.createElement(
+            "div",
+            { className: "reaction", ref: "reaction" },
+            this.props.smiles.map(function (s, i) {
+                var id = _this.props.widgetId + "-" + i;
+                return React.createElement(
+                    "div",
+                    { key: id, className: "molecule-container" },
+                    React.createElement(Molecule, {
+                        id: id,
+                        rotationAngle: _this.props.rotationAngle[i],
+                        smiles: s
+                    }),
+                    i === _this.props.smiles.length - 1 ? null : React.createElement(Separator, {
+                        data: _this.props.separators[i],
+                        index: i
+                    })
+                );
+            })
+        );
+    }
+});
+
+module.exports = {
+    name: "reaction-diagram",
+    displayName: "Chemical reaction/化學反應式",
+    hidden: false,
+    widget: ReactionDiagramWidget
+};
+
+},{"./molecule.jsx":325,"react":248}],336:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -48864,7 +50113,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/prop-check-box.jsx":264,"../components/sortable.jsx":266,"../components/text-list-editor.jsx":269,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],331:[function(require,module,exports){
+},{"../components/prop-check-box.jsx":264,"../components/sortable.jsx":266,"../components/text-list-editor.jsx":269,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69}],337:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -49225,7 +50474,7 @@ module.exports = {
     editor: SpeakingTextInputEditor
 };
 
-},{"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"classnames":12,"react":248}],332:[function(require,module,exports){
+},{"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"classnames":12,"react":248}],338:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -49586,7 +50835,7 @@ module.exports = {
     editor: SpeakingVoiceEditor
 };
 
-},{"../../lib/responsivevoice.js":2,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248}],333:[function(require,module,exports){
+},{"../../lib/responsivevoice.js":2,"../mixins/changeable.jsx":293,"../mixins/jsonify-props.jsx":294,"react":248}],339:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49967,7 +51216,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../editor.jsx":277,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],334:[function(require,module,exports){
+},{"../editor.jsx":277,"../renderer.jsx":300,"../util.js":305,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],340:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };

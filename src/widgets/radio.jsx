@@ -44,6 +44,7 @@ var BaseRadio = React.createClass({
                 </div>}
             {this.props.choices.map(function(choice, i) {
 
+                // var content = <div className={css(styles.radioContent)}>
                 var content = <div>
                         {choice.content}
                     </div>;
@@ -132,10 +133,25 @@ var BaseRadio = React.createClass({
 });
 
 var Radio = React.createClass({
+    mixins: [Changeable],
+    propTypes: {
+        choices: React.PropTypes.arrayOf(React.PropTypes.shape({
+            ...Changeable.propTypes,
+            content: React.PropTypes.string,
+            apiOptions: React.PropTypes.any,
+            clue: React.PropTypes.string,
+            correct: React.PropTypes.bool
+        })),
+        widgets: React.PropTypes.object
+    },
+
     getDefaultProps: function() {
         return {
             choices: 
-            [{}],
+            [{
+                content: ""
+            }],
+            widgets: {},
             displayCount: null,
             multipleSelect: false,
         };
@@ -161,9 +177,13 @@ var Radio = React.createClass({
             }
             return {
                 // We need to make a copy, which _.pick does
-                content: <Renderer {...content} />,
+                content:<Renderer
+                    content={choice.content}
+                    widgets={choice.widgets}/>,
                 checked: values[i],
+                apiOptions: <Renderer apiOptions={choice.apiOptions} />,
                 clue: <Renderer content={choice.clue} />,
+                
             };
         });
         choices = this.enforceOrdering(choices);
@@ -177,6 +197,7 @@ var Radio = React.createClass({
             choices={choices.map(function(choice) {
                 return _.pick(choice, "content", "checked", "clue");
             })}
+            widgets={this.props.widgets}
             onCheckedChange={this.onCheckedChange} />;
     },
 
@@ -316,10 +337,13 @@ var RadioEditor = React.createClass({
 
     propTypes: {
         choices: React.PropTypes.arrayOf(React.PropTypes.shape({
+            ...Changeable.propTypes,
             content: React.PropTypes.string,
+            apiOptions: React.PropTypes.any,
             clue: React.PropTypes.string,
             correct: React.PropTypes.bool
         })),
+        widgets: React.PropTypes.object,
         displayCount: React.PropTypes.number,
         randomize: React.PropTypes.bool,
         noneOfTheAbove: React.PropTypes.bool,
@@ -330,7 +354,10 @@ var RadioEditor = React.createClass({
     getDefaultProps: function() {
         return {
             choices: 
-            [{},{}],
+            [{
+                content: ""
+            }],
+            widgets: {},
             displayCount: null,
             randomize: false,
             noneOfTheAbove: false,
@@ -362,29 +389,32 @@ var RadioEditor = React.createClass({
                         "correct" :
                         "incorrect";
 
-                    var inputImage =
-                    <div>
-                         <input
-                            type="file"
-                            content={choice.content || ""}
-                            onChange={newProps => {
-                                this.onFileInputChange(i, newProps);
-                            }}
-                        />
-                    </div>;
+                    // var inputImage =
+                    // <div>
+                    //      <input
+                    //         type="file"
+                    //         content={choice.content || ""}
+                    //         onChange={newProps => {
+                    //             this.onFileInputChange(i, newProps);
+                    //         }}
+                    //     />
+                    // </div>;
 
                     var editor = <Editor
+                        apiOptions={this.props.choices[i].apiOptions}
+                        widgets={this.props.choices[i].widgets}
+                        widgetEnabled={true}
+                        immutableWidgets={false}
                         className="content-editor"
                         ref={"editor" + i}
-                        content={choice.content || ""}
-                        widgetEnabled={false}
+                        content={this.props.choices[i].content || ""}
                         placeholder={"請輸入選項內容"}
                         onChange={newProps => {
-                            if ("content" in newProps) {
-                                this.onContentChange(i, newProps.content);
-                            }}
-                        }
-                    />;
+                            if ("content" in newProps ||"widgets" in newProps) {
+                                this.onContentChange(i, newProps.content, newProps.widgets);
+                            }
+                        }}/>;
+
                     var clueEditor = <Editor
                         ref={"clue-editor-" + i}
                         content={choice.clue || ""}
@@ -407,10 +437,7 @@ var RadioEditor = React.createClass({
                         content: <div className="choice-clue-editors">
                             <div className={"choice-editor " + checkedClass}>
                                 {editor}
-                            </div>
-                            <div className={"input-image " + checkedClass}>
-                                {inputImage}
-                            </div>                            
+                            </div>                           
                             {/* TODO(eater): Remove this condition after clues
                                             are fully launched. */}
                             {(!window.KA || window.KA.allowEditingClues) &&
@@ -487,10 +514,25 @@ var RadioEditor = React.createClass({
         this.props.onChange({choices: choices});
     },
 
-    onContentChange: function(choiceIndex, newContent) {
+    onContentChange: function(choiceIndex, newContent, newWidgets) {
+        var choices = this.props.choices.slice();
+        if (newContent){
+            choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
+                content: newContent,
+            });
+        }
+        if (newWidgets){
+            choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
+                widgets: newWidgets,
+            });
+        }
+        this.props.onChange({choices: choices});
+    },
+
+    onWidgetChange: function(choiceIndex, newWidget) {
         var choices = this.props.choices.slice();
         choices[choiceIndex] = _.extend({}, choices[choiceIndex], {
-            content: newContent
+            content: newWidget
         });
         this.props.onChange({choices: choices});
     },
@@ -584,6 +626,13 @@ var choiceTransform = (editorProps) => {
     return _.pick(editorProps, "choices", "noneOfTheAbove", "onePerLine",
         "multipleSelect", "correctAnswer");
 };
+
+// const styles = StyleSheet.create({
+//     radioContent: {
+//         display: 'inline-block'
+//     }
+// });
+
 
 module.exports = {
     name: "radio",

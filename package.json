@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "browserify src/perseus.js -s Perseus -t babelify",
-    "build": "browserify src/perseus.js -s Perseus -t babelify -t envify -t uglifyify",
+    "build": "browserify src/perseus.js -s Perseus -t babelify -t envify -t",
     "test": "jest"
   },
   "devDependencies": {
