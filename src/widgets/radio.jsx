@@ -43,8 +43,6 @@ var BaseRadio = React.createClass({
                     {$._("請選擇所有正確的答案。")}
                 </div>}
             {this.props.choices.map(function(choice, i) {
-
-                // var content = <div className={css(styles.radioContent)}>
                 var content = <div>
                         {choice.content}
                     </div>;
@@ -149,6 +147,8 @@ var Radio = React.createClass({
         return {
             choices: 
             [{
+                content: ""
+            },{
                 content: ""
             }],
             widgets: {},
@@ -355,6 +355,8 @@ var RadioEditor = React.createClass({
         return {
             choices: 
             [{
+                content: ""
+            },{
                 content: ""
             }],
             widgets: {},
@@ -615,13 +617,6 @@ var choiceTransform = (editorProps) => {
     return _.pick(editorProps, "choices", "noneOfTheAbove", "onePerLine",
         "multipleSelect", "correctAnswer");
 };
-
-// const styles = StyleSheet.create({
-//     radioContent: {
-//         display: 'inline-block'
-//     }
-// });
-
 
 module.exports = {
     name: "radio",
