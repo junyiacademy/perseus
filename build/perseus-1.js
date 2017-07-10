@@ -49318,18 +49318,6 @@ var RadioEditor = React.createClass({
 
                     var checkedClass = choice.correct ? "correct" : "incorrect";
 
-                    var inputImage = React.createElement(
-                        'div',
-                        null,
-                        React.createElement('input', {
-                            type: 'file',
-                            content: choice.content || "",
-                            onChange: function onChange(newProps) {
-                                _this2.onFileInputChange(i, newProps);
-                            }
-                        })
-                    );
-
                     var editor = React.createElement(Editor, {
                         apiOptions: this.props.choices[i].apiOptions,
                         widgets: this.props.choices[i].widgets,
@@ -49372,11 +49360,6 @@ var RadioEditor = React.createClass({
                                 'div',
                                 { className: "choice-editor " + checkedClass },
                                 editor
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: "input-image " + checkedClass },
-                                inputImage
                             ),
                             (!window.KA || window.KA.allowEditingClues) && React.createElement(
                                 'div',

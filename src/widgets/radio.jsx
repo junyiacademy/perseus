@@ -389,17 +389,6 @@ var RadioEditor = React.createClass({
                         "correct" :
                         "incorrect";
 
-                    // var inputImage =
-                    // <div>
-                    //      <input
-                    //         type="file"
-                    //         content={choice.content || ""}
-                    //         onChange={newProps => {
-                    //             this.onFileInputChange(i, newProps);
-                    //         }}
-                    //     />
-                    // </div>;
-
                     var editor = <Editor
                         apiOptions={this.props.choices[i].apiOptions}
                         widgets={this.props.choices[i].widgets}
