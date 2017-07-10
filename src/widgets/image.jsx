@@ -272,16 +272,19 @@ var ImageEditor = React.createClass({
 
     onWidthChange: function(newAlignment) {
         var image = _.clone(this.props.backgroundImage);
-        if (this.props.useBoxSize) {
+        if (this.props.useBoxSize && image.url) {
             var w_h_ratio = image.height / image.width;
             image.width = parseInt(newAlignment) > maxImageSize ? maxImageSize:parseInt(newAlignment);
             image.height = Math.round(image.width * w_h_ratio);
+            var box = [image.width, image.height];
+            this.props.onChange({
+                backgroundImage: image,
+                box: box,
+            });            
         }
-        var box = [image.width, image.height];
-        this.props.onChange({
-            backgroundImage: image,
-            box: box,
-        });
+        else {
+            return
+        }
     },
 
     toggleUseBoxSize: function() {
@@ -340,7 +343,9 @@ var ImageEditor = React.createClass({
         reader.onloadend = function() {
             that.onUrlChange(reader.result);
         }
-        reader.readAsDataURL(file);
+        if(file) {
+            reader.readAsDataURL(file);  
+        } 
     },
 });
 
