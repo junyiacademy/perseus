@@ -332,7 +332,7 @@ var AnswerAreaRenderer = React.createClass({
     },
 
     focus: function() {
-        this.refs.widget.focus();
+        this.getWidgetInstance().focus();
     },
 
     getWidgetInstance: function() {
@@ -348,21 +348,22 @@ var AnswerAreaRenderer = React.createClass({
             return;
         if (answerData instanceof Array) {
             // Answer area contains no widgets.
-        } else if (this.refs.widget.setAnswerFromJSON === undefined) {
+        } else if (this.props.type === "multiple") {
+        } else if (this.getWidgetInstance().setAnswerFromJSON === undefined) {
             // Target widget cannot show answer.
             console.log("Target widget cannot show in answerarea",answerData);
             return 'no setAnswerFromJSON implemented for widgets in answer area.';
         } else {
             console.log("Target widget show in answerarea")
             // Just show the given answer.
-            this.refs.widget.setAnswerFromJSON(answerData);
+            this.getWidgetInstance().setAnswerFromJSON(answerData);
         }
     },
 
     canShowAllHistoryWidgets: function(answerData) {
         if(!answerData)
             return true;
-        if (this.refs.widget.setAnswerFromJSON === undefined) {
+        if (this.props.type !== "multiple" && this.getWidgetInstance().setAnswerFromJSON === undefined) {
             console.log('no setAnswerFromJSON implemented for widgets in answer area.');
             return false;
         }
