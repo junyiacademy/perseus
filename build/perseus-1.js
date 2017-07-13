@@ -31998,15 +31998,29 @@ var WidgetSelect = React.createClass({
         var orderedWidgetNames = _.sortBy(_.keys(widgets), function (name) {
             return widgets[name].type;
         });
-        var typeSet = new Set();
-        Object.keys(widgets).map(function (key) {
-            typeSet.add(widgets[key].type);
-        });
+        var currentType = null;
         var typeList = [];
-        typeSet.forEach(function (type) {
-            typeList.push(type);
+        orderedWidgetNames.forEach(function (name) {
+            if (currentType != widgets[name].type) {
+                currentType = widgets[name].type;
+                typeList.push(widgets[name]);
+            }typeList.push(name);
         });
-        typeList.sort();
+        var widgetOption = typeList.map(function (name) {
+            if (typeof name != "string") {
+                return React.createElement(
+                    "option",
+                    { disabled: true },
+                    "----",
+                    name.type,
+                    "----"
+                );
+            } else return React.createElement(
+                "option",
+                { value: name, key: name },
+                widgets[name].displayName
+            );
+        });
         return React.createElement(
             "select",
             { onChange: this.handleChange },
@@ -32016,29 +32030,8 @@ var WidgetSelect = React.createClass({
                 "\u65B0\u589E\u4E00\u500B widget",
                 "\u2026"
             ),
-            typeList.map(function (type) {
-                var dividingLine = true;
-                return orderedWidgetNames.map(function (name) {
-                    if (widgets[name].type != type) return null;else if (dividingLine) {
-                        dividingLine = false;
-                        return [React.createElement(
-                            "option",
-                            { disabled: true },
-                            "----",
-                            type,
-                            "----"
-                        ), React.createElement(
-                            "option",
-                            { value: name, key: name },
-                            widgets[name].displayName
-                        )];
-                    } else return React.createElement(
-                        "option",
-                        { value: name, key: name },
-                        widgets[name].displayName
-                    );
-                });
-            })
+            widgetOption,
+            "})}"
         );
     } });
 

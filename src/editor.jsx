@@ -31,33 +31,25 @@ var WidgetSelect = React.createClass({
         var orderedWidgetNames = _.sortBy(_.keys(widgets), (name) => {
             return widgets[name].type;
         });
-        var typeSet = new Set();
-        Object.keys(widgets).map(key => {
-            typeSet.add(widgets[key].type);
-        });
+        var currentType = null;
         var typeList = [];
-        typeSet.forEach(type => {
-            typeList.push(type)
-        });
-        typeList.sort();
-        return <select onChange={this.handleChange}>
-            <option value="">新增一個 widget{"\u2026"}</option>
-            {typeList.map(type => {
-                var dividingLine = true;
-                return orderedWidgetNames.map(name => {
-                    if (widgets[name].type != type) return null;
-                    else if (dividingLine) {
-                        dividingLine = false;
-                        return ([<option disabled>----{type}----</option>,
-                        <option value={name} key={name}>
-                            {widgets[name].displayName}
-                        </option>]);
-                    }
-                    else
+        orderedWidgetNames.forEach(name =>{
+                    if(currentType != widgets[name].type){
+                        currentType = widgets[name].type;
+                        typeList.push(widgets[name]);
+                    }typeList.push(name);
+                })
+        var widgetOption = typeList.map(name =>{
+                    if(typeof(name)!="string"){
+                        return <option disabled>----{name.type}----</option>
+                    }else
                         return <option value={name} key={name}>
                             {widgets[name].displayName}
                         </option>;
                 })
+        return <select onChange={this.handleChange}>
+            <option value="">新增一個 widget{"\u2026"}</option>
+            {widgetOption}
             })}
         </select>;
     }});
