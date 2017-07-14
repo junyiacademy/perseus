@@ -37,12 +37,9 @@ var WidgetSelect = React.createClass({
             if (currentType != widgets[name].type) {
                 currentType = widgets[name].type;
                 return [(<option disabled>----{widgets[name].type}----</option>),
-                (<option value={name} key={name}>
-                    {widgets[name].displayName}
-                </option>)];
-            } return <option value={name} key={name}>
-                {widgets[name].displayName}
-            </option>;
+                        (<option value={name} key={name}>{widgets[name].displayName}</option>)];
+            }
+            return <option value={name} key={name}>{widgets[name].displayName}</option>;
         })
         return <select onChange={this.handleChange}>
             <option value="">新增一個 widget{"\u2026"}</option>

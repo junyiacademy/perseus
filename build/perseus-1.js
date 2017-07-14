@@ -32014,20 +32014,13 @@ var WidgetSelect = React.createClass({
                     { value: name, key: name },
                     widgets[name].displayName
                 )];
-            }return React.createElement(
+            }
+            return React.createElement(
                 "option",
                 { value: name, key: name },
                 widgets[name].displayName
             );
         });
-        // var widgetsOption = typeList.map(name =>{
-        //             if(typeof(name)!="string"){
-        //                 return <option disabled>----{name.type}----</option>
-        //             }else
-        //                 return <option value={name} key={name}>
-        //                     {widgets[name].displayName}
-        //                 </option>;
-        //         })
         return React.createElement(
             "select",
             { onChange: this.handleChange },
@@ -32040,7 +32033,8 @@ var WidgetSelect = React.createClass({
             widgetsOption,
             "})}"
         );
-    } });
+    }
+});
 
 var WidgetEditor = React.createClass({
     displayName: "WidgetEditor",
