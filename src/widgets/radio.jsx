@@ -38,10 +38,6 @@ var BaseRadio = React.createClass({
 
         return <ul className={"perseus-widget-radio " +
                 "above-scratchpad"}>
-            {this.props.multipleSelect &&
-                <div className="instructions">
-                    {$._("請選擇所有正確的答案。")}
-                </div>}
             {this.props.choices.map(function(choice, i) {
 
                 var content = <div>
