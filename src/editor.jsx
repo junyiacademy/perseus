@@ -26,7 +26,7 @@ var WidgetSelect = React.createClass({
     shouldComponentUpdate: function() {
         return false;
     },
-    render: function () {
+    render: function() {
         var widgets = Widgets.getPublicWidgets();
         var orderedWidgetNames = _.sortBy(_.keys(widgets), (name) => {
             return widgets[name].type;
