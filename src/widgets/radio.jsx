@@ -583,6 +583,7 @@ var choiceTransform = (editorProps) => {
 
 module.exports = {
     name: "radio",
+    type: "A.基本題型",
     displayName: "Radio/選擇題",
     widget: Radio,
     editor: RadioEditor,

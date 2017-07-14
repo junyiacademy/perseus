@@ -26,23 +26,33 @@ var WidgetSelect = React.createClass({
     shouldComponentUpdate: function() {
         return false;
     },
-    render: function() {
+    render: function () {
         var widgets = Widgets.getPublicWidgets();
         var orderedWidgetNames = _.sortBy(_.keys(widgets), (name) => {
-            return widgets[name].displayName;
+            return widgets[name].type;
         });
-
+        var currentType = null;
+        var typeList = [];
+        orderedWidgetNames.forEach(name =>{
+                    if(currentType != widgets[name].type){
+                        currentType = widgets[name].type;
+                        typeList.push(widgets[name]);
+                    }typeList.push(name);
+                })
+        var widgetOption = typeList.map(name =>{
+                    if(typeof(name)!="string"){
+                        return <option disabled>----{name.type}----</option>
+                    }else
+                        return <option value={name} key={name}>
+                            {widgets[name].displayName}
+                        </option>;
+                })
         return <select onChange={this.handleChange}>
             <option value="">新增一個 widget{"\u2026"}</option>
-            <option disabled>--</option>
-            {_.map(orderedWidgetNames, (name) => {
-                return <option value={name} key={name}>
-                    {widgets[name].displayName}
-                </option>;
+            {widgetOption}
             })}
         </select>;
-    }
-});
+    }});
 
 
 var WidgetEditor = React.createClass({
