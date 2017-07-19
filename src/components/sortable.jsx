@@ -347,7 +347,7 @@ var Sortable = React.createClass({
         }
 
         items = _.map(items, function(item, i) {
-            item.width = syncWidth || widths[i];
+            item.width = "auto";
             item.height = syncHeight || heights[i];
             return item;
         });
