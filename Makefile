@@ -9,13 +9,14 @@ PERSEUS_BUILD_CSS=build/perseus-$(API_VERSION_MAJOR).css
 
 help:
 	@echo "make dev               # (development) compiles into $(PERSEUS_BUILD_JS) and $(PERSEUS_BUILD_CSS)"
-	@echo "make build             # (production) compiles into $(PERSEUS_BUILD_JS) and $(PERSEUS_BUILD_CSS)"
+	@echo "make production        # (production) compiles into $(PERSEUS_BUILD_JS) and $(PERSEUS_BUILD_CSS)"
 	@echo "make server PORT=9000  # runs the perseus server"
 	@echo "make ke                # build symlink to khan-exercises"
 	@echo "make all               # build perseus into webapp"
 
 dev: prebuild devjs buildcss
-build: prebuild buildjs buildcss
+build: prebuild devjs buildcss
+production: prebuild buildjs buildcss
 
 devjs:
 	npm run dev -- -o $(PERSEUS_BUILD_JS)
@@ -26,10 +27,15 @@ buildjs:
 buildcss:
 	$(NPM_BIN)/lessc stylesheets/exercise-content-package/perseus.less $(PERSEUS_BUILD_CSS)
 
-prebuild:
+prebuild: checkinstall
 	mkdir -p build
+ifeq ("$(wildcard node_modules/react-components/package.json)","")
+	npm install
 	# should be fixed by khan/react-components
 	sed -i -- 's/reactify/babelify/g' node_modules/react-components/package.json
+endif
+
+checkinstall:
 
 server: ke
 	php -S 0.0.0.0:$(PORT)
