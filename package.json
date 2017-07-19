@@ -19,7 +19,6 @@
     "jsdom": "^7.0.0",
     "less": "~1.7.0",
     "node-jsx": "^0.10.0",
-    "react-components": "git+https://git@github.com/Khan/react-components.git#17f6657",
     "react-tools": "0.10.0",
     "uglifyify": "^4.0.2",
     "watchify": "^3.9.0"
@@ -51,6 +50,7 @@
     "react": "^15.4.2",
     "react-addons-create-fragment": "^15.4.2",
     "react-addons-pure-render-mixin": "^15.4.2",
+    "react-components": "git+https://git@github.com/Khan/react-components.git#17f6657",
     "react-dom": "^15.4.2"
   }
 }
