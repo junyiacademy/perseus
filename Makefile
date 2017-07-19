@@ -15,7 +15,7 @@ help:
 	@echo "make ke                # build symlink to khan-exercises"
 	@echo "make all               # build perseus into webapp"
 
-dev:        prebuild buildcssdevjs
+dev:        prebuild buildcss devjs
 build:      prebuild buildcss devjs
 production: prebuild buildcss buildjs
 watch:      prebuild buildcss watchjs
@@ -32,15 +32,13 @@ watchjs:
 buildcss:
 	$(NPM_BIN)/lessc stylesheets/exercise-content-package/perseus.less $(PERSEUS_BUILD_CSS)
 
-prebuild: checkinstall
+prebuild:
 	mkdir -p build
 ifeq ("$(wildcard node_modules/react-components/package.json)","")
 	npm install
 	# should be fixed by khan/react-components
 	sed -i -- 's/reactify/babelify/g' node_modules/react-components/package.json
 endif
-
-checkinstall:
 
 server: ke
 	php -S 0.0.0.0:$(PORT)
