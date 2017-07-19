@@ -36,9 +36,9 @@ prebuild:
 	mkdir -p build
 ifeq ("$(wildcard node_modules/react-components/package.json)","")
 	npm install
+endif
 	# should be fixed by khan/react-components
 	sed -i -- 's/reactify/babelify/g' node_modules/react-components/package.json
-endif
 
 server: ke
 	php -S 0.0.0.0:$(PORT)
