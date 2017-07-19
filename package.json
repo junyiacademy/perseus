@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "browserify src/perseus.js -s Perseus -t babelify",
+    "watch": "watchify src/perseus.js -s Perseus -t babelify -v",
     "build": "browserify src/perseus.js -s Perseus -t babelify -t envify -t uglifyify",
     "test": "jest"
   },
@@ -20,7 +21,8 @@
     "node-jsx": "^0.10.0",
     "react-components": "git+https://git@github.com/Khan/react-components.git#17f6657",
     "react-tools": "0.10.0",
-    "uglifyify": "^4.0.2"
+    "uglifyify": "^4.0.2",
+    "watchify": "^3.9.0"
   },
   "repository": {
     "type": "git",
