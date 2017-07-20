@@ -5,6 +5,7 @@ WEBAPP=../webapp
 NPM_BIN=$(shell npm bin)
 API_VERSION_MAJOR:=$(shell node node/echo-major-api-version.js)
 PERSEUS_BUILD_JS=build/perseus-$(API_VERSION_MAJOR).js
+PERSEUS_PROD_JS=build/perseus-$(API_VERSION_MAJOR).prod.js
 PERSEUS_BUILD_CSS=build/perseus-$(API_VERSION_MAJOR).css
 
 help:
@@ -24,7 +25,7 @@ devjs:
 	npm run dev -- -o $(PERSEUS_BUILD_JS)
 
 buildjs:
-	npm run build -- -o $(PERSEUS_BUILD_JS)
+	npm run build -- -o $(PERSEUS_PROD_JS)
 
 watchjs:
 	npm run watch -- -o $(PERSEUS_BUILD_JS)
