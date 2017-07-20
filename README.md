@@ -33,9 +33,9 @@ make server PORT=9000
 ### 發佈
 
 #### `make production`
-除了 `browserify` 還會用 `uglifyify` 編出 `perseus-1.js` 和 `perseus-1.css`，請不要加入 commit 中。
+除了 `browserify` 還會用 `envify`, `uglifyify` 編出 `perseus-1.prod.js` 和 `perseus-1.css`，請不要加入 commit 中。
 
-目前用不太到。
+目前用不太到。未來會在 deploy 時自動執行。
 
 ## Contributing
 
