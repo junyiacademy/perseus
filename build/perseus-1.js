@@ -614,6 +614,7 @@ if ("undefined" != typeof responsiveVoice) console.log("ResponsiveVoice already 
     responsiveVoice = new ResponsiveVoice();module.exports = ResponsiveVoice;
 
 },{}],3:[function(require,module,exports){
+(function (process){
 'use strict';
 
 var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
@@ -644,9 +645,8 @@ var StyleSheet = {
             var val = _ref2[1];
 
             return [key, {
-                // TODO(emily): Make a 'production' mode which doesn't prepend
-                // the class name here, to make the generated CSS smaller.
-                _name: key + '_' + (0, _util.hashObject)(val),
+                // TODO(gil): Further minify the -O_o--combined hashes
+                _name: process.env.NODE_ENV === 'production' ? '_' + (0, _util.hashObject)(val) : key + '_' + (0, _util.hashObject)(val),
                 _definition: val
             }];
         });
@@ -765,7 +765,8 @@ selectorHandlers /* : SelectorHandler[] */
 };
 
 module.exports = makeExports;
-},{"./inject":6,"./util":9}],4:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./inject":6,"./util":9,"_process":59}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -30333,9 +30334,6 @@ var Sortable = React.createClass({
         if (constraints.width) {
             // Items must be at least as wide as the specified constraint
             syncWidth = _.max(widths.concat(constraints.width));
-        } else if (layout === VERTICAL) {
-            // Sync widths to get a clean column
-            syncWidth = _.max(widths);
         }
 
         var syncHeight;
@@ -30348,7 +30346,7 @@ var Sortable = React.createClass({
         }
 
         items = _.map(items, function (item, i) {
-            item.width = syncWidth || widths[i];
+            item.width = syncWidth || "auto";
             item.height = syncHeight || heights[i];
             return item;
         });

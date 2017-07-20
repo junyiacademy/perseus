@@ -332,9 +332,6 @@ var Sortable = React.createClass({
         if (constraints.width) {
             // Items must be at least as wide as the specified constraint
             syncWidth = _.max(widths.concat(constraints.width));
-        } else if (layout === VERTICAL) {
-            // Sync widths to get a clean column
-            syncWidth = _.max(widths);
         }
 
         var syncHeight;
@@ -347,7 +344,7 @@ var Sortable = React.createClass({
         }
 
         items = _.map(items, function(item, i) {
-            item.width = syncWidth || widths[i];
+            item.width = syncWidth || "auto";
             item.height = syncHeight || heights[i];
             return item;
         });
