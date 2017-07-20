@@ -353,7 +353,7 @@ var NumberLine = React.createClass({
                     },
                     (coord, prevCoord) => {  // snap & bound
                         var snapX = tickCtrlWidth / (divSpan);
-                        x = bound(coord[0], tickCtrlLeft, tickCtrlRight);
+                        var x = bound(coord[0], tickCtrlLeft, tickCtrlRight);
                         x = tickCtrlLeft +
                             Math.round((x - tickCtrlLeft) / (snapX)) * snapX;
                         assert(_.isFinite(x));
@@ -799,7 +799,7 @@ var NumberLineEditor = React.createClass({
     },
 
     onChangeRelation: function(e) {
-        value = e.target.value;
+        var value = e.target.value;
         this.props.onChange({
             correctRel: value,
             isInequality: value !== "eq",

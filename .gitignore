@@ -7,3 +7,6 @@ node_modules/*
 !node_modules/underscore/
 # symlink to khan-exercises
 ke
+
+# npm 5
+package-lock.json
