@@ -27,7 +27,7 @@ make server PORT=9000
 
 ### Commit
 
-#### `make dev/build`
+#### `make dev`/`make build`
 會使用 `browserify` 編出 `perseus-1.js` 和 `perseus-1.css`。請使用這個生成的 perseus 來 commit。
 
 ### 發佈
