@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "browserify src/perseus.js -s Perseus -t babelify",
     "watch": "watchify src/perseus.js -s Perseus -t babelify -v",
-    "build": "browserify src/perseus.js -s Perseus -t babelify -t envify -t uglifyify",
+    "build": "browserify src/perseus.js -s Perseus -t babelify -g [ envify --NODE_ENV production ] -p bundle-collapser/plugin | uglifyjs --compress --mangle",
     "test": "jest"
   },
   "devDependencies": {
@@ -14,13 +14,14 @@
     "babel-preset-stage-2": "^6.22.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.0",
+    "bundle-collapser": "^1.2.1",
     "envify": "^4.0.0",
     "jest-cli": "^19.0.2",
     "jsdom": "^7.0.0",
     "less": "~1.7.0",
     "node-jsx": "^0.10.0",
     "react-tools": "0.10.0",
-    "uglifyify": "^4.0.2",
+    "uglify-js": "^3.0.25",
     "watchify": "^3.9.0"
   },
   "repository": {
