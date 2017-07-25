@@ -4,11 +4,10 @@
   "scripts": {
     "dev": "browserify src/perseus.js -s Perseus -t babelify",
     "watch": "watchify src/perseus.js -s Perseus -t babelify -v",
-    "build": "browserify src/perseus.js -s Perseus -t babelify -g [ envify --NODE_ENV production ] -p bundle-collapser/plugin | uglifyjs --compress --mangle",
+    "build": "browserify src/perseus.js -s Perseus -t babelify -g [ envify --NODE_ENV production ] -p bundle-collapser/plugin",
     "test": "jest"
   },
   "devDependencies": {
-    "babel-jest": "^19.0.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
@@ -16,12 +15,7 @@
     "browserify": "^13.0.0",
     "bundle-collapser": "^1.2.1",
     "envify": "^4.0.0",
-    "jest-cli": "^19.0.2",
-    "jsdom": "^7.0.0",
     "less": "~1.7.0",
-    "node-jsx": "^0.10.0",
-    "react-tools": "0.10.0",
-    "uglify-js": "^3.0.25",
     "watchify": "^3.9.0"
   },
   "repository": {
@@ -53,5 +47,12 @@
     "react-addons-pure-render-mixin": "^15.4.2",
     "react-components": "git+https://git@github.com/Khan/react-components.git#17f6657",
     "react-dom": "^15.4.2"
+  },
+  "optionalDependencies": {
+    "babel-jest": "^19.0.0",
+    "jest-cli": "^19.0.2",
+    "jsdom": "^7.2.2",
+    "node-jsx": "^0.10.0",
+    "react-tools": "0.10.0"
   }
 }
