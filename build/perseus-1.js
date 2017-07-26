@@ -31880,22 +31880,22 @@ var WidgetSelect = React.createClass({
         });
         var currentType = null;
         var typeList = [];
-        orderedWidgetNames.forEach(function (name) {
+        var widgetsOption = orderedWidgetNames.map(function (name) {
             if (currentType != widgets[name].type) {
                 currentType = widgets[name].type;
-                typeList.push(widgets[name]);
-            }typeList.push(name);
-        });
-        var widgetOption = typeList.map(function (name) {
-            if (typeof name != "string") {
-                return React.createElement(
+                return [React.createElement(
                     "option",
                     { disabled: true },
                     "----",
-                    name.type,
+                    widgets[name].type,
                     "----"
-                );
-            } else return React.createElement(
+                ), React.createElement(
+                    "option",
+                    { value: name, key: name },
+                    widgets[name].displayName
+                )];
+            }
+            return React.createElement(
                 "option",
                 { value: name, key: name },
                 widgets[name].displayName
@@ -31910,10 +31910,11 @@ var WidgetSelect = React.createClass({
                 "\u65B0\u589E\u4E00\u500B widget",
                 "\u2026"
             ),
-            widgetOption,
+            widgetsOption,
             "})}"
         );
-    } });
+    }
+});
 
 var WidgetEditor = React.createClass({
     displayName: "WidgetEditor",
