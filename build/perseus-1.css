@@ -1278,6 +1278,7 @@ body.mobile .perseus-matrix .math-output {
   border-color: #a4a4a4;
   border-radius: 5px;
   padding: 4px;
+  font-size: 25px;
 }
 .perseus-math-input.mq-editable-field.mq-math-mode .mq-cursor {
   padding-left: 0;
