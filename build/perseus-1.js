@@ -44156,6 +44156,12 @@ module.exports = {
 },{"../components/number-input.jsx":264,"../components/range-input.jsx":266,"../components/text-input.jsx":269,"../editor.jsx":278,"../interactive2/interactive-util.js":284,"../mixins/changeable.jsx":294,"../mixins/jsonify-props.jsx":295,"../perseus-api.jsx":297,"../renderer.jsx":301,"../util.js":306,"classnames":12,"react":248,"react-dom":96,"underscore":250}],324:[function(require,module,exports){
 "use strict";
 
+var _imageLoader = require("../components/imageLoader.jsx");
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = require('react');
 var ReactDOM = require("react-dom");
 var Changeable = require("../mixins/changeable.jsx");
@@ -44353,26 +44359,11 @@ var MeasurerEditor = React.createClass({
                 null,
                 "\u80CC\u666F\u5716\u7247:"
             ),
-            React.createElement(
-                "div",
-                null,
-                "\u5716\u7247\u7DB2\u5740:",
-                ' ',
-                React.createElement("input", { type: "text",
-                    className: "perseus-widget-measurer-url",
-                    ref: "image-url",
-                    value: image.url,
-                    onChange: this._changeUrl }),
-                React.createElement(
-                    InfoTip,
-                    null,
-                    React.createElement(
-                        "p",
-                        null,
-                        "\u63D2\u5165\u5716\u7247\u7684\u9023\u7D50\u7DB2\u5740\u3002\u4F8B\u5982\uFF0C\u5148\u5C07\u5716\u7247\u4E0A\u50B3\u81F3 http://imgur.com \uFF0C\u518D\u5206\u4EAB\u5176\u5716\u7247\u7DB2\u5740 (Direct Link)\u3002 "
-                    )
-                )
-            ),
+            React.createElement(_imageLoader2.default, {
+                className: "perseus-widget-measurer-url",
+                setUrl: this.setUrl,
+                originImage: image
+            }),
             image.url && React.createElement(
                 "div",
                 { className: "perseus-widget-row" },
@@ -44508,8 +44499,8 @@ var MeasurerEditor = React.createClass({
         );
     },
 
-    _changeUrl: function _changeUrl(e) {
-        this._changeImage("url", e.target.value);
+    setUrl: function setUrl(url) {
+        this._changeImage("url", url);
     },
 
     _changeTop: function _changeTop(newTop) {
@@ -44571,7 +44562,7 @@ module.exports = {
     hidden: false
 };
 
-},{"../components/number-input.jsx":264,"../components/prop-check-box.jsx":265,"../components/range-input.jsx":266,"../mixins/changeable.jsx":294,"../mixins/jsonify-props.jsx":295,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],325:[function(require,module,exports){
+},{"../components/imageLoader.jsx":260,"../components/number-input.jsx":264,"../components/prop-check-box.jsx":265,"../components/range-input.jsx":266,"../mixins/changeable.jsx":294,"../mixins/jsonify-props.jsx":295,"react":248,"react-components/js/info-tip.jsx":69,"react-dom":96}],325:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
