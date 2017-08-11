@@ -8,6 +8,7 @@ class ImageLoader extends React.Component {
 
     this.onUrlChange = this.onUrlChange.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
+    this.clearUrl = this.clearUrl.bind(this);
 
     const url = this.props.originImage && this.props.originImage.url;
     if (url) this.onUrlChange(url);
@@ -41,6 +42,11 @@ class ImageLoader extends React.Component {
     this.state.reader.readAsDataURL(file);
   }
 
+  clearUrl(e) {
+    e.preventDefault();
+    this.onUrlChange('');
+  }
+
   render() {
     return <div>圖片網址:{' '}
       <BlurInput
@@ -54,6 +60,7 @@ class ImageLoader extends React.Component {
         type="file"
         onChange={this.onFileChange}
       />
+      <button onClick={this.clearUrl}>X</button>
       <InfoTip>
         <p>填入圖片的網址。例如，先上傳至 http://imgur.com ，貼上圖片網址 (Direct link)。</p>
       </InfoTip>

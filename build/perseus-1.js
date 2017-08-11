@@ -29192,6 +29192,7 @@ var ImageLoader = function (_React$Component) {
 
     _this.onUrlChange = _this.onUrlChange.bind(_this);
     _this.onFileChange = _this.onFileChange.bind(_this);
+    _this.clearUrl = _this.clearUrl.bind(_this);
 
     var url = _this.props.originImage && _this.props.originImage.url;
     if (url) _this.onUrlChange(url);
@@ -29228,6 +29229,12 @@ var ImageLoader = function (_React$Component) {
       this.state.reader.readAsDataURL(file);
     }
   }, {
+    key: 'clearUrl',
+    value: function clearUrl(e) {
+      e.preventDefault();
+      this.onUrlChange('');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -29246,6 +29253,11 @@ var ImageLoader = function (_React$Component) {
           type: 'file',
           onChange: this.onFileChange
         }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.clearUrl },
+          'X'
+        ),
         _react2.default.createElement(
           _infoTip2.default,
           null,
