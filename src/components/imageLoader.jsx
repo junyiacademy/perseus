@@ -18,7 +18,7 @@ class ImageLoader extends React.Component {
     reader.onloadend = function () {
       self.onUrlChange(self.state.reader.result);
     };
-    this.state = { reader };
+    this.state = { reader, url: '' };
   }
 
   reloadImage(url) {
@@ -35,6 +35,8 @@ class ImageLoader extends React.Component {
       else if (this.props.originImage.url != url) this.reloadImage(url);
     }
     else if (!this.props.editorMode) this.props.setUrl(url, 0, 0);
+
+    this.setState({ url });
   }
 
   onFileChange(e) {
@@ -44,14 +46,20 @@ class ImageLoader extends React.Component {
 
   clearUrl(e) {
     e.preventDefault();
-    this.onUrlChange('');
+    if (this.props.clearUrl) {
+      const url = this.state.url;
+      this.props.clearUrl(url);
+    }
+    else this.onUrlChange('');
+
+    this.setState({ url: '' });
   }
 
   render() {
     return <div>圖片網址:{' '}
       <BlurInput
         className={this.props.className || ''}
-        value={this.props.originImage && this.props.originImage.url || ''}
+        value={this.props.originImage && this.props.originImage.url || this.state.url || ''}
         onChange={this.onUrlChange}
         onKeyPress={this.onUrlChange}
         onBlur={this.onUrlChange}

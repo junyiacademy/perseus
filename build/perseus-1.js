@@ -29202,7 +29202,7 @@ var ImageLoader = function (_React$Component) {
     reader.onloadend = function () {
       self.onUrlChange(self.state.reader.result);
     };
-    _this.state = { reader: reader };
+    _this.state = { reader: reader, url: '' };
     return _this;
   }
 
@@ -29221,6 +29221,8 @@ var ImageLoader = function (_React$Component) {
       if (url) {
         if (this.props.editorMode) this.props.setUrl(url);else if (this.props.originImage.url != url) this.reloadImage(url);
       } else if (!this.props.editorMode) this.props.setUrl(url, 0, 0);
+
+      this.setState({ url: url });
     }
   }, {
     key: 'onFileChange',
@@ -29232,7 +29234,12 @@ var ImageLoader = function (_React$Component) {
     key: 'clearUrl',
     value: function clearUrl(e) {
       e.preventDefault();
-      this.onUrlChange('');
+      if (this.props.clearUrl) {
+        var url = this.state.url;
+        this.props.clearUrl(url);
+      } else this.onUrlChange('');
+
+      this.setState({ url: '' });
     }
   }, {
     key: 'render',
@@ -29244,7 +29251,7 @@ var ImageLoader = function (_React$Component) {
         ' ',
         _react2.default.createElement(_blurInput2.default, {
           className: this.props.className || '',
-          value: this.props.originImage && this.props.originImage.url || '',
+          value: this.props.originImage && this.props.originImage.url || this.state.url || '',
           onChange: this.onUrlChange,
           onKeyPress: this.onUrlChange,
           onBlur: this.onUrlChange
@@ -32563,6 +32570,7 @@ var Editor = React.createClass({
             textareaWrapper,
             React.createElement(_imageLoader2.default, {
                 setUrl: this.setUrl,
+                clearUrl: this.clearUrl,
                 editorMode: true
             }),
             widgetsAndTemplates
@@ -32657,6 +32665,15 @@ var Editor = React.createClass({
         var valueLength = textarea.value.length;
         this.props.onChange({
             content: textarea.value.substring(0, focusIndex) + "![](" + url + ")" + textarea.value.substring(focusIndex, valueLength)
+        });
+    },
+
+    clearUrl: function clearUrl(url) {
+        var textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        var urlIndex = textarea.value.indexOf("![](" + url + ")");
+        var urlLength = ("![](" + url + ")").length;
+        this.props.onChange({
+            content: "" + textarea.value.substring(0, urlIndex) + textarea.value.substring(urlIndex + urlLength, textarea.value.length)
         });
     },
 

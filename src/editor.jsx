@@ -396,6 +396,7 @@ var Editor = React.createClass({
             {textareaWrapper}
             <ImageLoader
                 setUrl={this.setUrl}
+                clearUrl={this.clearUrl}
                 editorMode={true}
             />
             {widgetsAndTemplates}
@@ -492,6 +493,15 @@ var Editor = React.createClass({
         const valueLength = textarea.value.length;
         this.props.onChange({
             content:`${textarea.value.substring(0, focusIndex)}![](${url})${textarea.value.substring(focusIndex, valueLength)}`
+        });
+    },
+
+    clearUrl: function(url) {
+        const textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        const urlIndex = textarea.value.indexOf(`![](${url})`);
+        const urlLength = `![](${url})`.length;
+        this.props.onChange({
+            content:`${textarea.value.substring(0, urlIndex)}${textarea.value.substring(urlIndex + urlLength, textarea.value.length)}`
         });
     },
 
