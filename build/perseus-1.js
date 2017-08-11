@@ -29193,7 +29193,7 @@ var ImageLoader = function (_React$Component) {
     _this.onUrlChange = _this.onUrlChange.bind(_this);
     _this.onFileChange = _this.onFileChange.bind(_this);
 
-    var url = _this.props.originImage.url;
+    var url = _this.props.originImage && _this.props.originImage.url;
     if (url) _this.onUrlChange(url);
 
     var reader = new FileReader();
@@ -29218,12 +29218,8 @@ var ImageLoader = function (_React$Component) {
     key: 'onUrlChange',
     value: function onUrlChange(url) {
       if (url) {
-        if (this.props.originImage.url != url) {
-          this.reloadImage(url);
-        }
-      } else {
-        this.props.setUrl(url, 0, 0);
-      }
+        if (this.props.editorMode) this.props.setUrl(url);else if (this.props.originImage.url != url) this.reloadImage(url);
+      } else if (!this.props.editorMode) this.props.setUrl(url, 0, 0);
     }
   }, {
     key: 'onFileChange',
@@ -29241,7 +29237,7 @@ var ImageLoader = function (_React$Component) {
         ' ',
         _react2.default.createElement(_blurInput2.default, {
           className: this.props.className || '',
-          value: this.props.originImage.url || '',
+          value: this.props.originImage && this.props.originImage.url || '',
           onChange: this.onUrlChange,
           onKeyPress: this.onUrlChange,
           onBlur: this.onUrlChange
@@ -32041,6 +32037,12 @@ module.exports = EditorPage;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _imageLoader = require("./components/imageLoader.jsx");
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = require('react');
 var ReactDOM = require("react-dom");
 var ReactCreateFragment = require("react-addons-create-fragment");
@@ -32525,6 +32527,10 @@ var Editor = React.createClass({
             "div",
             { className: "perseus-single-editor " + (this.props.className || "") },
             textareaWrapper,
+            React.createElement(_imageLoader2.default, {
+                setUrl: this.setUrl,
+                editorMode: true
+            }),
             widgetsAndTemplates
         );
     },
@@ -32608,6 +32614,15 @@ var Editor = React.createClass({
                     content: _this.props.content.replace(fileAndSentinel.sentinel, url)
                 });
             });
+        });
+    },
+
+    setUrl: function setUrl(url) {
+        var textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        var focusIndex = textarea.selectionStart;
+        var valueLength = textarea.value.length;
+        this.props.onChange({
+            content: textarea.value.substring(0, focusIndex) + "![](" + url + ")" + textarea.value.substring(focusIndex, valueLength)
         });
     },
 
@@ -32715,7 +32730,7 @@ var Editor = React.createClass({
 
 module.exports = Editor;
 
-},{"./components/prop-check-box.jsx":265,"./util.js":306,"./widgets.js":309,"react":248,"react-addons-create-fragment":64,"react-components/js/drag-target.jsx":68,"react-dom":96}],279:[function(require,module,exports){
+},{"./components/imageLoader.jsx":260,"./components/prop-check-box.jsx":265,"./util.js":306,"./widgets.js":309,"react":248,"react-addons-create-fragment":64,"react-components/js/drag-target.jsx":68,"react-dom":96}],279:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37813,7 +37828,8 @@ var ExplanationEditor = React.createClass({
                             newProps.widgets = props.widgets;
                         }
                         _this.change(newProps);
-                    } })
+                    },
+                    hasFileUpload: true })
             )
         );
     }
@@ -49330,18 +49346,6 @@ var RadioEditor = React.createClass({
 
                     var checkedClass = choice.correct ? "correct" : "incorrect";
 
-                    var inputImage = React.createElement(
-                        'div',
-                        null,
-                        React.createElement('input', {
-                            type: 'file',
-                            content: choice.content || "",
-                            onChange: function onChange(newProps) {
-                                _this2.onFileInputChange(i, newProps);
-                            }
-                        })
-                    );
-
                     var editor = React.createElement(Editor, {
                         className: 'content-editor',
                         ref: "editor" + i,
@@ -49381,11 +49385,6 @@ var RadioEditor = React.createClass({
                                 'div',
                                 { className: "choice-editor " + checkedClass },
                                 editor
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: "input-image " + checkedClass },
-                                inputImage
                             ),
                             (!window.KA || window.KA.allowEditingClues) && React.createElement(
                                 'div',

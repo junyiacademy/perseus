@@ -358,17 +358,6 @@ var RadioEditor = React.createClass({
                         "correct" :
                         "incorrect";
 
-                    var inputImage =
-                    <div>
-                         <input
-                            type="file"
-                            content={choice.content || ""}
-                            onChange={newProps => {
-                                this.onFileInputChange(i, newProps);
-                            }}
-                        />
-                    </div>;
-
                     var editor = <Editor
                         className="content-editor"
                         ref={"editor" + i}
@@ -404,9 +393,6 @@ var RadioEditor = React.createClass({
                             <div className={"choice-editor " + checkedClass}>
                                 {editor}
                             </div>
-                            <div className={"input-image " + checkedClass}>
-                                {inputImage}
-                            </div>                            
                             {/* TODO(eater): Remove this condition after clues
                                             are fully launched. */}
                             {(!window.KA || window.KA.allowEditingClues) &&
