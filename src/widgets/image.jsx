@@ -1,6 +1,8 @@
 var React = require("react");
 var _ = require("underscore");
 
+import ImageLoader from '../components/imageLoader.jsx';
+
 var BlurInput    = require("react-components/js/blur-input.jsx");
 var InfoTip      = require("react-components/js/info-tip.jsx");
 
@@ -139,13 +141,6 @@ _.extend(ImageWidget, {
 var ImageEditor = React.createClass({
     mixins: [Changeable, JsonifyProps],
 
-    componentDidMount: function() {
-        setTimeout(() => {
-            var url = this.props.backgroundImage.url;
-            this.onUrlChange(url);
-        }, 0);
-    },
-
     getDefaultProps: function() {
         return {
             range: [defaultRange, defaultRange],
@@ -158,17 +153,7 @@ var ImageEditor = React.createClass({
 
     render: function() {
         var imageSettings = <div className="image-settings">
-            <div>圖片網址:{' '}
-                <BlurInput value={this.props.backgroundImage.url}
-                           onChange={this.onUrlChange} />
-                <input
-                    type="file"
-                    onChange={this.onFileInputChange}
-                />
-                <InfoTip>
-                    <p>填入圖片的網址。例如，先上傳至 http://imgur.com ，貼上圖片網址 (Direct link)。</p>
-                </InfoTip>
-            </div>
+            <ImageLoader setUrl={this.setUrl} originImage={this.props.backgroundImage}/>
             <label>
                 <input type="checkbox"
                         checked={this.props.useBoxSize}
@@ -295,10 +280,6 @@ var ImageEditor = React.createClass({
     },
 
     setUrl: function(url, width, height) {
-        if (!this.isMounted()) {
-            return;
-        }
-
         var image = _.clone(this.props.backgroundImage);
         image.url = url;
         image.width = width;
@@ -311,36 +292,10 @@ var ImageEditor = React.createClass({
         });
     },
 
-    reloadImage: function(url) {
-        var img = new Image();
-        img.onload = function()  {return this.setUrl(url, img.width, img.height);}.bind(this);
-        img.src = url;
-    },
-
-    onUrlChange: function(url) {
-        if (url) {
-            if (this.props.backgroundImage.url != url) {
-                this.reloadImage(url);
-            }
-        } else {
-            this.setUrl(url, 0, 0);
-        }
-    },
-
     onRangeChange: function(type, newRange) {
         var range = this.props.range.slice();
         range[type] = newRange;
         this.props.onChange({range: range});
-    },
-
-    onFileInputChange: function(e) {
-        var file    = e.target.files[0]; 
-        var reader  = new FileReader();
-        var that = this;
-        reader.onloadend = function() {
-            that.onUrlChange(reader.result);
-        }
-        reader.readAsDataURL(file);
     },
 });
 

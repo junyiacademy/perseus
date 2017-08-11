@@ -1,0 +1,67 @@
+import React from 'react';
+import BlurInput from 'react-components/js/blur-input.jsx';
+import InfoTip from 'react-components/js/info-tip.jsx';
+
+class ImageLoader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onUrlChange = this.onUrlChange.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
+
+    const url = this.props.originImage.url;
+    if (url) this.onUrlChange(url);
+
+    const reader = new FileReader();
+    const self = this;
+    reader.onloadend = function () {
+      self.onUrlChange(self.state.reader.result);
+    };
+    this.state = { reader };
+  }
+
+  reloadImage(url) {
+    const img = new Image();
+    img.onload = function () {
+      this.props.setUrl(url, img.width, img.height);
+    }.bind(this);
+    img.src = url;
+  }
+
+  onUrlChange(url) {
+    if (url) {
+      if (this.props.originImage.url != url) {
+        this.reloadImage(url);
+      }
+    }
+    else {
+      this.props.setUrl(url, 0, 0);
+    }
+  }
+
+  onFileChange(e) {
+    const file = e.target.files[0];
+    this.state.reader.readAsDataURL(file);
+  }
+
+  render() {
+    return <div>圖片網址:{' '}
+      <BlurInput
+        className={this.props.className || ''}
+        value={this.props.originImage.url || ''}
+        onChange={this.onUrlChange}
+        onKeyPress={this.onUrlChange}
+        onBlur={this.onUrlChange}
+      />
+      <input
+        type="file"
+        onChange={this.onFileChange}
+      />
+      <InfoTip>
+        <p>填入圖片的網址。例如，先上傳至 http://imgur.com ，貼上圖片網址 (Direct link)。</p>
+      </InfoTip>
+    </div>;
+  }
+}
+
+export default ImageLoader;
