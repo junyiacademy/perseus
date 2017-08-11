@@ -30882,6 +30882,12 @@ module.exports = TextInput;
 },{"react":248,"react-dom":96}],270:[function(require,module,exports){
 "use strict";
 
+var _imageLoader = require("./imageLoader.jsx");
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
@@ -30930,15 +30936,24 @@ var TextListEditor = React.createClass({
 
         var inputs = _.map(this.state.items, function (item, i) {
             return React.createElement(
-                "li",
+                "div",
                 { key: i },
-                React.createElement("input", {
-                    ref: "input_" + i,
-                    type: "text",
-                    value: item,
-                    onChange: this.onChange.bind(this, i),
-                    onKeyDown: this.onKeyDown.bind(this, i),
-                    style: { width: getTextWidth(item) } })
+                React.createElement(
+                    "li",
+                    { key: i },
+                    React.createElement("input", {
+                        ref: "input_" + i,
+                        type: "text",
+                        value: item,
+                        onChange: this.onChange.bind(this, i),
+                        onKeyDown: this.onKeyDown.bind(this, i),
+                        style: { width: getTextWidth(item) }
+                    })
+                ),
+                React.createElement(_imageLoader2.default, {
+                    setUrl: this.setUrl(i).bind(this),
+                    editorMode: true
+                })
             );
         }, this);
 
@@ -30947,6 +30962,13 @@ var TextListEditor = React.createClass({
             { className: className },
             inputs
         );
+    },
+
+    setUrl: function setUrl(index) {
+        var self = this;
+        return function (url) {
+            this.onChange(index, { target: { value: "![](" + url + ")" } });
+        };
     },
 
     onChange: function onChange(index, event) {
@@ -31013,7 +31035,7 @@ var TextListEditor = React.createClass({
 
 module.exports = TextListEditor;
 
-},{"react":248,"react-dom":96,"underscore":250}],271:[function(require,module,exports){
+},{"./imageLoader.jsx":260,"react":248,"react-dom":96,"underscore":250}],271:[function(require,module,exports){
 "use strict";
 
 // Responsible for combining the text diffs from text-diff and the widget

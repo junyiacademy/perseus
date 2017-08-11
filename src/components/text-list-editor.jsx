@@ -2,6 +2,8 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
+import ImageLoader from './imageLoader.jsx';
+
 var textWidthCache = {};
 function getTextWidth(text) {
     if (!textWidthCache[text]) {
@@ -48,18 +50,34 @@ var TextListEditor = React.createClass({
         ].join(" ");
 
         var inputs = _.map(this.state.items, function(item, i) {
-            return <li key={i}>
-                <input
-                    ref={"input_" + i}
-                    type="text"
-                    value={item}
-                    onChange={this.onChange.bind(this, i)}
-                    onKeyDown={this.onKeyDown.bind(this, i)}
-                    style={{width: getTextWidth(item)}} />
-            </li>;
+            return (
+                <div key={i}>
+                    <li key={i}>
+                        <input
+                            ref={"input_" + i}
+                            type="text"
+                            value={item}
+                            onChange={this.onChange.bind(this, i)}
+                            onKeyDown={this.onKeyDown.bind(this, i)}
+                            style={{width: getTextWidth(item)}}
+                        />
+                    </li>
+                    <ImageLoader
+                        setUrl={this.setUrl(i).bind(this)}
+                        editorMode={true}
+                    />
+                </div>
+            );
         }, this);
 
         return <ul className={className}>{inputs}</ul>;
+    },
+
+    setUrl: function(index) {
+        const self = this;
+        return function(url) {
+            this.onChange(index, {target: {value: `![](${url})`}});
+        };
     },
 
     onChange: function(index, event) {
