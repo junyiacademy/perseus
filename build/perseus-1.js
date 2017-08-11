@@ -27856,7 +27856,13 @@ FancySelect.Option = FancyOption;
 module.exports = FancySelect;
 
 },{"classnames":12,"react":248}],255:[function(require,module,exports){
-"use strict";
+'use strict';
+
+var _imageLoader = require('./imageLoader.jsx');
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require('react');
 var Changeable = require("../mixins/changeable.jsx");
@@ -27881,7 +27887,7 @@ function numSteps(range, step) {
 }
 
 var GraphSettings = React.createClass({
-    displayName: "GraphSettings",
+    displayName: 'GraphSettings',
 
 
     mixins: [Changeable],
@@ -27916,91 +27922,91 @@ var GraphSettings = React.createClass({
 
     render: function render() {
         return React.createElement(
-            "div",
+            'div',
             null,
             React.createElement(
-                "div",
-                { className: "graph-settings" },
+                'div',
+                { className: 'graph-settings' },
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        " x\u8EF8\u6A19\u7C64",
-                        React.createElement("input", { type: "text",
-                            className: "graph-settings-axis-label",
-                            ref: "labels-0",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        ' x\u8EF8\u6A19\u7C64',
+                        React.createElement('input', { type: 'text',
+                            className: 'graph-settings-axis-label',
+                            ref: 'labels-0',
                             onChange: this.changeLabel.bind(this, 0),
                             value: this.state.labelsTextbox[0] })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "y\u8EF8\u6A19\u7C64",
-                        React.createElement("input", { type: "text",
-                            className: "graph-settings-axis-label",
-                            ref: "labels-1",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        'y\u8EF8\u6A19\u7C64',
+                        React.createElement('input', { type: 'text',
+                            className: 'graph-settings-axis-label',
+                            ref: 'labels-1',
                             onChange: this.changeLabel.bind(this, 1),
                             value: this.state.labelsTextbox[1] })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "x\u8EF8\u7BC4\u570D",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        'x\u8EF8\u7BC4\u570D',
                         React.createElement(RangeInput, { value: this.state.rangeTextbox[0],
                             onChange: this.changeRange.bind(this, 0) })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "y\u8EF8\u7BC4\u570D",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        'y\u8EF8\u7BC4\u570D',
                         React.createElement(RangeInput, { value: this.state.rangeTextbox[1],
                             onChange: this.changeRange.bind(this, 1) })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "\u5EA7\u6A19\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        '\u5EA7\u6A19\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.stepTextbox,
                             onChange: this.changeStep })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "\u7DB2\u683C\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        '\u7DB2\u683C\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.gridStepTextbox,
                             onChange: this.changeGridStep })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "\u7B54\u6848\u62D6\u62C9\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        '\u7B54\u6848\u62D6\u62C9\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.snapStepTextbox,
                             onChange: this.changeSnapStep })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "label",
+                        'label',
                         null,
-                        "\u6A19\u8A18:",
+                        '\u6A19\u8A18:',
                         ' ',
-                        " "
+                        ' '
                     ),
                     React.createElement(ButtonGroup, { value: this.props.markings,
                         allowEmpty: false,
@@ -28009,143 +28015,126 @@ var GraphSettings = React.createClass({
                 )
             ),
             React.createElement(
-                "div",
-                { className: "image-settings" },
+                'div',
+                { className: 'image-settings' },
+                React.createElement(_imageLoader2.default, {
+                    className: 'graph-settings-background-url',
+                    setUrl: this.setUrl,
+                    originImage: this.props.backgroundImage
+                }),
                 React.createElement(
-                    "div",
+                    'div',
                     null,
-                    "\u80CC\u666F\u5716:"
-                ),
-                React.createElement(
-                    "div",
-                    null,
-                    "Url:",
-                    ' ',
-                    React.createElement("input", { type: "text",
-                        className: "graph-settings-background-url",
-                        ref: "bg-url",
-                        value: this.props.backgroundImage.url,
-                        onChange: this.changeBackgroundUrl,
-                        onKeyPress: this.changeBackgroundUrl,
-                        onBlur: this.changeBackgroundUrl }),
-                    React.createElement(
-                        InfoTip,
-                        null,
-                        React.createElement(
-                            "p",
-                            null,
-                            "\u8ACB\u5728\u5716\u5F62\u4E2D\u589E\u52A0\u5716\u7247\uFF0C\u6216\u65BC\u6B04\u4E2D\u8F38\u5165\u5716\u7247\u9023\u7D50\u3002"
-                        )
-                    )
+                    '\u80CC\u666F\u5716:'
                 ),
                 this.props.backgroundImage.url && React.createElement(
-                    "div",
+                    'div',
                     null,
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Pixels from left:",
+                        'Pixels from left:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-left",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-left',
                             value: this.props.backgroundImage.left,
                             onChange: _.partial(this.changeBackgroundSetting, "left") })
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Pixels from bottom:",
+                        'Pixels from bottom:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-bottom",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-bottom',
                             value: this.props.backgroundImage.bottom,
                             onChange: _.partial(this.changeBackgroundSetting, "bottom") })
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Image scale:",
+                        'Image scale:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-scale",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-scale',
                             value: this.props.backgroundImage.scale,
                             onChange: _.partial(this.changeBackgroundSetting, "scale") })
                     )
                 )
             ),
             React.createElement(
-                "div",
-                { className: "misc-settings" },
+                'div',
+                { className: 'misc-settings' },
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        React.createElement(PropCheckBox, { label: "Show ruler",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        React.createElement(PropCheckBox, { label: 'Show ruler',
                             showRuler: this.props.showRuler,
                             onChange: this.props.onChange })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        React.createElement(PropCheckBox, { label: "Show protractor",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        React.createElement(PropCheckBox, { label: 'Show protractor',
                             showProtractor: this.props.showProtractor,
                             onChange: this.props.onChange })
                     )
                 ),
                 this.props.showRuler && React.createElement(
-                    "div",
+                    'div',
                     null,
                     React.createElement(
-                        "div",
+                        'div',
                         null,
                         React.createElement(
-                            "label",
+                            'label',
                             null,
                             ' ',
-                            "\u76F4\u5C3A\u55AE\u4F4D:",
+                            '\u76F4\u5C3A\u55AE\u4F4D:',
                             ' ',
                             React.createElement(
-                                "select",
+                                'select',
                                 {
                                     onChange: this.changeRulerLabel,
                                     value: this.props.rulerLabel },
                                 React.createElement(
-                                    "option",
-                                    { value: "" },
-                                    "\u7121"
+                                    'option',
+                                    { value: '' },
+                                    '\u7121'
                                 ),
                                 React.createElement(
-                                    "optgroup",
-                                    { label: "\u516C\u5236" },
+                                    'optgroup',
+                                    { label: '\u516C\u5236' },
                                     this.renderLabelChoices([["公厘", "mm"], ["公分", "cm"], ["公尺", "m"], ["公里", "km"]])
                                 ),
                                 React.createElement(
-                                    "optgroup",
-                                    { label: "\u82F1\u5236" },
+                                    'optgroup',
+                                    { label: '\u82F1\u5236' },
                                     this.renderLabelChoices([["英吋", "in"], ["英呎", "ft"], ["碼", "yd"], ["英里", "mi"]])
                                 )
                             )
                         )
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
                         React.createElement(
-                            "label",
+                            'label',
                             null,
                             ' ',
-                            "\u76F4\u5C3A\u9593\u9694:",
+                            '\u76F4\u5C3A\u9593\u9694:',
                             ' ',
                             React.createElement(
-                                "select",
+                                'select',
                                 {
                                     onChange: this.changeRulerTicks,
                                     value: this.props.rulerTicks },
                                 _.map([1, 2, 4, 8, 10, 16], function (n) {
                                     return React.createElement(
-                                        "option",
+                                        'option',
                                         { value: n },
                                         n
                                     );
@@ -28161,7 +28150,7 @@ var GraphSettings = React.createClass({
     renderLabelChoices: function renderLabelChoices(choices) {
         return _.map(choices, function (nameAndValue) {
             return React.createElement(
-                "option",
+                'option',
                 { value: nameAndValue[1] },
                 nameAndValue[0]
             );
@@ -28357,21 +28346,6 @@ var GraphSettings = React.createClass({
         });
     },
 
-    changeBackgroundUrl: function changeBackgroundUrl(e) {
-        var url = e.target.value;
-        if (url) {
-            if (this.props.backgroundImage.url != url) {
-                var img = new Image();
-                img.onload = function () {
-                    return this.setUrl(url, img.width, img.height);
-                }.bind(this);
-                img.src = url;
-            }
-        } else {
-            this.setUrl(url, 0, 0);
-        }
-    },
-
     changeBackgroundSetting: function changeBackgroundSetting(type, e) {
         var image = _.clone(this.props.backgroundImage);
         image[type] = e.target.value;
@@ -28391,7 +28365,7 @@ var GraphSettings = React.createClass({
 
 module.exports = GraphSettings;
 
-},{"../components/number-input.jsx":264,"../components/prop-check-box.jsx":265,"../components/range-input.jsx":266,"../mixins/changeable.jsx":294,"../util.js":306,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69}],256:[function(require,module,exports){
+},{"../components/number-input.jsx":264,"../components/prop-check-box.jsx":265,"../components/range-input.jsx":266,"../mixins/changeable.jsx":294,"../util.js":306,"./imageLoader.jsx":260,"react":248,"react-components/js/button-group.jsx":67,"react-components/js/info-tip.jsx":69}],256:[function(require,module,exports){
 "use strict";
 
 var React = require('react');

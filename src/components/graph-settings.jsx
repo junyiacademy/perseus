@@ -1,6 +1,7 @@
 var React = require('react');
 var Changeable  = require("../mixins/changeable.jsx");
 
+import ImageLoader from './imageLoader.jsx';
 var ButtonGroup = require("react-components/js/button-group.jsx");
 var InfoTip     = require("react-components/js/info-tip.jsx");
 var NumberInput = require("../components/number-input.jsx");
@@ -116,19 +117,12 @@ var GraphSettings = React.createClass({
                 </div>
             </div>
             <div className="image-settings">
+                <ImageLoader
+                    className="graph-settings-background-url"
+                    setUrl={this.setUrl}
+                    originImage={this.props.backgroundImage}
+                />
                 <div>背景圖:</div>
-                <div>Url:{' '}
-                    <input type="text"
-                            className="graph-settings-background-url"
-                            ref="bg-url"
-                            value={this.props.backgroundImage.url}
-                            onChange={this.changeBackgroundUrl}
-                            onKeyPress={this.changeBackgroundUrl}
-                            onBlur={this.changeBackgroundUrl} />
-                    <InfoTip>
-                        <p>請在圖形中增加圖片，或於欄中輸入圖片連結。</p>
-                    </InfoTip>
-                </div>
                 {this.props.backgroundImage.url && <div>
                     <div>Pixels from left:{' '}
                         <input type="text"
@@ -408,19 +402,6 @@ var GraphSettings = React.createClass({
             backgroundImage: image,
             markings: url ? "none" : "graph"
         });
-    },
-
-    changeBackgroundUrl: function(e) {
-        var url = e.target.value;
-        if (url) {
-            if(this.props.backgroundImage.url != url){
-                var img = new Image();
-                img.onload = function()  {return this.setUrl(url, img.width, img.height);}.bind(this);
-                img.src = url;
-            }
-        } else {
-            this.setUrl(url,0,0);
-        }
     },
 
     changeBackgroundSetting: function(type, e) {
