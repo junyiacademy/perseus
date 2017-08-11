@@ -64,6 +64,7 @@ var TextListEditor = React.createClass({
                     </li>
                     <ImageLoader
                         setUrl={this.setUrl(i).bind(this)}
+                        clearUrl={this.clearUrl(i).bind(this)}
                         editorMode={true}
                     />
                 </div>
@@ -74,9 +75,32 @@ var TextListEditor = React.createClass({
     },
 
     setUrl: function(index) {
-        const self = this;
         return function(url) {
-            this.onChange(index, {target: {value: `![](${url})`}});
+            const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+            const focusIndex = inputElement.selectionStart;
+            const valueLength = inputElement.value.length;
+            this.onChange(index,
+                {
+                    target: {
+                        value: `${inputElement.value.substring(0, focusIndex)}![](${url})${inputElement.value.substring(focusIndex, valueLength)}`
+                    }
+                }
+            );
+        };
+    },
+
+    clearUrl: function(index) {
+        return function(url) {
+            const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+            const urlIndex = inputElement.value.indexOf(`![](${url})`);
+            const urlLength = `![](${url})`.length;
+            this.onChange(index,
+                {
+                    target: {
+                        value: `${inputElement.value.substring(0, urlIndex)}${inputElement.value.substring(urlIndex + urlLength, inputElement.value.length)}`
+                    }
+                }
+            );
         };
     },
 

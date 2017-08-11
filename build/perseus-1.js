@@ -30971,6 +30971,7 @@ var TextListEditor = React.createClass({
                 ),
                 React.createElement(_imageLoader2.default, {
                     setUrl: this.setUrl(i).bind(this),
+                    clearUrl: this.clearUrl(i).bind(this),
                     editorMode: true
                 })
             );
@@ -30984,9 +30985,28 @@ var TextListEditor = React.createClass({
     },
 
     setUrl: function setUrl(index) {
-        var self = this;
         return function (url) {
-            this.onChange(index, { target: { value: "![](" + url + ")" } });
+            var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+            var focusIndex = inputElement.selectionStart;
+            var valueLength = inputElement.value.length;
+            this.onChange(index, {
+                target: {
+                    value: inputElement.value.substring(0, focusIndex) + "![](" + url + ")" + inputElement.value.substring(focusIndex, valueLength)
+                }
+            });
+        };
+    },
+
+    clearUrl: function clearUrl(index) {
+        return function (url) {
+            var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+            var urlIndex = inputElement.value.indexOf("![](" + url + ")");
+            var urlLength = ("![](" + url + ")").length;
+            this.onChange(index, {
+                target: {
+                    value: "" + inputElement.value.substring(0, urlIndex) + inputElement.value.substring(urlIndex + urlLength, inputElement.value.length)
+                }
+            });
         };
     },
 
