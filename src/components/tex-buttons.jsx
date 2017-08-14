@@ -38,7 +38,8 @@ var basic = [
     ],
     () => [<TeX style={slightlyBig}>{"\\div"}</TeX>, "\\div"],
     () => [<TeX style={slightlyBig} key="eq">{"="}</TeX>, "="],
-
+    () => [<TeX style={slightlyBig} key="moveLeft">{"<-"}</TeX>, "<-"],
+    () => [<TeX style={slightlyBig} key="moveRight">{"->"}</TeX>, "->"],
 ];
 
 var buttonSets = {
