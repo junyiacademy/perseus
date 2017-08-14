@@ -80,8 +80,8 @@ var buttonSets = {
 };
 
 var arrowKey = [
-    () => [<TeX style={slightlyBig} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "<-"],
-    () => [<TeX style={slightlyBig} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "->"],
+    () => [<TeX style={slightlyBig} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "Left"],
+    () => [<TeX style={slightlyBig} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "Right"],
 ];
 
 //declare buttonSetsType type from buttonSets

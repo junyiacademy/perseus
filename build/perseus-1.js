@@ -29329,8 +29329,8 @@ var MathInput = React.createClass({
             value(input);
         } else if (value[0] === '\\') {
             input.cmd(value).focus();
-        } else if (value === '<-' || value === '->') {
-            input.keystroke(value === '<-' ? 'Left' : 'Right');
+        } else if (value === 'Left' || value === 'Right') {
+            input.keystroke(value);
         } else {
             input.write(value).focus();
         }
@@ -30528,13 +30528,13 @@ var arrowKey = [function () {
         TeX,
         { style: slightlyBig, key: "moveLeft" },
         "\\leftarrow\\\\左"
-    ), "<-"];
+    ), "Left"];
 }, function () {
     return [React.createElement(
         TeX,
         { style: slightlyBig, key: "moveRight" },
         "\\rightarrow\\\\右"
-    ), "->"];
+    ), "Right"];
 }];
 
 //declare buttonSetsType type from buttonSets
