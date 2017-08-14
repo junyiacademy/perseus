@@ -86,6 +86,7 @@ var TextListEditor = React.createClass({
                     }
                 }
             );
+            this.disableInput(index, true);
         };
     },
 
@@ -101,7 +102,13 @@ var TextListEditor = React.createClass({
                     }
                 }
             );
+            this.disableInput(index, false);
         };
+    },
+
+    disableInput: function(index, disabled) {
+        const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+        inputElement.disabled = disabled;
     },
 
     onChange: function(index, event) {

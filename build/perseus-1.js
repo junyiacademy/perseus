@@ -29166,10 +29166,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _blurInput = require('react-components/js/blur-input.jsx');
-
-var _blurInput2 = _interopRequireDefault(_blurInput);
-
 var _infoTip = require('react-components/js/info-tip.jsx');
 
 var _infoTip2 = _interopRequireDefault(_infoTip);
@@ -29182,28 +29178,80 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ImageLoader = function (_React$Component) {
-  _inherits(ImageLoader, _React$Component);
+var BlurInput = function (_React$Component) {
+  _inherits(BlurInput, _React$Component);
+
+  function BlurInput(props) {
+    _classCallCheck(this, BlurInput);
+
+    var _this = _possibleConstructorReturn(this, (BlurInput.__proto__ || Object.getPrototypeOf(BlurInput)).call(this, props));
+
+    _this.state = { value: _this.props.value };
+    return _this;
+  }
+
+  _createClass(BlurInput, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({ value: nextProps.value });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(e) {
+      this.setState({ value: e.target.value });
+    }
+  }, {
+    key: 'handleBlur',
+    value: function handleBlur(e) {
+      this.props.onChange(e.target.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('input', {
+        className: this.props.className,
+        style: this.props.style,
+        type: 'text',
+        value: this.state.value,
+        onChange: this.handleChange,
+        onBlur: this.handleBlur,
+        disabled: this.state.value
+      });
+    }
+  }]);
+
+  return BlurInput;
+}(_react2.default.Component);
+
+BlurInput.propTypes = {
+  className: _react2.default.PropTypes.string,
+  style: _react2.default.PropTypes.any,
+  value: _react2.default.PropTypes.string.isRequired,
+  onChange: _react2.default.PropTypes.func.isRequired
+};
+
+var ImageLoader = function (_React$Component2) {
+  _inherits(ImageLoader, _React$Component2);
 
   function ImageLoader(props) {
     _classCallCheck(this, ImageLoader);
 
-    var _this = _possibleConstructorReturn(this, (ImageLoader.__proto__ || Object.getPrototypeOf(ImageLoader)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (ImageLoader.__proto__ || Object.getPrototypeOf(ImageLoader)).call(this, props));
 
-    _this.onUrlChange = _this.onUrlChange.bind(_this);
-    _this.onFileChange = _this.onFileChange.bind(_this);
-    _this.clearUrl = _this.clearUrl.bind(_this);
+    _this2.onUrlChange = _this2.onUrlChange.bind(_this2);
+    _this2.onFileChange = _this2.onFileChange.bind(_this2);
+    _this2.clearUrl = _this2.clearUrl.bind(_this2);
 
-    var url = _this.props.originImage && _this.props.originImage.url;
-    if (url) _this.onUrlChange(url);
+    var url = _this2.props.originImage && _this2.props.originImage.url;
+    if (url) _this2.onUrlChange(url);
 
     var reader = new FileReader();
-    var self = _this;
+    var self = _this2;
     reader.onloadend = function () {
       self.onUrlChange(self.state.reader.result);
     };
-    _this.state = { reader: reader, url: '' };
-    return _this;
+    _this2.state = { reader: reader, url: '' };
+    return _this2;
   }
 
   _createClass(ImageLoader, [{
@@ -29249,7 +29297,7 @@ var ImageLoader = function (_React$Component) {
         null,
         '\u5716\u7247\u7DB2\u5740:',
         ' ',
-        _react2.default.createElement(_blurInput2.default, {
+        _react2.default.createElement(BlurInput, {
           className: this.props.className || '',
           value: this.props.originImage && this.props.originImage.url || this.state.url || '',
           onChange: this.onUrlChange,
@@ -29283,7 +29331,7 @@ var ImageLoader = function (_React$Component) {
 
 exports.default = ImageLoader;
 
-},{"react":248,"react-components/js/blur-input.jsx":66,"react-components/js/info-tip.jsx":69}],261:[function(require,module,exports){
+},{"react":248,"react-components/js/info-tip.jsx":69}],261:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -30994,6 +31042,7 @@ var TextListEditor = React.createClass({
                     value: inputElement.value.substring(0, focusIndex) + "![](" + url + ")" + inputElement.value.substring(focusIndex, valueLength)
                 }
             });
+            this.disableInput(index, true);
         };
     },
 
@@ -31007,7 +31056,13 @@ var TextListEditor = React.createClass({
                     value: "" + inputElement.value.substring(0, urlIndex) + inputElement.value.substring(urlIndex + urlLength, inputElement.value.length)
                 }
             });
+            this.disableInput(index, false);
         };
+    },
+
+    disableInput: function disableInput(index, disabled) {
+        var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+        inputElement.disabled = disabled;
     },
 
     onChange: function onChange(index, event) {
@@ -37899,8 +37954,7 @@ var ExplanationEditor = React.createClass({
                             newProps.widgets = props.widgets;
                         }
                         _this.change(newProps);
-                    },
-                    hasFileUpload: true })
+                    } })
             )
         );
     }

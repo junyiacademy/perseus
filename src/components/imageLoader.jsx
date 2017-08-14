@@ -1,6 +1,45 @@
 import React from 'react';
-import BlurInput from 'react-components/js/blur-input.jsx';
 import InfoTip from 'react-components/js/info-tip.jsx';
+
+class BlurInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: this.props.value };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ value: nextProps.value });
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleBlur(e) {
+    this.props.onChange(e.target.value);
+  }
+
+  render() {
+    return (
+      <input
+        className={this.props.className}
+        style={this.props.style}
+        type="text"
+        value={this.state.value}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        disabled={this.state.value}
+      />
+    );
+  }
+}
+
+BlurInput.propTypes = {
+  className: React.PropTypes.string,
+  style: React.PropTypes.any,
+  value: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+};
 
 class ImageLoader extends React.Component {
   constructor(props) {
