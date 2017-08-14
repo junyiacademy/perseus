@@ -38,8 +38,6 @@ var basic = [
     ],
     () => [<TeX style={slightlyBig}>{"\\div"}</TeX>, "\\div"],
     () => [<TeX style={slightlyBig} key="eq">{"="}</TeX>, "="],
-    () => [<TeX style={slightlyBig} key="moveLeft">{"<-"}</TeX>, "<-"],
-    () => [<TeX style={slightlyBig} key="moveRight">{"->"}</TeX>, "->"],
 ];
 
 var buttonSets = {
@@ -78,8 +76,13 @@ var buttonSets = {
         ],
         () => [<TeX style={slightlyBig}>\pi</TeX>, "\\pi"]
     ]
-
+    
 };
+
+var arrowKey = [
+    () => [<TeX style={slightlyBig} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "<-"],
+    () => [<TeX style={slightlyBig} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "->"],
+];
 
 //declare buttonSetsType type from buttonSets
 var buttonSetsType = React.PropTypes.arrayOf(
@@ -99,6 +102,7 @@ var TexButtons = React.createClass({
 
         // make buttonSet(checked) by this.props.sets from buttonSets(template)
         var buttonSet = _(this.props.sets).map(setName => buttonSets[setName]);
+        buttonSet = [...buttonSet, arrowKey];
 
         var buttonRows = _(buttonSet).map(row => row.map(symbGen => {
             // create a (component, thing we should send to mathquill) pair

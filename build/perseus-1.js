@@ -30503,6 +30503,8 @@ module.exports = Sortable;
 },{"../renderer.jsx":300,"../util.js":305,"react":248,"react-dom":96}],267:[function(require,module,exports){
 "use strict";
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var React = require("react");
 var TeX = require("react-components/js/tex.jsx");
 
@@ -30571,18 +30573,6 @@ function (props) {
         { style: slightlyBig, key: "eq" },
         "="
     ), "="];
-}, function () {
-    return [React.createElement(
-        TeX,
-        { style: slightlyBig, key: "moveLeft" },
-        "<-"
-    ), "<-"];
-}, function () {
-    return [React.createElement(
-        TeX,
-        { style: slightlyBig, key: "moveRight" },
-        "->"
-    ), "->"];
 }];
 
 var buttonSets = {
@@ -30683,6 +30673,20 @@ var buttonSets = {
 
 };
 
+var arrowKey = [function () {
+    return [React.createElement(
+        TeX,
+        { style: slightlyBig, key: "moveLeft" },
+        "\\leftarrow\\\\左"
+    ), "<-"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: slightlyBig, key: "moveRight" },
+        "\\rightarrow\\\\右"
+    ), "->"];
+}];
+
 //declare buttonSetsType type from buttonSets
 var buttonSetsType = React.PropTypes.arrayOf(React.PropTypes.oneOf(_(buttonSets).keys()));
 
@@ -30705,6 +30709,7 @@ var TexButtons = React.createClass({
         var buttonSet = _(this.props.sets).map(function (setName) {
             return buttonSets[setName];
         });
+        buttonSet = [].concat(_toConsumableArray(buttonSet), [arrowKey]);
 
         var buttonRows = _(buttonSet).map(function (row) {
             return row.map(function (symbGen) {
