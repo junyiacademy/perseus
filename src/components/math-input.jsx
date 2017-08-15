@@ -131,7 +131,7 @@ var MathInput = React.createClass({
         else if (value[0] === '\\') {
             input.cmd(value).focus();
         }
-        else if (value === 'Left' || value === 'Right') {
+        else if (value === 'Left' || value === 'Up' || value === 'Down' || value === 'Right') {
             input.keystroke(value);
         }
         else {

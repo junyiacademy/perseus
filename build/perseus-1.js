@@ -29329,7 +29329,7 @@ var MathInput = React.createClass({
             value(input);
         } else if (value[0] === '\\') {
             input.cmd(value).focus();
-        } else if (value === 'Left' || value === 'Right') {
+        } else if (value === 'Left' || value === 'Up' || value === 'Down' || value === 'Right') {
             input.keystroke(value);
         } else {
             input.write(value).focus();
@@ -30353,6 +30353,8 @@ module.exports = Sortable;
 },{"248":248,"300":300,"305":305,"96":96}],267:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var React = require(248);
@@ -30362,6 +30364,7 @@ var prettyBig = { fontSize: "150%" };
 var slightlyBig = { fontSize: "120%" };
 var trigStyle = { marginLeft: -4 };
 var symbStyle = { fontSize: "130%" };
+var arrowKeyStyle = _extends({}, slightlyBig, { color: "#64b243" });
 
 // These are functions because we want to generate a new component for each use
 // on the page rather than reusing an instance (which will cause an error).
@@ -30526,13 +30529,25 @@ var buttonSets = {
 var arrowKey = [function () {
     return [React.createElement(
         TeX,
-        { style: slightlyBig, key: "moveLeft" },
+        { style: arrowKeyStyle, key: "moveLeft" },
         "\\leftarrow\\\\左"
     ), "Left"];
 }, function () {
     return [React.createElement(
         TeX,
-        { style: slightlyBig, key: "moveRight" },
+        { style: arrowKeyStyle, key: "moveUp" },
+        "\\uparrow\\\\\u4E0A"
+    ), "Up"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveDown" },
+        "\\downarrow\\\\下"
+    ), "Down"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveRight" },
         "\\rightarrow\\\\右"
     ), "Right"];
 }];

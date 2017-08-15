@@ -5,6 +5,7 @@ var prettyBig = { fontSize: "150%" };
 var slightlyBig = { fontSize: "120%" };
 var trigStyle = { marginLeft: -4 };
 var symbStyle = { fontSize: "130%" };
+const arrowKeyStyle = {...slightlyBig, color: "#64b243"};
 
 // These are functions because we want to generate a new component for each use
 // on the page rather than reusing an instance (which will cause an error).
@@ -80,8 +81,10 @@ var buttonSets = {
 };
 
 var arrowKey = [
-    () => [<TeX style={slightlyBig} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "Left"],
-    () => [<TeX style={slightlyBig} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "Right"],
+    () => [<TeX style={arrowKeyStyle} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "Left"],
+    () => [<TeX style={arrowKeyStyle} key="moveUp">{"\\uparrow\\\\上"}</TeX>, "Up"],
+    () => [<TeX style={arrowKeyStyle} key="moveDown">{"\\downarrow\\\\下"}</TeX>, "Down"],
+    () => [<TeX style={arrowKeyStyle} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "Right"],
 ];
 
 //declare buttonSetsType type from buttonSets
