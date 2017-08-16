@@ -1,9 +1,10 @@
 import React from 'react';
 import InfoTip from 'react-components/js/info-tip.jsx';
 
-class BlurInput extends React.Component {
+class UrlInput extends React.Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.state = { value: this.props.value };
   }
 
@@ -12,10 +13,6 @@ class BlurInput extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  handleBlur(e) {
     this.props.onChange(e.target.value);
   }
 
@@ -27,14 +24,13 @@ class BlurInput extends React.Component {
         type="text"
         value={this.state.value}
         onChange={this.handleChange}
-        onBlur={this.handleBlur}
         disabled={this.state.value}
       />
     );
   }
 }
 
-BlurInput.propTypes = {
+UrlInput.propTypes = {
   className: React.PropTypes.string,
   style: React.PropTypes.any,
   value: React.PropTypes.string.isRequired,
@@ -96,12 +92,10 @@ class ImageLoader extends React.Component {
 
   render() {
     return <div>圖片網址:{' '}
-      <BlurInput
+      <UrlInput
         className={this.props.className || ''}
         value={this.props.originImage && this.props.originImage.url || this.state.url || ''}
         onChange={this.onUrlChange}
-        onKeyPress={this.onUrlChange}
-        onBlur={this.onUrlChange}
       />
       <input
         type="file"

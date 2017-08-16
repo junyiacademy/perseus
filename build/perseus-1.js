@@ -29028,19 +29028,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BlurInput = function (_React$Component) {
-  _inherits(BlurInput, _React$Component);
+var UrlInput = function (_React$Component) {
+  _inherits(UrlInput, _React$Component);
 
-  function BlurInput(props) {
-    _classCallCheck(this, BlurInput);
+  function UrlInput(props) {
+    _classCallCheck(this, UrlInput);
 
-    var _this = _possibleConstructorReturn(this, (BlurInput.__proto__ || Object.getPrototypeOf(BlurInput)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (UrlInput.__proto__ || Object.getPrototypeOf(UrlInput)).call(this, props));
 
+    _this.handleChange = _this.handleChange.bind(_this);
     _this.state = { value: _this.props.value };
     return _this;
   }
 
-  _createClass(BlurInput, [{
+  _createClass(UrlInput, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({ value: nextProps.value });
@@ -29048,11 +29049,6 @@ var BlurInput = function (_React$Component) {
   }, {
     key: 'handleChange',
     value: function handleChange(e) {
-      this.setState({ value: e.target.value });
-    }
-  }, {
-    key: 'handleBlur',
-    value: function handleBlur(e) {
       this.props.onChange(e.target.value);
     }
   }, {
@@ -29064,16 +29060,15 @@ var BlurInput = function (_React$Component) {
         type: 'text',
         value: this.state.value,
         onChange: this.handleChange,
-        onBlur: this.handleBlur,
         disabled: this.state.value
       });
     }
   }]);
 
-  return BlurInput;
+  return UrlInput;
 }(_react2.default.Component);
 
-BlurInput.propTypes = {
+UrlInput.propTypes = {
   className: _react2.default.PropTypes.string,
   style: _react2.default.PropTypes.any,
   value: _react2.default.PropTypes.string.isRequired,
@@ -29147,12 +29142,10 @@ var ImageLoader = function (_React$Component2) {
         null,
         '\u5716\u7247\u7DB2\u5740:',
         ' ',
-        _react2.default.createElement(BlurInput, {
+        _react2.default.createElement(UrlInput, {
           className: this.props.className || '',
           value: this.props.originImage && this.props.originImage.url || this.state.url || '',
-          onChange: this.onUrlChange,
-          onKeyPress: this.onUrlChange,
-          onBlur: this.onUrlChange
+          onChange: this.onUrlChange
         }),
         _react2.default.createElement('input', {
           type: 'file',
