@@ -30355,8 +30355,6 @@ module.exports = Sortable;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var React = require(248);
 var TeX = require(72);
 
@@ -30574,7 +30572,7 @@ var TexButtons = React.createClass({
         var buttonSet = _(this.props.sets).map(function (setName) {
             return buttonSets[setName];
         });
-        buttonSet = [].concat(_toConsumableArray(buttonSet), [arrowKey]);
+        buttonSet.push(arrowKey);
 
         var buttonRows = _(buttonSet).map(function (row) {
             return row.map(function (symbGen) {

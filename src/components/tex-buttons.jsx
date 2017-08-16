@@ -77,7 +77,7 @@ var buttonSets = {
         ],
         () => [<TeX style={slightlyBig}>\pi</TeX>, "\\pi"]
     ]
-    
+
 };
 
 var arrowKey = [
@@ -105,7 +105,7 @@ var TexButtons = React.createClass({
 
         // make buttonSet(checked) by this.props.sets from buttonSets(template)
         var buttonSet = _(this.props.sets).map(setName => buttonSets[setName]);
-        buttonSet = [...buttonSet, arrowKey];
+        buttonSet.push(arrowKey);
 
         var buttonRows = _(buttonSet).map(row => row.map(symbGen => {
             // create a (component, thing we should send to mathquill) pair
