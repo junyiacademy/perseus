@@ -81,10 +81,10 @@ var buttonSets = {
 };
 
 var arrowKey = [
-    () => [<TeX style={arrowKeyStyle} key="moveLeft">{"\\leftarrow\\\\左"}</TeX>, "Left"],
-    () => [<TeX style={arrowKeyStyle} key="moveUp">{"\\uparrow\\\\上"}</TeX>, "Up"],
-    () => [<TeX style={arrowKeyStyle} key="moveDown">{"\\downarrow\\\\下"}</TeX>, "Down"],
-    () => [<TeX style={arrowKeyStyle} key="moveRight">{"\\rightarrow\\\\右"}</TeX>, "Right"],
+    () => [<TeX style={arrowKeyStyle} key="moveLeft">{"\\leftarrow"}</TeX>, "Left"],
+    () => [<TeX style={arrowKeyStyle} key="moveUp">{"\\uparrow"}</TeX>, "Up"],
+    () => [<TeX style={arrowKeyStyle} key="moveDown">{"\\downarrow"}</TeX>, "Down"],
+    () => [<TeX style={arrowKeyStyle} key="moveRight">{"\\rightarrow"}</TeX>, "Right"],
 ];
 
 //declare buttonSetsType type from buttonSets

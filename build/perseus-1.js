@@ -30530,25 +30530,25 @@ var arrowKey = [function () {
     return [React.createElement(
         TeX,
         { style: arrowKeyStyle, key: "moveLeft" },
-        "\\leftarrow\\\\左"
+        "\\leftarrow"
     ), "Left"];
 }, function () {
     return [React.createElement(
         TeX,
         { style: arrowKeyStyle, key: "moveUp" },
-        "\\uparrow\\\\\u4E0A"
+        "\\uparrow"
     ), "Up"];
 }, function () {
     return [React.createElement(
         TeX,
         { style: arrowKeyStyle, key: "moveDown" },
-        "\\downarrow\\\\下"
+        "\\downarrow"
     ), "Down"];
 }, function () {
     return [React.createElement(
         TeX,
         { style: arrowKeyStyle, key: "moveRight" },
-        "\\rightarrow\\\\右"
+        "\\rightarrow"
     ), "Right"];
 }];
 
