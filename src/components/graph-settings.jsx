@@ -117,12 +117,12 @@ var GraphSettings = React.createClass({
                 </div>
             </div>
             <div className="image-settings">
+                <div>背景圖:</div>
                 <ImageLoader
                     className="graph-settings-background-url"
                     setUrl={this.setUrl}
                     originImage={this.props.backgroundImage}
                 />
-                <div>背景圖:</div>
                 {this.props.backgroundImage.url && <div>
                     <div>Pixels from left:{' '}
                         <input type="text"
