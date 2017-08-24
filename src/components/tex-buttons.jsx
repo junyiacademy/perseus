@@ -5,6 +5,7 @@ var prettyBig = { fontSize: "150%" };
 var slightlyBig = { fontSize: "120%" };
 var trigStyle = { marginLeft: -4 };
 var symbStyle = { fontSize: "130%" };
+const arrowKeyStyle = {...slightlyBig, color: "#64b243"};
 
 // These are functions because we want to generate a new component for each use
 // on the page rather than reusing an instance (which will cause an error).
@@ -38,7 +39,6 @@ var basic = [
     ],
     () => [<TeX style={slightlyBig}>{"\\div"}</TeX>, "\\div"],
     () => [<TeX style={slightlyBig} key="eq">{"="}</TeX>, "="],
-
 ];
 
 var buttonSets = {
@@ -80,6 +80,13 @@ var buttonSets = {
 
 };
 
+var arrowKey = [
+    () => [<TeX style={arrowKeyStyle} key="moveLeft">{"\\leftarrow"}</TeX>, "Left"],
+    () => [<TeX style={arrowKeyStyle} key="moveUp">{"\\uparrow"}</TeX>, "Up"],
+    () => [<TeX style={arrowKeyStyle} key="moveDown">{"\\downarrow"}</TeX>, "Down"],
+    () => [<TeX style={arrowKeyStyle} key="moveRight">{"\\rightarrow"}</TeX>, "Right"],
+];
+
 //declare buttonSetsType type from buttonSets
 var buttonSetsType = React.PropTypes.arrayOf(
         React.PropTypes.oneOf(_(buttonSets).keys())
@@ -98,6 +105,7 @@ var TexButtons = React.createClass({
 
         // make buttonSet(checked) by this.props.sets from buttonSets(template)
         var buttonSet = _(this.props.sets).map(setName => buttonSets[setName]);
+        buttonSet.push(arrowKey);
 
         var buttonRows = _(buttonSet).map(row => row.map(symbGen => {
             // create a (component, thing we should send to mathquill) pair
