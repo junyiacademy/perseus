@@ -28,7 +28,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return `\\frac{${n}}{${d}}`;
     }
 }
 
@@ -157,10 +157,6 @@ var InteractiveNumberLine = React.createClass({
 
         graphie.line([range[0] - (25 / scale), 0],
              [range[1] + (25 / scale), 0], {
-            arrows: "->"
-        });
-        graphie.line([range[1] + (25 / scale), 0],
-             [range[0] - (25 / scale), 0], {
             arrows: "->"
         });
 
