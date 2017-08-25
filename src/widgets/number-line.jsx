@@ -40,7 +40,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return `\\frac{${n}}{${d}}`;
     }
 }
 
