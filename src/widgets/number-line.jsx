@@ -471,9 +471,7 @@ var NumberLine = React.createClass({
         });
 
         // Draw the number line
-        var center = (range[0] + range[1]) / 2;
-        graphie.line([center, 0], [right, 0], {arrows: "->"});
-        graphie.line([center, 0], [left, 0], {arrows: "->"});
+        graphie.line([left, 0], [right, 0], {arrows: "->"});
     },
 
     setAnswerFromJSON: function(answerData) {
