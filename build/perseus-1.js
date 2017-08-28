@@ -27867,16 +27867,16 @@ var GraphSettings = React.createClass({
             React.createElement(
                 'div',
                 { className: 'image-settings' },
-                React.createElement(_imageLoader2.default, {
-                    className: 'graph-settings-background-url',
-                    setUrl: this.setUrl,
-                    originImage: this.props.backgroundImage
-                }),
                 React.createElement(
                     'div',
                     null,
                     '\u80CC\u666F\u5716:'
                 ),
+                React.createElement(_imageLoader2.default, {
+                    className: 'graph-settings-background-url',
+                    setUrl: this.setUrl,
+                    originImage: this.props.backgroundImage
+                }),
                 this.props.backgroundImage.url && React.createElement(
                     'div',
                     null,
