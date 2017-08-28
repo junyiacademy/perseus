@@ -42241,7 +42241,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return "\\frac{" + n + "}{" + d + "}";
     }
 }
 
@@ -42369,9 +42369,6 @@ var InteractiveNumberLine = React.createClass({
         // Line
 
         graphie.line([range[0] - 25 / scale, 0], [range[1] + 25 / scale, 0], {
-            arrows: "->"
-        });
-        graphie.line([range[1] + 25 / scale, 0], [range[0] - 25 / scale, 0], {
             arrows: "->"
         });
 
@@ -45679,7 +45676,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return "\\frac{" + n + "}{" + d + "}";
     }
 }
 
@@ -46087,9 +46084,7 @@ var NumberLine = React.createClass({
         });
 
         // Draw the number line
-        var center = (range[0] + range[1]) / 2;
-        graphie.line([center, 0], [right, 0], { arrows: "->" });
-        graphie.line([center, 0], [left, 0], { arrows: "->" });
+        graphie.line([left, 0], [right, 0], { arrows: "->" });
     },
 
     setAnswerFromJSON: function setAnswerFromJSON(answerData) {
