@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require("react-dom");
 var ReactCreateFragment = require("react-addons-create-fragment");
 
+import ImageLoader from './components/imageLoader.jsx';
 var PropCheckBox = require("./components/prop-check-box.jsx");
 var Util = require("./util.js");
 var Widgets = require("./widgets.js");
@@ -393,6 +394,11 @@ var Editor = React.createClass({
         return <div className={"perseus-single-editor " +
                 (this.props.className || "")} >
             {textareaWrapper}
+            <ImageLoader
+                setUrl={this.setUrl}
+                clearUrl={this.clearUrl}
+                editorMode={true}
+            />
             {widgetsAndTemplates}
         </div>;
     },
@@ -479,6 +485,24 @@ var Editor = React.createClass({
                     });
                 });
             });
+    },
+    
+    setUrl: function(url) {
+        const textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        const focusIndex = textarea.selectionStart;
+        const valueLength = textarea.value.length;
+        this.props.onChange({
+            content:`${textarea.value.substring(0, focusIndex)}![](${url})${textarea.value.substring(focusIndex, valueLength)}`
+        });
+    },
+
+    clearUrl: function(url) {
+        const textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        const urlIndex = textarea.value.indexOf(`![](${url})`);
+        const urlLength = `![](${url})`.length;
+        this.props.onChange({
+            content:`${textarea.value.substring(0, urlIndex)}${textarea.value.substring(urlIndex + urlLength, textarea.value.length)}`
+        });
     },
 
     handleChange: function() {
