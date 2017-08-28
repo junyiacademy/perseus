@@ -404,7 +404,7 @@ var Sortable = React.createClass({
                     <Placeholder
                         key={"placeholder_" + item.key}
                         ref={"placeholder_" + item.key}
-                        width={item.width}
+                        width={ReactDOM.findDOMNode(this.refs[item.key]).offsetWidth}
                         height={item.height}
                         margin={isLast ? 0 : margin} />
                 );
@@ -445,8 +445,8 @@ var Sortable = React.createClass({
             var sumWidth = 0;
             var cardWidth;
 
-            _.each(items, function(item) {
-                cardWidth = item.width;
+            _.each(items, (item) => {
+                cardWidth = ReactDOM.findDOMNode(this.refs[item.key]).offsetWidth;
                 if (midWidth > sumWidth + cardWidth / 2) {
                     newIndex += 1;
                 }

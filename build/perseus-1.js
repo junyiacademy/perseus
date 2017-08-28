@@ -4297,7 +4297,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -30243,7 +30243,7 @@ var Sortable = React.createClass({
                 cards.push(React.createElement(Placeholder, {
                     key: "placeholder_" + item.key,
                     ref: "placeholder_" + item.key,
-                    width: item.width,
+                    width: ReactDOM.findDOMNode(this.refs[item.key]).offsetWidth,
                     height: item.height,
                     margin: isLast ? 0 : margin }));
             }
@@ -30269,6 +30269,8 @@ var Sortable = React.createClass({
     },
 
     onMouseMove: function onMouseMove(key) {
+        var _this2 = this;
+
         // Dragging: Rearrange items based on draggable's position
         var $draggable = $(ReactDOM.findDOMNode(this.refs[key]));
         var $sortable = $(ReactDOM.findDOMNode(this));
@@ -30286,7 +30288,7 @@ var Sortable = React.createClass({
             var cardWidth;
 
             _.each(items, function (item) {
-                cardWidth = item.width;
+                cardWidth = ReactDOM.findDOMNode(_this2.refs[item.key]).offsetWidth;
                 if (midWidth > sumWidth + cardWidth / 2) {
                     newIndex += 1;
                 }
