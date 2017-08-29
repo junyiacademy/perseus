@@ -2,6 +2,8 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
+import ImageLoader from './imageLoader.jsx';
+
 var textWidthCache = {};
 function getTextWidth(text) {
     if (!textWidthCache[text]) {
@@ -48,18 +50,65 @@ var TextListEditor = React.createClass({
         ].join(" ");
 
         var inputs = _.map(this.state.items, function(item, i) {
-            return <li key={i}>
-                <input
-                    ref={"input_" + i}
-                    type="text"
-                    value={item}
-                    onChange={this.onChange.bind(this, i)}
-                    onKeyDown={this.onKeyDown.bind(this, i)}
-                    style={{width: getTextWidth(item)}} />
-            </li>;
+            return (
+                <div key={i}>
+                    <li key={i}>
+                        <input
+                            ref={"input_" + i}
+                            type="text"
+                            value={item}
+                            onChange={this.onChange.bind(this, i)}
+                            onKeyDown={this.onKeyDown.bind(this, i)}
+                            style={{width: getTextWidth(item)}}
+                        />
+                    </li>
+                    <ImageLoader
+                        setUrl={this.setUrl(i).bind(this)}
+                        clearUrl={this.clearUrl(i).bind(this)}
+                        editorMode={true}
+                    />
+                </div>
+            );
         }, this);
 
         return <ul className={className}>{inputs}</ul>;
+    },
+
+    setUrl: function(index) {
+        return function(url) {
+            const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+            const focusIndex = inputElement.selectionStart;
+            const valueLength = inputElement.value.length;
+            this.onChange(index,
+                {
+                    target: {
+                        value: `${inputElement.value.substring(0, focusIndex)}![](${url})${inputElement.value.substring(focusIndex, valueLength)}`
+                    }
+                }
+            );
+            this.disableInput(index, true);
+        };
+    },
+
+    clearUrl: function(index) {
+        return function(url) {
+            const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+            const urlIndex = inputElement.value.indexOf(`![](${url})`);
+            const urlLength = `![](${url})`.length;
+            this.onChange(index,
+                {
+                    target: {
+                        value: `${inputElement.value.substring(0, urlIndex)}${inputElement.value.substring(urlIndex + urlLength, inputElement.value.length)}`
+                    }
+                }
+            );
+            this.disableInput(index, false);
+        };
+    },
+
+    disableInput: function(index, disabled) {
+        const inputElement = ReactDOM.findDOMNode(this.refs[`input_${index}`]);
+        inputElement.disabled = disabled;
     },
 
     onChange: function(index, event) {

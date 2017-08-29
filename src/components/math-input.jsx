@@ -127,9 +127,14 @@ var MathInput = React.createClass({
         var input = this.mathField();
         if (_(value).isFunction()) {
             value(input);
-        } else if (value[0] === '\\') {
+        }
+        else if (value[0] === '\\') {
             input.cmd(value).focus();
-        } else {
+        }
+        else if (value === 'Left' || value === 'Up' || value === 'Down' || value === 'Right') {
+            input.keystroke(value);
+        }
+        else {
             input.write(value).focus();
         }
         input.focus();

@@ -27047,9 +27047,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var Widgets = require(308);
+var Widgets = require(309);
 
-_.each([require(309), require(310), require(311), [require(313), require(312)], require(314), require(315), require(316), require(317), require(318), require(319), require(320), require(321), require(322), require(323), [require(325), require(324)], require(329), require(330), require(331), require(332), require(333), [require(335), require(334)], require(336), require(339), require(340), require(337), require(338)], function (_widget) {
+_.each([require(310), require(311), require(312), [require(314), require(313)], require(315), require(316), require(317), require(318), require(319), require(320), require(321), require(322), require(323), require(324), [require(326), require(325)], require(330), require(331), require(332), require(333), require(334), [require(336), require(335)], require(337), require(340), require(341), require(338), require(339)], function (_widget) {
     if (Array.isArray(_widget)) {
         var _widget2 = _slicedToArray(_widget, 2),
             _widget2$ = _widget2[0],
@@ -27064,15 +27064,15 @@ _.each([require(309), require(310), require(311), [require(313), require(312)], 
     Widgets.register(name, widget, editor);
 });
 
-},{"308":308,"309":309,"310":310,"311":311,"312":312,"313":313,"314":314,"315":315,"316":316,"317":317,"318":318,"319":319,"320":320,"321":321,"322":322,"323":323,"324":324,"325":325,"329":329,"330":330,"331":331,"332":332,"333":333,"334":334,"335":335,"336":336,"337":337,"338":338,"339":339,"340":340}],252:[function(require,module,exports){
+},{"309":309,"310":310,"311":311,"312":312,"313":313,"314":314,"315":315,"316":316,"317":317,"318":318,"319":319,"320":320,"321":321,"322":322,"323":323,"324":324,"325":325,"326":326,"330":330,"331":331,"332":332,"333":333,"334":334,"335":335,"336":336,"337":337,"338":338,"339":339,"340":340,"341":341}],252:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
-var Editor = require(277);
+var Editor = require(278);
 var InfoTip = require(69);
-var Widgets = require(308);
+var Widgets = require(309);
 
 var WidgetsInAnswerAreaEditor = ['Image'];
 
@@ -27146,7 +27146,7 @@ var AnswerAreaEditor = React.createClass({
 
 module.exports = AnswerAreaEditor;
 
-},{"248":248,"277":277,"308":308,"69":69}],253:[function(require,module,exports){
+},{"248":248,"278":278,"309":309,"69":69}],253:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -27154,14 +27154,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require(248);
 var ReactDOM = require(96);
 
-var Renderer = require(300);
-var QuestionParagraph = require(298);
-var WidgetContainer = require(307);
-var Widgets = require(308);
+var Renderer = require(301);
+var QuestionParagraph = require(299);
+var WidgetContainer = require(308);
+var Widgets = require(309);
 
-var Util = require(305);
-var EnabledFeatures = require(278);
-var ApiOptions = require(296).Options;
+var Util = require(306);
+var EnabledFeatures = require(279);
+var ApiOptions = require(297).Options;
 
 var SINGLE_ITEM_WIDGET_ID = "answer-area";
 var PT = React.PropTypes;
@@ -27527,7 +27527,7 @@ var AnswerAreaRenderer = React.createClass({
 
 module.exports = AnswerAreaRenderer;
 
-},{"248":248,"278":278,"296":296,"298":298,"300":300,"305":305,"307":307,"308":308,"96":96}],254:[function(require,module,exports){
+},{"248":248,"279":279,"297":297,"299":299,"301":301,"306":306,"308":308,"309":309,"96":96}],254:[function(require,module,exports){
 "use strict";
 
 var _arguments = arguments;
@@ -27706,17 +27706,23 @@ FancySelect.Option = FancyOption;
 module.exports = FancySelect;
 
 },{"12":12,"248":248}],255:[function(require,module,exports){
-"use strict";
+'use strict';
+
+var _imageLoader = require(260);
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require(248);
-var Changeable = require(293);
+var Changeable = require(294);
 
 var ButtonGroup = require(67);
 var InfoTip = require(69);
-var NumberInput = require(263);
-var PropCheckBox = require(264);
-var RangeInput = require(265);
-var Util = require(305);
+var NumberInput = require(264);
+var PropCheckBox = require(265);
+var RangeInput = require(266);
+var Util = require(306);
 
 var defaultBoxSize = 400;
 var defaultBackgroundImage = {
@@ -27731,7 +27737,7 @@ function numSteps(range, step) {
 }
 
 var GraphSettings = React.createClass({
-    displayName: "GraphSettings",
+    displayName: 'GraphSettings',
 
 
     mixins: [Changeable],
@@ -27766,91 +27772,91 @@ var GraphSettings = React.createClass({
 
     render: function render() {
         return React.createElement(
-            "div",
+            'div',
             null,
             React.createElement(
-                "div",
-                { className: "graph-settings" },
+                'div',
+                { className: 'graph-settings' },
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        " x\u8EF8\u6A19\u7C64",
-                        React.createElement("input", { type: "text",
-                            className: "graph-settings-axis-label",
-                            ref: "labels-0",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        ' x\u8EF8\u6A19\u7C64',
+                        React.createElement('input', { type: 'text',
+                            className: 'graph-settings-axis-label',
+                            ref: 'labels-0',
                             onChange: this.changeLabel.bind(this, 0),
                             value: this.state.labelsTextbox[0] })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "y\u8EF8\u6A19\u7C64",
-                        React.createElement("input", { type: "text",
-                            className: "graph-settings-axis-label",
-                            ref: "labels-1",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        'y\u8EF8\u6A19\u7C64',
+                        React.createElement('input', { type: 'text',
+                            className: 'graph-settings-axis-label',
+                            ref: 'labels-1',
                             onChange: this.changeLabel.bind(this, 1),
                             value: this.state.labelsTextbox[1] })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "x\u8EF8\u7BC4\u570D",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        'x\u8EF8\u7BC4\u570D',
                         React.createElement(RangeInput, { value: this.state.rangeTextbox[0],
                             onChange: this.changeRange.bind(this, 0) })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "y\u8EF8\u7BC4\u570D",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        'y\u8EF8\u7BC4\u570D',
                         React.createElement(RangeInput, { value: this.state.rangeTextbox[1],
                             onChange: this.changeRange.bind(this, 1) })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "\u5EA7\u6A19\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        '\u5EA7\u6A19\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.stepTextbox,
                             onChange: this.changeStep })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        "\u7DB2\u683C\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        '\u7DB2\u683C\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.gridStepTextbox,
                             onChange: this.changeGridStep })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        "\u7B54\u6848\u62D6\u62C9\u9593\u8DDD",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        '\u7B54\u6848\u62D6\u62C9\u9593\u8DDD',
                         React.createElement(RangeInput, { value: this.state.snapStepTextbox,
                             onChange: this.changeSnapStep })
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "label",
+                        'label',
                         null,
-                        "\u6A19\u8A18:",
+                        '\u6A19\u8A18:',
                         ' ',
-                        " "
+                        ' '
                     ),
                     React.createElement(ButtonGroup, { value: this.props.markings,
                         allowEmpty: false,
@@ -27859,143 +27865,126 @@ var GraphSettings = React.createClass({
                 )
             ),
             React.createElement(
-                "div",
-                { className: "image-settings" },
+                'div',
+                { className: 'image-settings' },
                 React.createElement(
-                    "div",
+                    'div',
                     null,
-                    "\u80CC\u666F\u5716:"
+                    '\u80CC\u666F\u5716:'
                 ),
-                React.createElement(
-                    "div",
-                    null,
-                    "Url:",
-                    ' ',
-                    React.createElement("input", { type: "text",
-                        className: "graph-settings-background-url",
-                        ref: "bg-url",
-                        value: this.props.backgroundImage.url,
-                        onChange: this.changeBackgroundUrl,
-                        onKeyPress: this.changeBackgroundUrl,
-                        onBlur: this.changeBackgroundUrl }),
-                    React.createElement(
-                        InfoTip,
-                        null,
-                        React.createElement(
-                            "p",
-                            null,
-                            "\u8ACB\u5728\u5716\u5F62\u4E2D\u589E\u52A0\u5716\u7247\uFF0C\u6216\u65BC\u6B04\u4E2D\u8F38\u5165\u5716\u7247\u9023\u7D50\u3002"
-                        )
-                    )
-                ),
+                React.createElement(_imageLoader2.default, {
+                    className: 'graph-settings-background-url',
+                    setUrl: this.setUrl,
+                    originImage: this.props.backgroundImage
+                }),
                 this.props.backgroundImage.url && React.createElement(
-                    "div",
+                    'div',
                     null,
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Pixels from left:",
+                        'Pixels from left:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-left",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-left',
                             value: this.props.backgroundImage.left,
                             onChange: _.partial(this.changeBackgroundSetting, "left") })
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Pixels from bottom:",
+                        'Pixels from bottom:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-bottom",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-bottom',
                             value: this.props.backgroundImage.bottom,
                             onChange: _.partial(this.changeBackgroundSetting, "bottom") })
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
-                        "Image scale:",
+                        'Image scale:',
                         ' ',
-                        React.createElement("input", { type: "text",
-                            ref: "bg-scale",
+                        React.createElement('input', { type: 'text',
+                            ref: 'bg-scale',
                             value: this.props.backgroundImage.scale,
                             onChange: _.partial(this.changeBackgroundSetting, "scale") })
                     )
                 )
             ),
             React.createElement(
-                "div",
-                { className: "misc-settings" },
+                'div',
+                { className: 'misc-settings' },
                 React.createElement(
-                    "div",
-                    { className: "perseus-widget-row" },
+                    'div',
+                    { className: 'perseus-widget-row' },
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-left-col" },
-                        React.createElement(PropCheckBox, { label: "Show ruler",
+                        'div',
+                        { className: 'perseus-widget-left-col' },
+                        React.createElement(PropCheckBox, { label: 'Show ruler',
                             showRuler: this.props.showRuler,
                             onChange: this.props.onChange })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "perseus-widget-right-col" },
-                        React.createElement(PropCheckBox, { label: "Show protractor",
+                        'div',
+                        { className: 'perseus-widget-right-col' },
+                        React.createElement(PropCheckBox, { label: 'Show protractor',
                             showProtractor: this.props.showProtractor,
                             onChange: this.props.onChange })
                     )
                 ),
                 this.props.showRuler && React.createElement(
-                    "div",
+                    'div',
                     null,
                     React.createElement(
-                        "div",
+                        'div',
                         null,
                         React.createElement(
-                            "label",
+                            'label',
                             null,
                             ' ',
-                            "\u76F4\u5C3A\u55AE\u4F4D:",
+                            '\u76F4\u5C3A\u55AE\u4F4D:',
                             ' ',
                             React.createElement(
-                                "select",
+                                'select',
                                 {
                                     onChange: this.changeRulerLabel,
                                     value: this.props.rulerLabel },
                                 React.createElement(
-                                    "option",
-                                    { value: "" },
-                                    "\u7121"
+                                    'option',
+                                    { value: '' },
+                                    '\u7121'
                                 ),
                                 React.createElement(
-                                    "optgroup",
-                                    { label: "\u516C\u5236" },
+                                    'optgroup',
+                                    { label: '\u516C\u5236' },
                                     this.renderLabelChoices([["公厘", "mm"], ["公分", "cm"], ["公尺", "m"], ["公里", "km"]])
                                 ),
                                 React.createElement(
-                                    "optgroup",
-                                    { label: "\u82F1\u5236" },
+                                    'optgroup',
+                                    { label: '\u82F1\u5236' },
                                     this.renderLabelChoices([["英吋", "in"], ["英呎", "ft"], ["碼", "yd"], ["英里", "mi"]])
                                 )
                             )
                         )
                     ),
                     React.createElement(
-                        "div",
+                        'div',
                         null,
                         React.createElement(
-                            "label",
+                            'label',
                             null,
                             ' ',
-                            "\u76F4\u5C3A\u9593\u9694:",
+                            '\u76F4\u5C3A\u9593\u9694:',
                             ' ',
                             React.createElement(
-                                "select",
+                                'select',
                                 {
                                     onChange: this.changeRulerTicks,
                                     value: this.props.rulerTicks },
                                 _.map([1, 2, 4, 8, 10, 16], function (n) {
                                     return React.createElement(
-                                        "option",
+                                        'option',
                                         { value: n },
                                         n
                                     );
@@ -28011,7 +28000,7 @@ var GraphSettings = React.createClass({
     renderLabelChoices: function renderLabelChoices(choices) {
         return _.map(choices, function (nameAndValue) {
             return React.createElement(
-                "option",
+                'option',
                 { value: nameAndValue[1] },
                 nameAndValue[0]
             );
@@ -28207,21 +28196,6 @@ var GraphSettings = React.createClass({
         });
     },
 
-    changeBackgroundUrl: function changeBackgroundUrl(e) {
-        var url = e.target.value;
-        if (url) {
-            if (this.props.backgroundImage.url != url) {
-                var img = new Image();
-                img.onload = function () {
-                    return this.setUrl(url, img.width, img.height);
-                }.bind(this);
-                img.src = url;
-            }
-        } else {
-            this.setUrl(url, 0, 0);
-        }
-    },
-
     changeBackgroundSetting: function changeBackgroundSetting(type, e) {
         var image = _.clone(this.props.backgroundImage);
         image[type] = e.target.value;
@@ -28241,12 +28215,12 @@ var GraphSettings = React.createClass({
 
 module.exports = GraphSettings;
 
-},{"248":248,"263":263,"264":264,"265":265,"293":293,"305":305,"67":67,"69":69}],256:[function(require,module,exports){
+},{"248":248,"260":260,"264":264,"265":265,"266":266,"294":294,"306":306,"67":67,"69":69}],256:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var ReactDOM = require(96);
-var Util = require(305);
+var Util = require(306);
 
 var defaultBoxSize = 400;
 var defaultBackgroundImage = {
@@ -28570,10 +28544,10 @@ var Graph = React.createClass({
 
 module.exports = Graph;
 
-},{"248":248,"305":305,"96":96}],257:[function(require,module,exports){
+},{"248":248,"306":306,"96":96}],257:[function(require,module,exports){
 "use strict";
 
-var Util = require(305);
+var Util = require(306);
 var nestedMap = Util.nestedMap;
 var deepEq = Util.deepEq;
 
@@ -28696,12 +28670,12 @@ module.exports = {
     createSimpleClass: createSimpleClass
 };
 
-},{"305":305}],258:[function(require,module,exports){
+},{"306":306}],258:[function(require,module,exports){
 "use strict";
 
 var GraphieClasses = require(257);
-var Interactive2 = require(282);
-var InteractiveUtil = require(283);
+var Interactive2 = require(283);
+var InteractiveUtil = require(284);
 
 var assert = InteractiveUtil.assert;
 
@@ -28744,7 +28718,7 @@ module.exports = {
     MovablePoint: MovablePoint
 };
 
-},{"257":257,"282":282,"283":283}],259:[function(require,module,exports){
+},{"257":257,"283":283,"284":284}],259:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -28756,9 +28730,9 @@ var Movables = require(258);
 
 var GraphieMovable = GraphieClasses.GraphieMovable;
 
-var deepEq = require(305).deepEq;
-var nestedMap = require(305).nestedMap;
-var assert = require(283).assert;
+var deepEq = require(306).deepEq;
+var nestedMap = require(306).nestedMap;
+var assert = require(284).assert;
 
 var createGraphie = KhanUtil.createGraphie;
 
@@ -29029,20 +29003,191 @@ _.extend(Graphie, Movables);
 
 module.exports = Graphie;
 
-},{"248":248,"250":250,"257":257,"258":258,"283":283,"305":305,"96":96}],260:[function(require,module,exports){
+},{"248":248,"250":250,"257":257,"258":258,"284":284,"306":306,"96":96}],260:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require(248);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _infoTip = require(69);
+
+var _infoTip2 = _interopRequireDefault(_infoTip);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UrlInput = function (_React$Component) {
+  _inherits(UrlInput, _React$Component);
+
+  function UrlInput(props) {
+    _classCallCheck(this, UrlInput);
+
+    var _this = _possibleConstructorReturn(this, (UrlInput.__proto__ || Object.getPrototypeOf(UrlInput)).call(this, props));
+
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.state = { value: _this.props.value };
+    return _this;
+  }
+
+  _createClass(UrlInput, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({ value: nextProps.value });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(e) {
+      this.props.onChange(e.target.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('input', {
+        className: this.props.className,
+        style: this.props.style,
+        type: 'text',
+        value: this.state.value,
+        onChange: this.handleChange,
+        disabled: this.state.value
+      });
+    }
+  }]);
+
+  return UrlInput;
+}(_react2.default.Component);
+
+UrlInput.propTypes = {
+  className: _react2.default.PropTypes.string,
+  style: _react2.default.PropTypes.any,
+  value: _react2.default.PropTypes.string.isRequired,
+  onChange: _react2.default.PropTypes.func.isRequired
+};
+
+var ImageLoader = function (_React$Component2) {
+  _inherits(ImageLoader, _React$Component2);
+
+  function ImageLoader(props) {
+    _classCallCheck(this, ImageLoader);
+
+    var _this2 = _possibleConstructorReturn(this, (ImageLoader.__proto__ || Object.getPrototypeOf(ImageLoader)).call(this, props));
+
+    _this2.onUrlChange = _this2.onUrlChange.bind(_this2);
+    _this2.onFileChange = _this2.onFileChange.bind(_this2);
+    _this2.clearUrl = _this2.clearUrl.bind(_this2);
+
+    var url = _this2.props.originImage && _this2.props.originImage.url;
+    if (url) _this2.onUrlChange(url);
+
+    var reader = new FileReader();
+    var self = _this2;
+    reader.onloadend = function () {
+      self.onUrlChange(self.state.reader.result);
+    };
+    _this2.state = { reader: reader, url: '' };
+    return _this2;
+  }
+
+  _createClass(ImageLoader, [{
+    key: 'reloadImage',
+    value: function reloadImage(url) {
+      var img = new Image();
+      img.onload = function () {
+        this.props.setUrl(url, img.width, img.height);
+      }.bind(this);
+      img.src = url;
+    }
+  }, {
+    key: 'onUrlChange',
+    value: function onUrlChange(url) {
+      if (url) {
+        if (this.props.editorMode) this.props.setUrl(url);else if (this.props.originImage.url != url) this.reloadImage(url);
+      } else if (!this.props.editorMode) this.props.setUrl(url, 0, 0);
+
+      this.setState({ url: url });
+    }
+  }, {
+    key: 'onFileChange',
+    value: function onFileChange(e) {
+      var file = e.target.files[0];
+      this.state.reader.readAsDataURL(file);
+    }
+  }, {
+    key: 'clearUrl',
+    value: function clearUrl(e) {
+      e.preventDefault();
+      if (this.props.clearUrl) {
+        var url = this.state.url;
+        this.props.clearUrl(url);
+      } else this.onUrlChange('');
+
+      this.setState({ url: '' });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        '\u5716\u7247\u7DB2\u5740:',
+        ' ',
+        _react2.default.createElement(UrlInput, {
+          className: this.props.className || '',
+          value: this.props.originImage && this.props.originImage.url || this.state.url || '',
+          onChange: this.onUrlChange
+        }),
+        _react2.default.createElement('input', {
+          type: 'file',
+          onChange: this.onFileChange
+        }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.clearUrl },
+          'X'
+        ),
+        _react2.default.createElement(
+          _infoTip2.default,
+          null,
+          _react2.default.createElement(
+            'p',
+            null,
+            '\u586B\u5165\u5716\u7247\u7684\u7DB2\u5740\u3002\u4F8B\u5982\uFF0C\u5148\u4E0A\u50B3\u81F3 http://imgur.com \uFF0C\u8CBC\u4E0A\u5716\u7247\u7DB2\u5740 (Direct link)\u3002'
+          )
+        )
+      );
+    }
+  }]);
+
+  return ImageLoader;
+}(_react2.default.Component);
+
+exports.default = ImageLoader;
+
+},{"248":248,"69":69}],261:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
 var Tooltip = require(73);
-var ApiClassNames = require(296).ClassNames;
+var ApiClassNames = require(297).ClassNames;
 
-var MathInput = require(261);
-var Renderer = require(300);
-var TextInput = require(268);
+var MathInput = require(262);
+var Renderer = require(301);
+var TextInput = require(269);
 
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 
 var MATH = "math";
 var TEXT = "text";
@@ -29187,7 +29332,7 @@ var InputWithExamples = React.createClass({
 
 module.exports = InputWithExamples;
 
-},{"248":248,"261":261,"268":268,"296":296,"300":300,"305":305,"73":73}],261:[function(require,module,exports){
+},{"248":248,"262":262,"269":269,"297":297,"301":301,"306":306,"73":73}],262:[function(require,module,exports){
 "use strict";
 
 var classNames = require(12);
@@ -29198,7 +29343,7 @@ var _ = require(250);
 // TODO(alex): Package MathQuill
 var MathQuill = window.MathQuill;
 var PT = React.PropTypes;
-var TexButtons = require(267);
+var TexButtons = require(268);
 
 // A WYSIWYG math input that calls `onChange(LaTeX-string)`
 var MathInput = React.createClass({
@@ -29329,6 +29474,8 @@ var MathInput = React.createClass({
             value(input);
         } else if (value[0] === '\\') {
             input.cmd(value).focus();
+        } else if (value === 'Left' || value === 'Up' || value === 'Down' || value === 'Right') {
+            input.keystroke(value);
         } else {
             input.write(value).focus();
         }
@@ -29449,7 +29596,7 @@ var MathInput = React.createClass({
 
 module.exports = MathInput;
 
-},{"12":12,"248":248,"250":250,"267":267,"96":96}],262:[function(require,module,exports){
+},{"12":12,"248":248,"250":250,"268":268,"96":96}],263:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -29528,7 +29675,7 @@ var MultiButtonGroup = React.createClass({
 
 module.exports = MultiButtonGroup;
 
-},{"248":248,"96":96}],263:[function(require,module,exports){
+},{"248":248,"96":96}],264:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -29536,8 +29683,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require(248);
 var ReactDOM = require(96);
 var classNames = require(12);
-var firstNumericalParse = require(305).firstNumericalParse;
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var firstNumericalParse = require(306).firstNumericalParse;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 var knumber = KhanUtil.knumber;
 var toNumericString = KhanUtil.toNumericString;
 var getNumericFormat = KhanUtil.getNumericFormat;
@@ -29715,7 +29862,7 @@ var NumberInput = React.createClass({
 
 module.exports = NumberInput;
 
-},{"12":12,"248":248,"305":305,"96":96}],264:[function(require,module,exports){
+},{"12":12,"248":248,"306":306,"96":96}],265:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -29780,13 +29927,13 @@ var PropCheckBox = React.createClass({
 
 module.exports = PropCheckBox;
 
-},{"248":248}],265:[function(require,module,exports){
+},{"248":248}],266:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
-var NumberInput = require(263);
+var NumberInput = require(264);
 
 var truth = function truth() {
     return true;
@@ -29850,14 +29997,14 @@ var RangeInput = React.createClass({
 
 module.exports = RangeInput;
 
-},{"248":248,"263":263}],266:[function(require,module,exports){
+},{"248":248,"264":264}],267:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var ReactDOM = require(96);
 
-var Util = require(305);
-var Renderer = require(300);
+var Util = require(306);
+var Renderer = require(301);
 
 var PREFIX = "perseus-sortable";
 
@@ -30350,8 +30497,10 @@ var Sortable = React.createClass({
 
 module.exports = Sortable;
 
-},{"248":248,"300":300,"305":305,"96":96}],267:[function(require,module,exports){
+},{"248":248,"301":301,"306":306,"96":96}],268:[function(require,module,exports){
 "use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
 var TeX = require(72);
@@ -30360,6 +30509,7 @@ var prettyBig = { fontSize: "150%" };
 var slightlyBig = { fontSize: "120%" };
 var trigStyle = { marginLeft: -4 };
 var symbStyle = { fontSize: "130%" };
+var arrowKeyStyle = _extends({}, slightlyBig, { color: "#64b243" });
 
 // These are functions because we want to generate a new component for each use
 // on the page rather than reusing an instance (which will cause an error).
@@ -30521,6 +30671,32 @@ var buttonSets = {
 
 };
 
+var arrowKey = [function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveLeft" },
+        "\\leftarrow"
+    ), "Left"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveUp" },
+        "\\uparrow"
+    ), "Up"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveDown" },
+        "\\downarrow"
+    ), "Down"];
+}, function () {
+    return [React.createElement(
+        TeX,
+        { style: arrowKeyStyle, key: "moveRight" },
+        "\\rightarrow"
+    ), "Right"];
+}];
+
 //declare buttonSetsType type from buttonSets
 var buttonSetsType = React.PropTypes.arrayOf(React.PropTypes.oneOf(_(buttonSets).keys()));
 
@@ -30543,6 +30719,7 @@ var TexButtons = React.createClass({
         var buttonSet = _(this.props.sets).map(function (setName) {
             return buttonSets[setName];
         });
+        buttonSet.push(arrowKey);
 
         var buttonRows = _(buttonSet).map(function (row) {
             return row.map(function (symbGen) {
@@ -30584,7 +30761,7 @@ var TexButtons = React.createClass({
 
 module.exports = TexButtons;
 
-},{"248":248,"72":72}],268:[function(require,module,exports){
+},{"248":248,"72":72}],269:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -30646,8 +30823,14 @@ var TextInput = React.createClass({
 
 module.exports = TextInput;
 
-},{"248":248,"96":96}],269:[function(require,module,exports){
+},{"248":248,"96":96}],270:[function(require,module,exports){
 "use strict";
+
+var _imageLoader = require(260);
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require(248);
 var ReactDOM = require(96);
@@ -30697,15 +30880,25 @@ var TextListEditor = React.createClass({
 
         var inputs = _.map(this.state.items, function (item, i) {
             return React.createElement(
-                "li",
+                "div",
                 { key: i },
-                React.createElement("input", {
-                    ref: "input_" + i,
-                    type: "text",
-                    value: item,
-                    onChange: this.onChange.bind(this, i),
-                    onKeyDown: this.onKeyDown.bind(this, i),
-                    style: { width: getTextWidth(item) } })
+                React.createElement(
+                    "li",
+                    { key: i },
+                    React.createElement("input", {
+                        ref: "input_" + i,
+                        type: "text",
+                        value: item,
+                        onChange: this.onChange.bind(this, i),
+                        onKeyDown: this.onKeyDown.bind(this, i),
+                        style: { width: getTextWidth(item) }
+                    })
+                ),
+                React.createElement(_imageLoader2.default, {
+                    setUrl: this.setUrl(i).bind(this),
+                    clearUrl: this.clearUrl(i).bind(this),
+                    editorMode: true
+                })
             );
         }, this);
 
@@ -30714,6 +30907,39 @@ var TextListEditor = React.createClass({
             { className: className },
             inputs
         );
+    },
+
+    setUrl: function setUrl(index) {
+        return function (url) {
+            var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+            var focusIndex = inputElement.selectionStart;
+            var valueLength = inputElement.value.length;
+            this.onChange(index, {
+                target: {
+                    value: inputElement.value.substring(0, focusIndex) + "![](" + url + ")" + inputElement.value.substring(focusIndex, valueLength)
+                }
+            });
+            this.disableInput(index, true);
+        };
+    },
+
+    clearUrl: function clearUrl(index) {
+        return function (url) {
+            var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+            var urlIndex = inputElement.value.indexOf("![](" + url + ")");
+            var urlLength = ("![](" + url + ")").length;
+            this.onChange(index, {
+                target: {
+                    value: "" + inputElement.value.substring(0, urlIndex) + inputElement.value.substring(urlIndex + urlLength, inputElement.value.length)
+                }
+            });
+            this.disableInput(index, false);
+        };
+    },
+
+    disableInput: function disableInput(index, disabled) {
+        var inputElement = ReactDOM.findDOMNode(this.refs["input_" + index]);
+        inputElement.disabled = disabled;
     },
 
     onChange: function onChange(index, event) {
@@ -30780,7 +31006,7 @@ var TextListEditor = React.createClass({
 
 module.exports = TextListEditor;
 
-},{"248":248,"250":250,"96":96}],270:[function(require,module,exports){
+},{"248":248,"250":250,"260":260,"96":96}],271:[function(require,module,exports){
 "use strict";
 
 // Responsible for combining the text diffs from text-diff and the widget
@@ -30788,8 +31014,8 @@ module.exports = TextListEditor;
 var React = require(248);
 var _ = require(250);
 
-var TextDiff = require(273);
-var WidgetDiff = require(275);
+var TextDiff = require(274);
+var WidgetDiff = require(276);
 
 // Deeply look up a property in an object,
 // -> getPath(obj, ["a", "b", "c"]) === obj["a"]["b"]["c"]
@@ -30910,7 +31136,7 @@ var RevisionDiff = React.createClass({
 
 module.exports = RevisionDiff;
 
-},{"248":248,"250":250,"273":273,"275":275}],271:[function(require,module,exports){
+},{"248":248,"250":250,"274":274,"276":276}],272:[function(require,module,exports){
 "use strict";
 
 // Split a word-wise diff generated by jsdiff into multiple lines, for the
@@ -30941,7 +31167,7 @@ var splitDiff = function splitDiff(diffEntries) {
 
 module.exports = splitDiff;
 
-},{}],272:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 "use strict";
 
 var jsdiff = require(1);
@@ -31027,7 +31253,7 @@ var stringArrayDiff = function stringArrayDiff(a, b) {
 
 module.exports = stringArrayDiff;
 
-},{"1":1}],273:[function(require,module,exports){
+},{"1":1}],274:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -31035,8 +31261,8 @@ var classNames = require(12);
 var _ = require(250);
 
 var diff = require(1);
-var splitDiff = require(271);
-var stringArrayDiff = require(272);
+var splitDiff = require(272);
+var stringArrayDiff = require(273);
 
 var BEFORE = "before";
 var AFTER = "after";
@@ -31227,7 +31453,7 @@ var TextDiff = React.createClass({
 
 module.exports = TextDiff;
 
-},{"1":1,"12":12,"248":248,"250":250,"271":271,"272":272}],274:[function(require,module,exports){
+},{"1":1,"12":12,"248":248,"250":250,"272":272,"273":273}],275:[function(require,module,exports){
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -31301,13 +31527,13 @@ var performDiff = function performDiff(before, after, /* optional */key) {
 
 module.exports = performDiff;
 
-},{}],275:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 "use strict";
 
 var classNames = require(12);
 var React = require(248);
 
-var performDiff = require(274);
+var performDiff = require(275);
 
 var indentationFromDepth = function indentationFromDepth(depth) {
     return (depth - 1) * 20;
@@ -31529,18 +31755,18 @@ var WidgetDiff = React.createClass({
 
 module.exports = WidgetDiff;
 
-},{"12":12,"248":248,"274":274}],276:[function(require,module,exports){
+},{"12":12,"248":248,"275":275}],277:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
 var ReactDOM = require(96);
 
-var CombinedHintsEditor = require(279);
-var EnabledFeatures = require(278);
-var ItemEditor = require(291);
-var ItemRenderer = require(292);
-var PropCheckBox = require(264);
-var ApiOptions = require(296).Options;
+var CombinedHintsEditor = require(280);
+var EnabledFeatures = require(279);
+var ItemEditor = require(292);
+var ItemRenderer = require(293);
+var PropCheckBox = require(265);
+var ApiOptions = require(297).Options;
 
 var JsonEditor = React.createClass({
     displayName: 'JsonEditor',
@@ -31799,18 +32025,24 @@ var EditorPage = React.createClass({
 
 module.exports = EditorPage;
 
-},{"248":248,"264":264,"278":278,"279":279,"291":291,"292":292,"296":296,"96":96}],277:[function(require,module,exports){
+},{"248":248,"265":265,"279":279,"280":280,"292":292,"293":293,"297":297,"96":96}],278:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _imageLoader = require(260);
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require(248);
 var ReactDOM = require(96);
 var ReactCreateFragment = require(64);
 
-var PropCheckBox = require(264);
-var Util = require(305);
-var Widgets = require(308);
+var PropCheckBox = require(265);
+var Util = require(306);
+var Widgets = require(309);
 var DragTarget = require(68);
 
 // like [[snowman input-number 1]]
@@ -32288,6 +32520,11 @@ var Editor = React.createClass({
             "div",
             { className: "perseus-single-editor " + (this.props.className || "") },
             textareaWrapper,
+            React.createElement(_imageLoader2.default, {
+                setUrl: this.setUrl,
+                clearUrl: this.clearUrl,
+                editorMode: true
+            }),
             widgetsAndTemplates
         );
     },
@@ -32371,6 +32608,24 @@ var Editor = React.createClass({
                     content: _this.props.content.replace(fileAndSentinel.sentinel, url)
                 });
             });
+        });
+    },
+
+    setUrl: function setUrl(url) {
+        var textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        var focusIndex = textarea.selectionStart;
+        var valueLength = textarea.value.length;
+        this.props.onChange({
+            content: textarea.value.substring(0, focusIndex) + "![](" + url + ")" + textarea.value.substring(focusIndex, valueLength)
+        });
+    },
+
+    clearUrl: function clearUrl(url) {
+        var textarea = ReactDOM.findDOMNode(this.refs.textarea);
+        var urlIndex = textarea.value.indexOf("![](" + url + ")");
+        var urlLength = ("![](" + url + ")").length;
+        this.props.onChange({
+            content: "" + textarea.value.substring(0, urlIndex) + textarea.value.substring(urlIndex + urlLength, textarea.value.length)
         });
     },
 
@@ -32478,7 +32733,7 @@ var Editor = React.createClass({
 
 module.exports = Editor;
 
-},{"248":248,"264":264,"305":305,"308":308,"64":64,"68":68,"96":96}],278:[function(require,module,exports){
+},{"248":248,"260":260,"265":265,"306":306,"309":309,"64":64,"68":68,"96":96}],279:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
@@ -32496,7 +32751,7 @@ module.exports = {
     }
 };
 
-},{"248":248}],279:[function(require,module,exports){
+},{"248":248}],280:[function(require,module,exports){
 "use strict";
 
 /* Collection of classes for rendering the hint editor area,
@@ -32505,8 +32760,8 @@ module.exports = {
 
 var React = require(248);
 var ReactDOM = require(96);
-var Editor = require(277);
-var HintRenderer = require(280);
+var Editor = require(278);
+var HintRenderer = require(281);
 var InfoTip = require(69);
 
 /* Renders a hint editor box
@@ -32757,11 +33012,11 @@ var CombinedHintsEditor = React.createClass({
 
 module.exports = CombinedHintsEditor;
 
-},{"248":248,"277":277,"280":280,"69":69,"96":96}],280:[function(require,module,exports){
+},{"248":248,"278":278,"281":281,"69":69,"96":96}],281:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
-var Renderer = require(300);
+var Renderer = require(301);
 
 /* Renders just a hint preview */
 var HintRenderer = React.createClass({
@@ -32789,7 +33044,7 @@ var HintRenderer = React.createClass({
 
 module.exports = HintRenderer;
 
-},{"248":248,"300":300}],281:[function(require,module,exports){
+},{"248":248,"301":301}],282:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
@@ -32840,12 +33095,12 @@ window.ReactDOM = ReactDOM;
 
 module.exports = init;
 
-},{"248":248,"96":96}],282:[function(require,module,exports){
+},{"248":248,"96":96}],283:[function(require,module,exports){
 "use strict";
 
-var Movable = require(289);
-var MovablePoint = require(288);
-var MovableLine = require(286);
+var Movable = require(290);
+var MovablePoint = require(289);
+var MovableLine = require(287);
 
 var Interactive2 = {
     MovablePoint: MovablePoint,
@@ -32862,14 +33117,14 @@ var Interactive2 = {
 
 module.exports = Interactive2;
 
-},{"286":286,"288":288,"289":289}],283:[function(require,module,exports){
+},{"287":287,"289":289,"290":290}],284:[function(require,module,exports){
 "use strict";
 
 /**
  * Utility functions for writing Interactive2 movablethings
  */
 
-var MovableHelperMethods = require(284);
+var MovableHelperMethods = require(285);
 
 var InteractiveUtil = {
     assert: function assert(isTrue, message) {
@@ -32941,7 +33196,7 @@ var InteractiveUtil = {
 
 module.exports = InteractiveUtil;
 
-},{"284":284}],284:[function(require,module,exports){
+},{"285":285}],285:[function(require,module,exports){
 "use strict";
 
 /**
@@ -33038,7 +33293,7 @@ var MovableHelperMethods = {
 
 module.exports = MovableHelperMethods;
 
-},{}],285:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 "use strict";
 
 /**
@@ -33280,16 +33535,16 @@ module.exports = {
     onMoveEnd: { standard: null }
 };
 
-},{}],286:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 "use strict";
 
 /**
  * MovableLine
  */
 
-var MovableLineOptions = require(285);
-var InteractiveUtil = require(283);
-var objective_ = require(290);
+var MovableLineOptions = require(286);
+var InteractiveUtil = require(284);
+var objective_ = require(291);
 var assert = InteractiveUtil.assert;
 var normalizeOptions = InteractiveUtil.normalizeOptions;
 
@@ -33539,7 +33794,7 @@ _.extend(MovableLine.prototype, {
 
 module.exports = MovableLine;
 
-},{"283":283,"285":285,"290":290}],287:[function(require,module,exports){
+},{"284":284,"286":286,"291":291}],288:[function(require,module,exports){
 "use strict";
 
 /**
@@ -33665,7 +33920,7 @@ module.exports = {
     onClick: { standard: null }
 };
 
-},{}],288:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 "use strict";
 
 /**
@@ -33720,9 +33975,9 @@ module.exports = {
  *     removes the point from graphie
  */
 
-var MovablePointOptions = require(287);
-var InteractiveUtil = require(283);
-var objective_ = require(290);
+var MovablePointOptions = require(288);
+var InteractiveUtil = require(284);
+var objective_ = require(291);
 var assert = InteractiveUtil.assert;
 var normalizeOptions = InteractiveUtil.normalizeOptions;
 
@@ -33988,7 +34243,7 @@ _.extend(MovablePoint.prototype, {
 
 module.exports = MovablePoint;
 
-},{"283":283,"287":287,"290":290}],289:[function(require,module,exports){
+},{"284":284,"288":288,"291":291}],290:[function(require,module,exports){
 "use strict";
 
 /**
@@ -34003,7 +34258,7 @@ module.exports = MovablePoint;
  * take appropriate action in onMoveStart, onMove, onMoveEnd
  */
 
-var InteractiveUtil = require(283);
+var InteractiveUtil = require(284);
 var normalizeOptions = InteractiveUtil.normalizeOptions;
 
 var assert = InteractiveUtil.assert;
@@ -34223,7 +34478,7 @@ _.extend(Movable.prototype, {
 
 module.exports = Movable;
 
-},{"283":283}],290:[function(require,module,exports){
+},{"284":284}],291:[function(require,module,exports){
 "use strict";
 
 /**
@@ -34254,15 +34509,15 @@ var pluck = exports.pluck = function (table, subKey) {
   }));
 };
 
-},{}],291:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
 var AnswerAreaEditor = require(252);
-var Editor = require(277);
-var ITEM_DATA_VERSION = require(306).itemDataVersion;
+var Editor = require(278);
+var ITEM_DATA_VERSION = require(307).itemDataVersion;
 
 var ItemEditor = React.createClass({
     displayName: "ItemEditor",
@@ -34401,7 +34656,7 @@ var ItemEditor = React.createClass({
 
 module.exports = ItemEditor;
 
-},{"248":248,"252":252,"277":277,"306":306}],292:[function(require,module,exports){
+},{"248":248,"252":252,"278":278,"307":307}],293:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -34410,11 +34665,11 @@ var React = require(248);
 var ReactDOM = require(96);
 
 var AnswerAreaRenderer = require(253);
-var HintRenderer = require(280);
-var Renderer = require(300);
-var Util = require(305);
-var ApiOptions = require(296).Options;
-var EnabledFeatures = require(278);
+var HintRenderer = require(281);
+var Renderer = require(301);
+var Util = require(306);
+var ApiOptions = require(297).Options;
+var EnabledFeatures = require(279);
 
 var HintsRenderer = React.createClass({
     displayName: 'HintsRenderer',
@@ -34727,7 +34982,7 @@ var ItemRenderer = React.createClass({
 
 module.exports = ItemRenderer;
 
-},{"248":248,"253":253,"278":278,"280":280,"296":296,"300":300,"305":305,"96":96}],293:[function(require,module,exports){
+},{"248":248,"253":253,"279":279,"281":281,"297":297,"301":301,"306":306,"96":96}],294:[function(require,module,exports){
 "use strict";
 
 /**
@@ -34741,7 +34996,7 @@ module.exports = ItemRenderer;
 var React = require(248);
 var _ = require(250);
 
-var WIDGET_PROP_BLACKLIST = require(295);
+var WIDGET_PROP_BLACKLIST = require(296);
 
 var USAGE = "Usage:\n" + "  this.change({propName: 5}, callback);\n" + "  this.change(\"propName\", 5, callback);\n" + "  this.change(\"propName\")";
 
@@ -34815,10 +35070,10 @@ var Changeable = {
 
 module.exports = Changeable;
 
-},{"248":248,"250":250,"295":295}],294:[function(require,module,exports){
+},{"248":248,"250":250,"296":296}],295:[function(require,module,exports){
 "use strict";
 
-var WIDGET_PROP_BLACKLIST = require(295);
+var WIDGET_PROP_BLACKLIST = require(296);
 
 var JsonifyProps = {
     toJSON: function toJSON() {
@@ -34829,7 +35084,7 @@ var JsonifyProps = {
 
 module.exports = JsonifyProps;
 
-},{"295":295}],295:[function(require,module,exports){
+},{"296":296}],296:[function(require,module,exports){
 "use strict";
 
 module.exports = [
@@ -34839,7 +35094,7 @@ module.exports = [
 // added by src/renderer.jsx
 "widgetId", "onChange", "problemNum", "enabledFeatures", "apiOptions"];
 
-},{}],296:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 "use strict";
 
 /**
@@ -34913,30 +35168,30 @@ module.exports = {
     }
 };
 
-},{"248":248}],297:[function(require,module,exports){
+},{"248":248}],298:[function(require,module,exports){
 "use strict";
 
 require(251);
 
-var version = require(306);
+var version = require(307);
 
 module.exports = {
     apiVersion: version.apiVersion,
     itemDataVersion: version.itemDataVersion,
-    init: require(281),
-    render: require(299),
+    init: require(282),
+    render: require(300),
     AnswerAreaRenderer: require(253),
-    Editor: require(277),
-    EditorPage: require(276),
-    ItemRenderer: require(292),
-    Renderer: require(300),
-    RevisionDiff: require(270),
-    StatefulEditorPage: require(301),
-    ClassNames: require(296).ClassNames,
-    Util: require(305)
+    Editor: require(278),
+    EditorPage: require(277),
+    ItemRenderer: require(293),
+    Renderer: require(301),
+    RevisionDiff: require(271),
+    StatefulEditorPage: require(302),
+    ClassNames: require(297).ClassNames,
+    Util: require(306)
 };
 
-},{"251":251,"253":253,"270":270,"276":276,"277":277,"281":281,"292":292,"296":296,"299":299,"300":300,"301":301,"305":305,"306":306}],298:[function(require,module,exports){
+},{"251":251,"253":253,"271":271,"277":277,"278":278,"282":282,"293":293,"297":297,"300":300,"301":301,"302":302,"306":306,"307":307}],299:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -34955,7 +35210,7 @@ var QuestionParagraph = React.createClass({
 
 module.exports = QuestionParagraph;
 
-},{"248":248}],299:[function(require,module,exports){
+},{"248":248}],300:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
@@ -34967,20 +35222,20 @@ var render = function render(Component, dom, props) {
 
 module.exports = render;
 
-},{"248":248,"96":96}],300:[function(require,module,exports){
+},{"248":248,"96":96}],301:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
 var ReactDOM = require(96);
 
-var TeX = require(304);
-var WidgetContainer = require(307);
-var Widgets = require(308);
-var QuestionParagraph = require(298);
+var TeX = require(305);
+var WidgetContainer = require(308);
+var Widgets = require(309);
+var QuestionParagraph = require(299);
 
-var Util = require(305);
-var EnabledFeatures = require(278);
-var ApiOptions = require(296).Options;
+var Util = require(306);
+var EnabledFeatures = require(279);
+var ApiOptions = require(297).Options;
 
 var mapObject = function mapObject(obj, lambda) {
     var result = {};
@@ -35646,11 +35901,11 @@ function extractMathAndWidgets(text) {
 
 module.exports = Renderer;
 
-},{"248":248,"278":278,"296":296,"298":298,"304":304,"305":305,"307":307,"308":308,"96":96}],301:[function(require,module,exports){
+},{"248":248,"279":279,"297":297,"299":299,"305":305,"306":306,"308":308,"309":309,"96":96}],302:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
-var EditorPage = require(276);
+var EditorPage = require(277);
 
 /* Renders an EditorPage as a non-controlled component.
  *
@@ -35691,7 +35946,7 @@ var StatefulEditorPage = React.createClass({
 
 module.exports = StatefulEditorPage;
 
-},{"248":248,"276":276}],302:[function(require,module,exports){
+},{"248":248,"277":277}],303:[function(require,module,exports){
 "use strict";
 
 // Generated by running:
@@ -35800,7 +36055,7 @@ module.exports = {
 module.exports.radioBorderColor = module.exports.gray76;
 module.exports.checkedColor = module.exports.kaGreen;
 
-},{}],303:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 "use strict";
 
 /**
@@ -35817,7 +36072,7 @@ module.exports.checkedColor = module.exports.kaGreen;
  *   });
  */
 
-var _require = require(302),
+var _require = require(303),
     pureXsMax = _require.pureXsMax,
     pureSmMin = _require.pureSmMin,
     pureSmMax = _require.pureSmMax,
@@ -35843,7 +36098,7 @@ module.exports = {
     lgOrLarger: "@media screen and (min-width: " + pureLgMin + ")"
 };
 
-},{"302":302}],304:[function(require,module,exports){
+},{"303":303}],305:[function(require,module,exports){
 "use strict";
 
 /**
@@ -36001,7 +36256,7 @@ var TeX = React.createClass({
 
 module.exports = TeX;
 
-},{"248":248}],305:[function(require,module,exports){
+},{"248":248}],306:[function(require,module,exports){
 "use strict";
 
 var nestedMap = function nestedMap(children, func, context) {
@@ -36555,7 +36810,7 @@ Util.random = Util.seededRNG(new Date().getTime() & 0xffffffff);
 
 module.exports = Util;
 
-},{}],306:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 module.exports={
     "apiVersion": {
         "major": 1,
@@ -36567,7 +36822,7 @@ module.exports={
     }
 }
 
-},{}],307:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -36614,7 +36869,7 @@ var WidgetContainer = React.createClass({
 
 module.exports = WidgetContainer;
 
-},{"12":12,"248":248}],308:[function(require,module,exports){
+},{"12":12,"248":248}],309:[function(require,module,exports){
 "use strict";
 
 var widgets = {};
@@ -36746,18 +37001,18 @@ var Widgets = {
 
 module.exports = Widgets;
 
-},{}],309:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
-var Renderer = require(300);
-var TextListEditor = require(269);
+var Renderer = require(301);
+var TextListEditor = require(270);
 
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 
 var Categorizer = React.createClass({
     displayName: "Categorizer",
@@ -36973,7 +37228,7 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"269":269,"293":293,"294":294,"300":300,"305":305}],310:[function(require,module,exports){
+},{"248":248,"270":270,"294":294,"295":295,"301":301,"306":306}],311:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -36984,10 +37239,10 @@ var InfoTip = require(69);
 var FancySelect = require(254);
 var FancyOption = FancySelect.Option;
 
-var JsonifyProps = require(294);
-var ApiOptions = require(296).Options;
+var JsonifyProps = require(295);
+var ApiOptions = require(297).Options;
 
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 
 var Dropdown = React.createClass({
     displayName: "Dropdown",
@@ -37288,7 +37543,7 @@ module.exports = {
     hidden: false
 };
 
-},{"12":12,"248":248,"254":254,"294":294,"296":296,"305":305,"69":69,"96":96}],311:[function(require,module,exports){
+},{"12":12,"248":248,"254":254,"295":295,"297":297,"306":306,"69":69,"96":96}],312:[function(require,module,exports){
 "use strict";
 
 /**
@@ -37298,9 +37553,9 @@ module.exports = {
  */
 
 var React = require(248);
-var Util = require(305);
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Util = require(306);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
 var Graphie = require(259);
 var MovablePoint = Graphie.MovablePoint;
@@ -37483,7 +37738,7 @@ module.exports = {
     editor: ExampleGraphieWidgetEditor
 };
 
-},{"248":248,"259":259,"293":293,"294":294,"305":305}],312:[function(require,module,exports){
+},{"248":248,"259":259,"294":294,"295":295,"306":306}],313:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -37495,11 +37750,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require(248);
 var _ = require(250);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
-var Editor = require(277);
-var TextInput = require(268);
+var Editor = require(278);
+var TextInput = require(269);
 
 var defaultExplanationProps = {
     showPrompt: "顯示說明",
@@ -37584,7 +37839,7 @@ var ExplanationEditor = React.createClass({
 
 module.exports = ExplanationEditor;
 
-},{"248":248,"250":250,"268":268,"277":277,"293":293,"294":294}],313:[function(require,module,exports){
+},{"248":248,"250":250,"269":269,"278":278,"294":294,"295":295}],314:[function(require,module,exports){
 "use strict";
 
 var _explanationLink, _mobileExplanationLin;
@@ -37604,11 +37859,11 @@ var _require = require(5),
 var React = require(248);
 var _ = require(250);
 
-var Changeable = require(293);
-var PerseusApi = require(296);
-var Renderer = require(300);
-var mediaQueries = require(303);
-var styleConstants = require(302);
+var Changeable = require(294);
+var PerseusApi = require(297);
+var Renderer = require(301);
+var mediaQueries = require(304);
+var styleConstants = require(303);
 
 var defaultExplanationProps = {
     showPrompt: "顯示說明",
@@ -37854,7 +38109,7 @@ module.exports = {
     transform: _.identity
 };
 
-},{"248":248,"250":250,"293":293,"296":296,"300":300,"302":302,"303":303,"5":5}],314:[function(require,module,exports){
+},{"248":248,"250":250,"294":294,"297":297,"301":301,"303":303,"304":304,"5":5}],315:[function(require,module,exports){
 "use strict";
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -37866,20 +38121,20 @@ var classNames = require(12);
 var InfoTip = require(69);
 var Tooltip = require(73);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
-var ApiOptions = require(296).Options;
+var Changeable = require(294);
+var JsonifyProps = require(295);
+var ApiOptions = require(297).Options;
 
-var EnabledFeatures = require(278);
-var PropCheckBox = require(264);
+var EnabledFeatures = require(279);
+var PropCheckBox = require(265);
 
-var InputWithExamples = require(260);
-var MathInput = require(261);
-var TeX = require(304); // OldExpression only
-var TexButtons = require(267);
+var InputWithExamples = require(261);
+var MathInput = require(262);
+var TeX = require(305); // OldExpression only
+var TexButtons = require(268);
 
-var EnabledFeatures = require(278);
-var Util = require(305);
+var EnabledFeatures = require(279);
+var Util = require(306);
 
 var ERROR_MESSAGE = $._("Sorry, I don't understand that!");
 
@@ -38412,7 +38667,7 @@ module.exports = {
     propUpgrades: propUpgrades
 };
 
-},{"12":12,"248":248,"260":260,"261":261,"264":264,"267":267,"278":278,"293":293,"294":294,"296":296,"304":304,"305":305,"69":69,"73":73,"96":96}],315:[function(require,module,exports){
+},{"12":12,"248":248,"261":261,"262":262,"265":265,"268":268,"279":279,"294":294,"295":295,"297":297,"305":305,"306":306,"69":69,"73":73,"96":96}],316:[function(require,module,exports){
 "use strict";
 
 /**
@@ -38427,9 +38682,9 @@ module.exports = {
 var React = require(248);
 
 var BlurInput = require(66);
-var Changeable = require(293);
-var JsonifyProps = require(294);
-var updateQueryString = require(305).updateQueryString;
+var Changeable = require(294);
+var JsonifyProps = require(295);
+var updateQueryString = require(306).updateQueryString;
 
 /* This renders the iframe and handles validation via window.postMessage */
 var Iframe = React.createClass({
@@ -38687,8 +38942,14 @@ module.exports = {
     editor: IframeEditor
 };
 
-},{"248":248,"293":293,"294":294,"305":305,"66":66}],316:[function(require,module,exports){
+},{"248":248,"294":294,"295":295,"306":306,"66":66}],317:[function(require,module,exports){
 "use strict";
+
+var _imageLoader = require(260);
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require(248);
 var _ = require(250);
@@ -38696,11 +38957,11 @@ var _ = require(250);
 var BlurInput = require(66);
 var InfoTip = require(69);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
 var Graphie = require(259);
-var RangeInput = require(265);
+var RangeInput = require(266);
 
 var defaultBoxSize = 400;
 var defaultRange = [0, 10];
@@ -38821,15 +39082,6 @@ var ImageEditor = React.createClass({
 
     mixins: [Changeable, JsonifyProps],
 
-    componentDidMount: function componentDidMount() {
-        var _this = this;
-
-        setTimeout(function () {
-            var url = _this.props.backgroundImage.url;
-            _this.onUrlChange(url);
-        }, 0);
-    },
-
     getDefaultProps: function getDefaultProps() {
         return {
             range: [defaultRange, defaultRange],
@@ -38844,27 +39096,7 @@ var ImageEditor = React.createClass({
         var imageSettings = React.createElement(
             "div",
             { className: "image-settings" },
-            React.createElement(
-                "div",
-                null,
-                "\u5716\u7247\u7DB2\u5740:",
-                ' ',
-                React.createElement(BlurInput, { value: this.props.backgroundImage.url,
-                    onChange: this.onUrlChange }),
-                React.createElement("input", {
-                    type: "file",
-                    onChange: this.onFileInputChange
-                }),
-                React.createElement(
-                    InfoTip,
-                    null,
-                    React.createElement(
-                        "p",
-                        null,
-                        "\u586B\u5165\u5716\u7247\u7684\u7DB2\u5740\u3002\u4F8B\u5982\uFF0C\u5148\u4E0A\u50B3\u81F3 http://imgur.com \uFF0C\u8CBC\u4E0A\u5716\u7247\u7DB2\u5740 (Direct link)\u3002"
-                    )
-                )
-            ),
+            React.createElement(_imageLoader2.default, { setUrl: this.setUrl, originImage: this.props.backgroundImage }),
             React.createElement(
                 "label",
                 null,
@@ -39021,10 +39253,6 @@ var ImageEditor = React.createClass({
     },
 
     setUrl: function setUrl(url, width, height) {
-        if (!this.isMounted()) {
-            return;
-        }
-
         var image = _.clone(this.props.backgroundImage);
         image.url = url;
         image.width = width;
@@ -39037,38 +39265,10 @@ var ImageEditor = React.createClass({
         });
     },
 
-    reloadImage: function reloadImage(url) {
-        var img = new Image();
-        img.onload = function () {
-            return this.setUrl(url, img.width, img.height);
-        }.bind(this);
-        img.src = url;
-    },
-
-    onUrlChange: function onUrlChange(url) {
-        if (url) {
-            if (this.props.backgroundImage.url != url) {
-                this.reloadImage(url);
-            }
-        } else {
-            this.setUrl(url, 0, 0);
-        }
-    },
-
     onRangeChange: function onRangeChange(type, newRange) {
         var range = this.props.range.slice();
         range[type] = newRange;
         this.props.onChange({ range: range });
-    },
-
-    onFileInputChange: function onFileInputChange(e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        var that = this;
-        reader.onloadend = function () {
-            that.onUrlChange(reader.result);
-        };
-        reader.readAsDataURL(file);
     }
 });
 
@@ -39080,20 +39280,20 @@ module.exports = {
     editor: ImageEditor
 };
 
-},{"248":248,"250":250,"259":259,"265":265,"293":293,"294":294,"66":66,"69":69}],317:[function(require,module,exports){
+},{"248":248,"250":250,"259":259,"260":260,"266":266,"294":294,"295":295,"66":66,"69":69}],318:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var ReactDOM = require(96);
 var BlurInput = require(66);
 var InfoTip = require(69);
-var Renderer = require(300);
-var TeX = require(304);
-var InputWithExamples = require(260);
+var Renderer = require(301);
+var TeX = require(305);
+var InputWithExamples = require(261);
 
-var ApiOptions = require(296).Options;
-var Util = require(305);
-var EnabledFeatures = require(278);
+var ApiOptions = require(297).Options;
+var Util = require(306);
+var EnabledFeatures = require(279);
 
 var toNumericString = KhanUtil.toNumericString;
 
@@ -39452,16 +39652,16 @@ module.exports = {
     transform: propTransform
 };
 
-},{"248":248,"260":260,"278":278,"296":296,"300":300,"304":304,"305":305,"66":66,"69":69,"96":96}],318:[function(require,module,exports){
+},{"248":248,"261":261,"279":279,"297":297,"301":301,"305":305,"306":306,"66":66,"69":69,"96":96}],319:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var Graph = require(256);
 var GraphSettings = require(255);
 var InfoTip = require(69);
-var Interactive2 = require(282);
-var NumberInput = require(263);
-var Util = require(305);
+var Interactive2 = require(283);
+var NumberInput = require(264);
+var Util = require(306);
 
 var knumber = KhanUtil.knumber;
 var kpoint = KhanUtil.kpoint;
@@ -42010,7 +42210,7 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"255":255,"256":256,"263":263,"282":282,"305":305,"69":69}],319:[function(require,module,exports){
+},{"248":248,"255":255,"256":256,"264":264,"283":283,"306":306,"69":69}],320:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
@@ -42018,8 +42218,8 @@ var ReactDOM = require(96);
 var _ = require(250);
 
 var InfoTip = require(69);
-var PropCheckBox = require(264);
-var Util = require(305);
+var PropCheckBox = require(265);
+var Util = require(306);
 
 function eq(x, y) {
     return Math.abs(x - y) < 1e-9;
@@ -42043,7 +42243,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return "\\frac{" + n + "}{" + d + "}";
     }
 }
 
@@ -42171,9 +42371,6 @@ var InteractiveNumberLine = React.createClass({
         // Line
 
         graphie.line([range[0] - 25 / scale, 0], [range[1] + 25 / scale, 0], {
-            arrows: "->"
-        });
-        graphie.line([range[1] + 25 / scale, 0], [range[0] - 25 / scale, 0], {
             arrows: "->"
         });
 
@@ -42556,15 +42753,15 @@ module.exports = {
     editor: InteractiveNumberLineEditor
 };
 
-},{"248":248,"250":250,"264":264,"305":305,"69":69,"96":96}],320:[function(require,module,exports){
+},{"248":248,"250":250,"265":265,"306":306,"69":69,"96":96}],321:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
-var NumberInput = require(263);
-var PropCheckBox = require(264);
+var NumberInput = require(264);
+var PropCheckBox = require(265);
 var InfoTip = require(69);
 
 var MAX_SIZE = 8;
@@ -43033,18 +43230,18 @@ module.exports = {
     transform: transformProps
 };
 
-},{"248":248,"263":263,"264":264,"293":293,"294":294,"69":69}],321:[function(require,module,exports){
+},{"248":248,"264":264,"265":265,"294":294,"295":295,"69":69}],322:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var InfoTip = require(69);
-var PropCheckBox = require(264);
-var Renderer = require(300);
-var Sortable = require(266);
-var TextListEditor = require(269);
+var PropCheckBox = require(265);
+var Renderer = require(301);
+var Sortable = require(267);
+var TextListEditor = require(270);
 
-var shuffle = require(305).shuffle;
-var seededRNG = require(305).seededRNG;
+var shuffle = require(306).shuffle;
+var seededRNG = require(306).seededRNG;
 
 var Matcher = React.createClass({
     displayName: "Matcher",
@@ -43333,7 +43530,7 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"264":264,"266":266,"269":269,"300":300,"305":305,"69":69}],322:[function(require,module,exports){
+},{"248":248,"265":265,"267":267,"270":270,"301":301,"306":306,"69":69}],323:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -43347,21 +43544,21 @@ var React = require(248);
 var ReactDOM = require(96);
 var _ = require(250);
 
-var Renderer = require(300);
-var TextInput = require(268);
-var NumberInput = require(263);
+var Renderer = require(301);
+var TextInput = require(269);
+var NumberInput = require(264);
 
-var ApiOptions = require(296).Options;
+var ApiOptions = require(297).Options;
 var KhanAnswerTypes = Khan.answerTypes;
 
-var assert = require(283).assert;
-var stringArrayOfSize = require(305).stringArrayOfSize;
+var assert = require(284).assert;
+var stringArrayOfSize = require(306).stringArrayOfSize;
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
-var Editor = require(277);
-var RangeInput = require(265);
+var Editor = require(278);
+var RangeInput = require(266);
 
 // We store three sets of dimensions for the brackets, for our three types of
 // inputs, which vary in formatting: (1) the "static" inputs rendered for the
@@ -43971,18 +44168,24 @@ module.exports = {
     staticTransform: staticTransform
 };
 
-},{"12":12,"248":248,"250":250,"263":263,"265":265,"268":268,"277":277,"283":283,"293":293,"294":294,"296":296,"300":300,"305":305,"96":96}],323:[function(require,module,exports){
+},{"12":12,"248":248,"250":250,"264":264,"266":266,"269":269,"278":278,"284":284,"294":294,"295":295,"297":297,"301":301,"306":306,"96":96}],324:[function(require,module,exports){
 "use strict";
+
+var _imageLoader = require(260);
+
+var _imageLoader2 = _interopRequireDefault(_imageLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require(248);
 var ReactDOM = require(96);
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
 var InfoTip = require(69);
-var NumberInput = require(263);
-var PropCheckBox = require(264);
-var RangeInput = require(265);
+var NumberInput = require(264);
+var PropCheckBox = require(265);
+var RangeInput = require(266);
 
 var defaultImage = {
     url: null,
@@ -44171,26 +44374,11 @@ var MeasurerEditor = React.createClass({
                 null,
                 "\u80CC\u666F\u5716\u7247:"
             ),
-            React.createElement(
-                "div",
-                null,
-                "\u5716\u7247\u7DB2\u5740:",
-                ' ',
-                React.createElement("input", { type: "text",
-                    className: "perseus-widget-measurer-url",
-                    ref: "image-url",
-                    value: image.url,
-                    onChange: this._changeUrl }),
-                React.createElement(
-                    InfoTip,
-                    null,
-                    React.createElement(
-                        "p",
-                        null,
-                        "\u63D2\u5165\u5716\u7247\u7684\u9023\u7D50\u7DB2\u5740\u3002\u4F8B\u5982\uFF0C\u5148\u5C07\u5716\u7247\u4E0A\u50B3\u81F3 http://imgur.com \uFF0C\u518D\u5206\u4EAB\u5176\u5716\u7247\u7DB2\u5740 (Direct Link)\u3002 "
-                    )
-                )
-            ),
+            React.createElement(_imageLoader2.default, {
+                className: "perseus-widget-measurer-url",
+                setUrl: this.setUrl,
+                originImage: image
+            }),
             image.url && React.createElement(
                 "div",
                 { className: "perseus-widget-row" },
@@ -44326,8 +44514,8 @@ var MeasurerEditor = React.createClass({
         );
     },
 
-    _changeUrl: function _changeUrl(e) {
-        this._changeImage("url", e.target.value);
+    setUrl: function setUrl(url) {
+        this._changeImage("url", url);
     },
 
     _changeTop: function _changeTop(newTop) {
@@ -44389,17 +44577,17 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"263":263,"264":264,"265":265,"293":293,"294":294,"69":69,"96":96}],324:[function(require,module,exports){
+},{"248":248,"260":260,"264":264,"265":265,"266":266,"294":294,"295":295,"69":69,"96":96}],325:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require(248);
 
-var JsonifyProps = require(294);
-var Changeable = require(293);
-var NumberInput = require(263);
-var TextInput = require(268);
+var JsonifyProps = require(295);
+var Changeable = require(294);
+var NumberInput = require(264);
+var TextInput = require(269);
 
 var MoleculeWidgetEditor = React.createClass({
     displayName: "MoleculeWidgetEditor",
@@ -44467,7 +44655,7 @@ var MoleculeWidgetEditor = React.createClass({
 
 module.exports = MoleculeWidgetEditor;
 
-},{"248":248,"263":263,"268":268,"293":293,"294":294}],325:[function(require,module,exports){
+},{"248":248,"264":264,"269":269,"294":294,"295":295}],326:[function(require,module,exports){
 "use strict";
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -44478,12 +44666,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var React = require(248);
 
-var draw = require(326);
+var draw = require(327);
 
-var _require = require(327),
+var _require = require(328),
     layout = _require.layout;
 
-var SmilesParser = require(328);
+var SmilesParser = require(329);
 
 var parse = SmilesParser.parse;
 var ParseError = SmilesParser.ParseError;
@@ -44651,7 +44839,7 @@ module.exports = {
     molecule: Molecule
 };
 
-},{"248":248,"326":326,"327":327,"328":328}],326:[function(require,module,exports){
+},{"248":248,"327":327,"328":328,"329":329}],327:[function(require,module,exports){
 "use strict";
 
 /* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
@@ -44829,7 +45017,7 @@ styles.font = styles.fontSizePx + "px sans";
 
 module.exports = draw;
 
-},{}],327:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 "use strict";
 
 /* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
@@ -45157,7 +45345,7 @@ module.exports = {
     _convertTree: convertTree
 };
 
-},{}],328:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45443,20 +45631,20 @@ function parse(smiles, ctx) {
 
 module.exports = { parse: parse, ParseError: ParseError };
 
-},{}],329:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
 var ButtonGroup = require(67);
 var InfoTip = require(69);
-var Interactive2 = require(282);
-var NumberInput = require(263);
-var PropCheckBox = require(264);
-var RangeInput = require(265);
+var Interactive2 = require(283);
+var NumberInput = require(264);
+var PropCheckBox = require(265);
+var RangeInput = require(266);
 
 var Graphie = require(259);
 var MovablePoint = Graphie.MovablePoint;
@@ -45469,8 +45657,8 @@ var kpoint = KhanUtil.kpoint;
 var bound = function bound(x, gt, lt) {
     return Math.min(Math.max(x, gt), lt);
 };
-var deepEq = require(305).deepEq;
-var assert = require(283).assert;
+var deepEq = require(306).deepEq;
+var assert = require(284).assert;
 
 var reverseRel = {
     ge: "le",
@@ -45490,7 +45678,7 @@ function formatImproper(n, d) {
     if (d === 1) {
         return "" + n;
     } else {
-        return n + "/" + d;
+        return "\\frac{" + n + "}{" + d + "}";
     }
 }
 
@@ -45898,9 +46086,7 @@ var NumberLine = React.createClass({
         });
 
         // Draw the number line
-        var center = (range[0] + range[1]) / 2;
-        graphie.line([center, 0], [right, 0], { arrows: "->" });
-        graphie.line([center, 0], [left, 0], { arrows: "->" });
+        graphie.line([left, 0], [right, 0], { arrows: "->" });
     },
 
     setAnswerFromJSON: function setAnswerFromJSON(answerData) {
@@ -46423,25 +46609,25 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"259":259,"263":263,"264":264,"265":265,"282":282,"283":283,"293":293,"294":294,"305":305,"67":67,"69":69}],330:[function(require,module,exports){
+},{"248":248,"259":259,"264":264,"265":265,"266":266,"283":283,"284":284,"294":294,"295":295,"306":306,"67":67,"69":69}],331:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var _ = require(250);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
 var InfoTip = require(69);
-var PropCheckBox = require(264);
-var NumberInput = require(263);
+var PropCheckBox = require(265);
+var NumberInput = require(264);
 var ButtonGroup = require(67);
-var MultiButtonGroup = require(262);
-var InputWithExamples = require(260);
+var MultiButtonGroup = require(263);
+var InputWithExamples = require(261);
 
-var Editor = require(277);
+var Editor = require(278);
 
-var Util = require(305);
+var Util = require(306);
 
 var answerFormButtons = [{ title: "整數", value: "integer", text: "6" }, { title: "小樹", value: "decimal", text: "0.75" }, { title: "真分數", value: "proper", text: "\u2157" }, { title: "假分數", value: "improper",
     text: "\u2077\u2044\u2084" }, { title: "帶分數", value: "mixed", text: "1\xBE" }, { title: "\u6709 \u03C0 \u7684\u6578", value: "pi", text: "\u03C0" }];
@@ -46984,16 +47170,16 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"250":250,"260":260,"262":262,"263":263,"264":264,"277":277,"293":293,"294":294,"305":305,"67":67,"69":69}],331:[function(require,module,exports){
+},{"248":248,"250":250,"261":261,"263":263,"264":264,"265":265,"278":278,"294":294,"295":295,"306":306,"67":67,"69":69}],332:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var ReactDOM = require(96);
 var InfoTip = require(69);
 
-var Util = require(305);
-var Renderer = require(300);
-var TextListEditor = require(269);
+var Util = require(306);
+var Renderer = require(301);
+var TextListEditor = require(270);
 
 var PlaceholderCard = React.createClass({
     displayName: "PlaceholderCard",
@@ -47734,7 +47920,7 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"269":269,"300":300,"305":305,"69":69,"96":96}],332:[function(require,module,exports){
+},{"248":248,"270":270,"301":301,"306":306,"69":69,"96":96}],333:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47742,11 +47928,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require(248);
 var ReactDOM = require(96);
 var InfoTip = require(69);
-var NumberInput = require(263);
-var TextListEditor = require(269);
-var RangeInput = require(265);
+var NumberInput = require(264);
+var TextListEditor = require(270);
+var RangeInput = require(266);
 
-var deepEq = require(305).deepEq;
+var deepEq = require(306).deepEq;
 
 var BAR = "bar",
     LINE = "line",
@@ -48788,26 +48974,26 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"263":263,"265":265,"269":269,"305":305,"69":69,"96":96}],333:[function(require,module,exports){
+},{"248":248,"264":264,"266":266,"270":270,"306":306,"69":69,"96":96}],334:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
 var ReactDOM = require(96);
 var classNames = require(12);
 
-var Changeable = require(293);
-var ApiClassNames = require(296).ClassNames;
+var Changeable = require(294);
+var ApiClassNames = require(297).ClassNames;
 var BlurInput = require(66);
 var ButtonGroup = require(67);
-var Editor = require(277);
-var PropCheckBox = require(264);
-var Renderer = require(300);
+var Editor = require(278);
+var PropCheckBox = require(265);
+var Renderer = require(301);
 
 var InfoTip = require(69);
 
-var shuffle = require(305).shuffle;
-var seededRNG = require(305).seededRNG;
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var shuffle = require(306).shuffle;
+var seededRNG = require(306).seededRNG;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 
 var BaseRadio = React.createClass({
     displayName: 'BaseRadio',
@@ -49157,18 +49343,6 @@ var RadioEditor = React.createClass({
 
                     var checkedClass = choice.correct ? "correct" : "incorrect";
 
-                    var inputImage = React.createElement(
-                        'div',
-                        null,
-                        React.createElement('input', {
-                            type: 'file',
-                            content: choice.content || "",
-                            onChange: function onChange(newProps) {
-                                _this2.onFileInputChange(i, newProps);
-                            }
-                        })
-                    );
-
                     var editor = React.createElement(Editor, {
                         className: 'content-editor',
                         ref: "editor" + i,
@@ -49208,11 +49382,6 @@ var RadioEditor = React.createClass({
                                 'div',
                                 { className: "choice-editor " + checkedClass },
                                 editor
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: "input-image " + checkedClass },
-                                inputImage
                             ),
                             (!window.KA || window.KA.allowEditingClues) && React.createElement(
                                 'div',
@@ -49394,7 +49563,7 @@ module.exports = {
     transform: choiceTransform
 };
 
-},{"12":12,"248":248,"264":264,"277":277,"293":293,"296":296,"300":300,"305":305,"66":66,"67":67,"69":69,"96":96}],334:[function(require,module,exports){
+},{"12":12,"248":248,"265":265,"278":278,"294":294,"297":297,"301":301,"306":306,"66":66,"67":67,"69":69,"96":96}],335:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49407,11 +49576,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var React = require(248);
 
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 
-var NumberInput = require(263);
-var TextInput = require(268);
+var NumberInput = require(264);
+var TextInput = require(269);
 
 var ReactionDiagramWidgetEditor = React.createClass({
     displayName: "ReactionDiagramWidgetEditor",
@@ -49561,12 +49730,12 @@ var ReactionDiagramWidgetEditor = React.createClass({
 
 module.exports = ReactionDiagramWidgetEditor;
 
-},{"248":248,"263":263,"268":268,"293":293,"294":294}],335:[function(require,module,exports){
+},{"248":248,"264":264,"269":269,"294":294,"295":295}],336:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 
-var Molecule = require(325).molecule;
+var Molecule = require(326).molecule;
 
 var Separator = React.createClass({
     displayName: "Separator",
@@ -49707,16 +49876,16 @@ module.exports = {
     widget: ReactionDiagramWidget
 };
 
-},{"248":248,"325":325}],336:[function(require,module,exports){
+},{"248":248,"326":326}],337:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
 var InfoTip = require(69);
-var PropCheckBox = require(264);
-var Sortable = require(266);
-var TextListEditor = require(269);
+var PropCheckBox = require(265);
+var Sortable = require(267);
+var TextListEditor = require(270);
 
-var shuffle = require(305).shuffle;
+var shuffle = require(306).shuffle;
 
 var HORIZONTAL = "horizontal",
     VERTICAL = "vertical";
@@ -49930,12 +50099,12 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"264":264,"266":266,"269":269,"305":305,"69":69}],337:[function(require,module,exports){
+},{"248":248,"265":265,"267":267,"270":270,"306":306,"69":69}],338:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 var classNames = require(12);
 
 var textInputStyle = {
@@ -50292,12 +50461,12 @@ module.exports = {
     editor: SpeakingTextInputEditor
 };
 
-},{"12":12,"248":248,"293":293,"294":294}],338:[function(require,module,exports){
+},{"12":12,"248":248,"294":294,"295":295}],339:[function(require,module,exports){
 "use strict";
 
 var React = require(248);
-var Changeable = require(293);
-var JsonifyProps = require(294);
+var Changeable = require(294);
+var JsonifyProps = require(295);
 var ResponsiveVoice = require(2);
 
 var iconButtonStyle = {
@@ -50654,15 +50823,15 @@ module.exports = {
     editor: SpeakingVoiceEditor
 };
 
-},{"2":2,"248":248,"293":293,"294":294}],339:[function(require,module,exports){
+},{"2":2,"248":248,"294":294,"295":295}],340:[function(require,module,exports){
 'use strict';
 
 var React = require(248);
 var ReactDOM = require(96);
-var Editor = require(277);
+var Editor = require(278);
 var InfoTip = require(69);
-var Renderer = require(300);
-var Util = require(305);
+var Renderer = require(301);
+var Util = require(306);
 
 var Table = React.createClass({
     displayName: 'Table',
@@ -51036,7 +51205,7 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"277":277,"300":300,"305":305,"69":69,"96":96}],340:[function(require,module,exports){
+},{"248":248,"278":278,"301":301,"306":306,"69":69,"96":96}],341:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51045,9 +51214,9 @@ var React = require(248);
 var Graph = require(256);
 var GraphSettings = require(255);
 var InfoTip = require(69);
-var NumberInput = require(263);
-var PropCheckBox = require(264);
-var TeX = require(304);
+var NumberInput = require(264);
+var PropCheckBox = require(265);
+var TeX = require(305);
 
 var ROTATE_SNAP_DEGREES = 15;
 var DEGREE_SIGN = "\xB0";
@@ -51056,9 +51225,9 @@ var ROTATE_HANDLE_DIST = 1.5;
 var REFLECT_ROTATE_HANDLE_DIST = 2;
 var REFLECT_BUTTON_SIZE = 1;
 
-var deepEq = require(305).deepEq;
-var getGridStep = require(305).getGridStep;
-var captureScratchpadTouchStart = require(305).captureScratchpadTouchStart;
+var deepEq = require(306).deepEq;
+var getGridStep = require(306).getGridStep;
+var captureScratchpadTouchStart = require(306).captureScratchpadTouchStart;
 var knumber = KhanUtil.knumber;
 var kvector = KhanUtil.kvector;
 var kpoint = KhanUtil.kpoint;
@@ -53596,5 +53765,5 @@ module.exports = {
     hidden: false
 };
 
-},{"248":248,"255":255,"256":256,"263":263,"264":264,"304":304,"305":305,"69":69}]},{},[297])(297)
+},{"248":248,"255":255,"256":256,"264":264,"265":265,"305":305,"306":306,"69":69}]},{},[298])(298)
 });

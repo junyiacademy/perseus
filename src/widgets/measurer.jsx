@@ -3,6 +3,7 @@ var ReactDOM     = require("react-dom");
 var Changeable   = require("../mixins/changeable.jsx");
 var JsonifyProps = require("../mixins/jsonify-props.jsx");
 
+import ImageLoader from '../components/imageLoader.jsx';
 var InfoTip       = require("react-components/js/info-tip.jsx");
 var NumberInput   = require("../components/number-input.jsx");
 var PropCheckBox  = require("../components/prop-check-box.jsx");
@@ -203,16 +204,11 @@ var MeasurerEditor = React.createClass({
 
         return <div className="perseus-widget-measurer">
             <div>背景圖片:</div>
-            <div>圖片網址:{' '}
-                <input type="text"
-                        className="perseus-widget-measurer-url"
-                        ref="image-url"
-                        value={image.url}
-                        onChange={this._changeUrl} />
-            <InfoTip>
-                <p>插入圖片的連結網址。例如，先將圖片上傳至 http://imgur.com ，再分享其圖片網址 (Direct Link)。 </p>
-            </InfoTip>
-            </div>
+            <ImageLoader 
+                className="perseus-widget-measurer-url"
+                setUrl={this.setUrl}
+                originImage={image}
+            />
             {image.url && <div className="perseus-widget-row">
                 <div className="perseus-widget-left-col">
                     <NumberInput label="與上方的間隔畫素:"
@@ -306,8 +302,8 @@ var MeasurerEditor = React.createClass({
         </div>;
     },
 
-    _changeUrl: function(e) {
-        this._changeImage("url", e.target.value);
+    setUrl: function(url) {
+        this._changeImage("url", url);
     },
 
     _changeTop: function(newTop) {
