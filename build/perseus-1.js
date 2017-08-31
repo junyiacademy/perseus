@@ -29153,7 +29153,7 @@ var ImageLoader = function (_React$Component2) {
         }),
         _react2.default.createElement(
           'button',
-          { onClick: this.clearUrl },
+          { onClick: this.clearUrl, disabled: !this.state.url },
           'X'
         ),
         _react2.default.createElement(
@@ -39655,6 +39655,8 @@ module.exports = {
 },{"248":248,"261":261,"279":279,"297":297,"301":301,"305":305,"306":306,"66":66,"69":69,"96":96}],319:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require(248);
 var Graph = require(256);
 var GraphSettings = require(255);
@@ -41932,7 +41934,7 @@ var InteractiveGraphEditor = React.createClass({
             rulerTicks: 10,
             correct: {
                 type: "linear",
-                coords: null
+                coords: [[-5, 5], [5, 5]]
             }
         };
     },
@@ -41940,9 +41942,47 @@ var InteractiveGraphEditor = React.createClass({
     mixins: [DeprecationMixin],
     deprecatedProps: deprecatedProps,
 
-    render: function render() {
+    getGraphInfo: function getGraphInfo(type, correct, graphProps) {
+        var info = {};
+        if (['linear', 'ray'].indexOf > -1) {
+            info.coords = InteractiveGraph.getLineCoords(correct, graphProps);
+        } else if (['quadratic', 'sinusoid'].indexOf(type) > -1) {
+            var getFuncName = "default" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
+            info.coords = InteractiveGraph[getFuncName](graphProps);
+        } else if (['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1) {
+            var _getFuncName = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
+            info.coords = InteractiveGraph[_getFuncName](correct, graphProps);
+        } else if (type === 'linear-system') {
+            info.coords = InteractiveGraph.getLinearSystemCoords(correct, graphProps);
+        } else if (type === 'circle') {
+            info.center = [0, 0];
+            info.radius = 1;
+        }
+        return info;
+    },
+    handleGraphChange: function handleGraphChange(graphProps) {
         var _this9 = this;
 
+        return function (newProps) {
+            var type = _this9.props.correct.type;
+            var correct = _extends({}, _this9.props.correct);
+            if (type === newProps.graph.type) {
+                correct = _extends({}, correct, newProps.graph);
+                if (['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1 && !correct.coords) {
+                    var getFuncName = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
+                    correct.coords = InteractiveGraph[getFuncName](correct, graphProps);
+                }
+            } else {
+                type = newProps.graph.type;
+                correct = _extends({}, newProps.graph);
+                correct = _extends({}, correct, _this9.getGraphInfo(type, correct, graphProps));
+            }
+            _this9.props.onChange({ correct: correct });
+        };
+    },
+
+
+    render: function render() {
         var graph;
         var equationString;
 
@@ -41963,18 +42003,9 @@ var InteractiveGraphEditor = React.createClass({
                 showRuler: this.props.showRuler,
                 rulerLabel: this.props.rulerLabel,
                 rulerTicks: this.props.rulerTicks,
-                flexibleType: true,
-                onChange: function onChange(newProps) {
-                    var correct = _this9.props.correct;
-                    if (correct.type === newProps.graph.type) {
-                        correct = _.extend({}, correct, newProps.graph);
-                    } else {
-                        // Clear options from previous graph
-                        correct = newProps.graph;
-                    }
-                    _this9.props.onChange({ correct: correct });
-                }
+                flexibleType: true
             };
+            graphProps.onChange = this.handleGraphChange(graphProps).bind(this);
             graph = React.createElement(InteractiveGraph, graphProps);
             equationString = InteractiveGraph.getEquationString(graphProps);
         } else {

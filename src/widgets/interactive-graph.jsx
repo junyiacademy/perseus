@@ -2325,13 +2325,56 @@ var InteractiveGraphEditor = React.createClass({
             rulerTicks: 10,
             correct: {
                 type: "linear",
-                coords: null
+                coords: [[-5, 5], [5, 5]]
             }
         };
     },
 
     mixins: [DeprecationMixin],
     deprecatedProps: deprecatedProps,
+
+    getGraphInfo(type, correct, graphProps) {
+        let info = {};
+        if(['linear', 'ray'].indexOf > -1) {
+            info.coords = InteractiveGraph.getLineCoords(correct, graphProps);
+        }
+        else if(['quadratic', 'sinusoid'].indexOf(type) > -1) {
+            const getFuncName = `default${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
+            info.coords = InteractiveGraph[getFuncName](graphProps);
+        }
+        else if(['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1) {
+            const getFuncName = `get${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
+            info.coords = InteractiveGraph[getFuncName](correct, graphProps);
+        }
+        else if(type === 'linear-system') {
+            info.coords = InteractiveGraph.getLinearSystemCoords(correct, graphProps);
+        }
+        else if(type === 'circle') {
+            info.center = [0, 0];
+            info.radius = 1;
+        }
+        return info;
+    },
+
+    handleGraphChange(graphProps) {
+        return newProps => {
+            let type = this.props.correct.type;
+            let correct = {...this.props.correct};
+            if (type === newProps.graph.type) {
+                correct = {...correct, ...newProps.graph};
+                if(['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1 && !correct.coords) {
+                    const getFuncName = `get${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
+                    correct.coords = InteractiveGraph[getFuncName](correct, graphProps);
+                }
+            }
+            else {
+                type = newProps.graph.type;
+                correct = {...newProps.graph};
+                correct = {...correct, ...this.getGraphInfo(type, correct, graphProps)};
+            }
+            this.props.onChange({ correct });
+        };
+    },
 
     render: function() {
         var graph;
@@ -2355,17 +2398,8 @@ var InteractiveGraphEditor = React.createClass({
                 rulerLabel: this.props.rulerLabel,
                 rulerTicks: this.props.rulerTicks,
                 flexibleType: true,
-                onChange: (newProps) => {
-                    var correct = this.props.correct;
-                    if (correct.type === newProps.graph.type) {
-                        correct = _.extend({}, correct, newProps.graph);
-                    } else {
-                        // Clear options from previous graph
-                        correct = newProps.graph;
-                    }
-                    this.props.onChange({correct: correct});
-                }
             };
+            graphProps.onChange = this.handleGraphChange(graphProps).bind(this);
             graph = <InteractiveGraph {...graphProps} />;
             equationString = InteractiveGraph.getEquationString(graphProps);
         } else {
