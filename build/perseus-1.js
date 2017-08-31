@@ -39653,6 +39653,8 @@ module.exports = {
 },{"248":248,"261":261,"279":279,"297":297,"301":301,"305":305,"306":306,"66":66,"69":69,"96":96}],319:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require(248);
 var Graph = require(256);
 var GraphSettings = require(255);
@@ -39986,27 +39988,6 @@ var InteractiveGraph = React.createClass({
         }
     },
 
-    handleTypeSelecChange: function handleTypeSelecChange(e) {
-        var type = e.target.value;
-        var graph = { type: type };
-        if (type === 'linear' || type === 'ray') {
-            graph.coords = InteractiveGraph.getLineCoords({ type: type }, this.props);
-        } else if (type === 'quadratic' || type === 'sinusoid') {
-            var getFuncName = "default" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
-            graph.coords = InteractiveGraph[getFuncName](this.props);
-        } else if (type === 'point' || type === 'polygon' || type === 'segment' || type === 'angle') {
-            var _getFuncName = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
-            graph.coords = InteractiveGraph[_getFuncName]({ type: type }, this.props);
-        } else if (type === 'linear-system') {
-            graph.coords = InteractiveGraph.getLinearSystemCoords({ type: type }, this.props);
-        } else if (type === 'circle') {
-            graph.center = [0, 0];
-            graph.radius = 1;
-        }
-        this.props.onChange({ graph: graph });
-    },
-
-
     render: function render() {
         var _this = this;
 
@@ -40017,7 +39998,12 @@ var InteractiveGraph = React.createClass({
                 "select",
                 {
                     value: this.props.graph.type,
-                    onChange: this.handleTypeSelecChange },
+                    onChange: function onChange(e) {
+                        var type = e.target.value;
+                        _this.props.onChange({
+                            graph: { type: type }
+                        });
+                    } },
                 React.createElement(
                     "option",
                     { value: "linear" },
@@ -41954,41 +41940,43 @@ var InteractiveGraphEditor = React.createClass({
     mixins: [DeprecationMixin],
     deprecatedProps: deprecatedProps,
 
+    getGraphInfo: function getGraphInfo(type, correct, graphProps) {
+        var info = {};
+        if (type === 'linear' || type === 'ray') {
+            info.coords = InteractiveGraph.getLineCoords(correct, graphProps);
+        } else if (type === 'quadratic' || type === 'sinusoid') {
+            var getFuncName = "default" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
+            info.coords = InteractiveGraph[getFuncName](graphProps);
+        } else if (type === 'point' || type === 'polygon' || type === 'segment' || type === 'angle') {
+            var _getFuncName = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
+            info.coords = InteractiveGraph[_getFuncName](correct, graphProps);
+        } else if (type === 'linear-system') {
+            info.coords = InteractiveGraph.getLinearSystemCoords(correct, graphProps);
+        } else if (type === 'circle') {
+            info.center = [0, 0];
+            info.radius = 1;
+        }
+        return info;
+    },
     handleGraphChange: function handleGraphChange(graphProps) {
         var _this9 = this;
 
         return function (newProps) {
             var type = _this9.props.correct.type;
-            var correct = Object.assign({}, _this9.props.correct);
+            var correct = _extends({}, _this9.props.correct);
             if (type === newProps.graph.type) {
-                correct = Object.assign({}, correct, newProps.graph);
+                correct = _extends({}, correct, newProps.graph);
                 if ((type === 'point' || type === 'polygon' || type === 'segment' || type === 'angle') && !correct.coords) {
                     var getFuncName = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
                     correct.coords = InteractiveGraph[getFuncName](correct, graphProps);
                 }
             } else {
-                // Clear options from previous graph
-                correct = newProps.graph;
+                type = newProps.graph.type;
+                correct = _extends({}, newProps.graph);
+                correct = _extends({}, correct, _this9.getGraphInfo(type, correct, graphProps));
             }
             _this9.props.onChange({ correct: correct });
         };
-    },
-    handleGraphSettingChange: function handleGraphSettingChange(newSetting) {
-        var type = this.props.correct.type;
-        var correct = Object.assign({}, this.props.correct, type === 'circle' ? null : { coords: null });
-        if (type === 'linear' || type === 'ray') {
-            correct.coords = InteractiveGraph.getLineCoords(correct, newSetting);
-        } else if (type === 'quadratic' || type === 'sinusoid') {
-            var getFuncName = "default" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
-            correct.coords = InteractiveGraph[getFuncName](newSetting);
-        } else if (type === 'point' || type === 'polygon' || type === 'segment' || type === 'angle') {
-            var _getFuncName2 = "get" + ("" + type.charAt(0).toUpperCase() + type.slice(1)) + "Coords";
-            correct.coords = InteractiveGraph[_getFuncName2](correct, newSetting);
-        } else if (type === 'linear-system') {
-            correct.coords = InteractiveGraph.getLinearSystemCoords(correct, newSetting);
-        }
-        this.props.onChange({ correct: correct });
-        this.props.onChange(newSetting);
     },
 
 
@@ -42061,7 +42049,7 @@ var InteractiveGraphEditor = React.createClass({
                 showRuler: this.props.showRuler,
                 rulerLabel: this.props.rulerLabel,
                 rulerTicks: this.props.rulerTicks,
-                onChange: this.handleGraphSettingChange }),
+                onChange: this.props.onChange }),
             this.props.correct.type === "polygon" && React.createElement(
                 "div",
                 { className: "type-settings" },
