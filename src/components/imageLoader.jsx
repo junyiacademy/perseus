@@ -101,7 +101,7 @@ class ImageLoader extends React.Component {
         type="file"
         onChange={this.onFileChange}
       />
-      <button onClick={this.clearUrl}>X</button>
+      <button onClick={this.clearUrl} disabled={!this.state.url}>X</button>
       <InfoTip>
         <p>填入圖片的網址。例如，先上傳至 http://imgur.com ，貼上圖片網址 (Direct link)。</p>
       </InfoTip>

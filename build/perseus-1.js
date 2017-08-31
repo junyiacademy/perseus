@@ -29153,7 +29153,7 @@ var ImageLoader = function (_React$Component2) {
         }),
         _react2.default.createElement(
           'button',
-          { onClick: this.clearUrl },
+          { onClick: this.clearUrl, disabled: !this.state.url },
           'X'
         ),
         _react2.default.createElement(
