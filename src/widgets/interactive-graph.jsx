@@ -2335,14 +2335,14 @@ var InteractiveGraphEditor = React.createClass({
 
     getGraphInfo(type, correct, graphProps) {
         let info = {};
-        if(type === 'linear' || type === 'ray') {
+        if(['linear', 'ray'].indexOf > -1) {
             info.coords = InteractiveGraph.getLineCoords(correct, graphProps);
         }
-        else if(type === 'quadratic' || type === 'sinusoid') {
+        else if(['quadratic', 'sinusoid'].indexOf(type) > -1) {
             const getFuncName = `default${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
             info.coords = InteractiveGraph[getFuncName](graphProps);
         }
-        else if(type ==='point' || type === 'polygon' || type === 'segment' || type === 'angle') {
+        else if(['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1) {
             const getFuncName = `get${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
             info.coords = InteractiveGraph[getFuncName](correct, graphProps);
         }
@@ -2362,7 +2362,7 @@ var InteractiveGraphEditor = React.createClass({
             let correct = {...this.props.correct};
             if (type === newProps.graph.type) {
                 correct = {...correct, ...newProps.graph};
-                if((type ==='point' || type === 'polygon' || type === 'segment' || type === 'angle') && !correct.coords) {
+                if(['point', 'polygon', 'segment', 'angle'].indexOf(type) > -1 && !correct.coords) {
                     const getFuncName = `get${`${type.charAt(0).toUpperCase()}${type.slice(1)}`}Coords`;
                     correct.coords = InteractiveGraph[getFuncName](correct, graphProps);
                 }
