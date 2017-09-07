@@ -30894,7 +30894,7 @@ var TextListEditor = React.createClass({
                     setUrl: this.setUrl(i).bind(this),
                     clearUrl: this.clearUrl(i).bind(this),
                     editorMode: true,
-                    originImage: imageInItem ? imageInItem[1] : ''
+                    originImage: { url: imageInItem ? imageInItem[1] : '' }
                 })
             );
         }, this);
