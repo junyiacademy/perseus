@@ -50,6 +50,7 @@ var TextListEditor = React.createClass({
         ].join(" ");
 
         var inputs = _.map(this.state.items, function(item, i) {
+            const imageInItem = /!\[.*\]\(([^\)]*)\)/.exec(item);
             return (
                 <div key={i}>
                     <li key={i}>
@@ -62,11 +63,14 @@ var TextListEditor = React.createClass({
                             style={{width: getTextWidth(item)}}
                         />
                     </li>
-                    <ImageLoader
+                    {!this.props.disableImageLoader &&
+                        <ImageLoader
                         setUrl={this.setUrl(i).bind(this)}
                         clearUrl={this.clearUrl(i).bind(this)}
                         editorMode={true}
-                    />
+                        originImage={{ url: imageInItem ? imageInItem[1] : '' }}
+                        />
+                    }
                 </div>
             );
         }, this);

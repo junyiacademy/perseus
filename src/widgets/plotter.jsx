@@ -781,7 +781,9 @@ var PlotterEditor = React.createClass({
                         ref="categories"
                         layout="horizontal"
                         options={this.props.categories}
-                        onChange={this.changeCategories} />
+                        onChange={this.changeCategories}
+                        disableImageLoader={true}
+                    />
                 </label>
             </div>
             <div>

@@ -41,13 +41,6 @@ class ImageLoader extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onUrlChange = this.onUrlChange.bind(this);
-    this.onFileChange = this.onFileChange.bind(this);
-    this.clearUrl = this.clearUrl.bind(this);
-
-    const url = this.props.originImage && this.props.originImage.url;
-    if (url) this.onUrlChange(url);
-
     const reader = new FileReader();
     const self = this;
     reader.onloadend = function () {
@@ -56,7 +49,13 @@ class ImageLoader extends React.Component {
     this.state = { reader, url: '' };
   }
 
-  reloadImage(url) {
+  componentDidMount() {
+    const url = this.props.originImage && this.props.originImage.url;
+    if (this.props.editorMode) this.setState({ url });
+    else if (url) this.onUrlChange(url);
+  }
+
+  reloadImage = url => {
     const img = new Image();
     img.onload = function () {
       this.props.setUrl(url, img.width, img.height);
@@ -64,7 +63,7 @@ class ImageLoader extends React.Component {
     img.src = url;
   }
 
-  onUrlChange(url) {
+  onUrlChange = url => {
     if (url) {
       if (this.props.editorMode) this.props.setUrl(url);
       else if (this.props.originImage.url != url) this.reloadImage(url);
@@ -74,15 +73,15 @@ class ImageLoader extends React.Component {
     this.setState({ url });
   }
 
-  onFileChange(e) {
+  onFileChange = e => {
     const file = e.target.files[0];
     this.state.reader.readAsDataURL(file);
   }
 
-  clearUrl(e) {
+  clearUrl = e => {
     e.preventDefault();
     if (this.props.clearUrl) {
-      const url = this.state.url;
+      const url = this.state.url || this.props.originImage.url;
       this.props.clearUrl(url);
     }
     else this.onUrlChange('');
@@ -94,14 +93,14 @@ class ImageLoader extends React.Component {
     return <div>圖片網址:{' '}
       <UrlInput
         className={this.props.className || ''}
-        value={this.props.originImage && this.props.originImage.url || this.state.url || ''}
+        value={this.props.originImage.url || this.state.url || ''}
         onChange={this.onUrlChange}
       />
       <input
         type="file"
         onChange={this.onFileChange}
       />
-      <button onClick={this.clearUrl} disabled={!this.state.url}>X</button>
+      <button onClick={this.clearUrl} disabled={!this.state.url && !this.props.originImage.url}>X</button>
       <InfoTip>
         <p>填入圖片的網址。例如，先上傳至 http://imgur.com ，貼上圖片網址 (Direct link)。</p>
       </InfoTip>

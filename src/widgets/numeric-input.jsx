@@ -285,6 +285,7 @@ var NumericInputEditor = React.createClass({
                         this.updateAnswer(i, {message: newProps.content});
                     }
                 }}
+                disableImageLoader={true}
             />;
             return <div className="perseus-widget-row" key={i}>
                 <div className={"input-answer-editor-value-container" +
