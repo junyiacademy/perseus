@@ -29083,12 +29083,36 @@ var ImageLoader = function (_React$Component2) {
 
     var _this2 = _possibleConstructorReturn(this, (ImageLoader.__proto__ || Object.getPrototypeOf(ImageLoader)).call(this, props));
 
-    _this2.onUrlChange = _this2.onUrlChange.bind(_this2);
-    _this2.onFileChange = _this2.onFileChange.bind(_this2);
-    _this2.clearUrl = _this2.clearUrl.bind(_this2);
+    _this2.reloadImage = function (url) {
+      var img = new Image();
+      img.onload = function () {
+        this.props.setUrl(url, img.width, img.height);
+      }.bind(_this2);
+      img.src = url;
+    };
 
-    var url = _this2.props.originImage && _this2.props.originImage.url;
-    if (url) _this2.onUrlChange(url);
+    _this2.onUrlChange = function (url) {
+      if (url) {
+        if (_this2.props.editorMode) _this2.props.setUrl(url);else if (_this2.props.originImage.url != url) _this2.reloadImage(url);
+      } else if (!_this2.props.editorMode) _this2.props.setUrl(url, 0, 0);
+
+      _this2.setState({ url: url });
+    };
+
+    _this2.onFileChange = function (e) {
+      var file = e.target.files[0];
+      _this2.state.reader.readAsDataURL(file);
+    };
+
+    _this2.clearUrl = function (e) {
+      e.preventDefault();
+      if (_this2.props.clearUrl) {
+        var url = _this2.state.url || _this2.props.originImage.url;
+        _this2.props.clearUrl(url);
+      } else _this2.onUrlChange('');
+
+      _this2.setState({ url: '' });
+    };
 
     var reader = new FileReader();
     var self = _this2;
@@ -29100,39 +29124,10 @@ var ImageLoader = function (_React$Component2) {
   }
 
   _createClass(ImageLoader, [{
-    key: 'reloadImage',
-    value: function reloadImage(url) {
-      var img = new Image();
-      img.onload = function () {
-        this.props.setUrl(url, img.width, img.height);
-      }.bind(this);
-      img.src = url;
-    }
-  }, {
-    key: 'onUrlChange',
-    value: function onUrlChange(url) {
-      if (url) {
-        if (this.props.editorMode) this.props.setUrl(url);else if (this.props.originImage.url != url) this.reloadImage(url);
-      } else if (!this.props.editorMode) this.props.setUrl(url, 0, 0);
-
-      this.setState({ url: url });
-    }
-  }, {
-    key: 'onFileChange',
-    value: function onFileChange(e) {
-      var file = e.target.files[0];
-      this.state.reader.readAsDataURL(file);
-    }
-  }, {
-    key: 'clearUrl',
-    value: function clearUrl(e) {
-      e.preventDefault();
-      if (this.props.clearUrl) {
-        var url = this.state.url;
-        this.props.clearUrl(url);
-      } else this.onUrlChange('');
-
-      this.setState({ url: '' });
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var url = this.props.originImage && this.props.originImage.url;
+      if (this.props.editorMode) this.setState({ url: url });else if (url) this.onUrlChange(url);
     }
   }, {
     key: 'render',
@@ -29144,7 +29139,7 @@ var ImageLoader = function (_React$Component2) {
         ' ',
         _react2.default.createElement(UrlInput, {
           className: this.props.className || '',
-          value: this.props.originImage && this.props.originImage.url || this.state.url || '',
+          value: this.props.originImage.url || this.state.url || '',
           onChange: this.onUrlChange
         }),
         _react2.default.createElement('input', {
@@ -29153,7 +29148,7 @@ var ImageLoader = function (_React$Component2) {
         }),
         _react2.default.createElement(
           'button',
-          { onClick: this.clearUrl, disabled: !this.state.url },
+          { onClick: this.clearUrl, disabled: !this.state.url && !this.props.originImage.url },
           'X'
         ),
         _react2.default.createElement(
@@ -30879,6 +30874,7 @@ var TextListEditor = React.createClass({
         var className = ["perseus-text-list-editor", "ui-helper-clearfix", "layout-" + this.props.layout].join(" ");
 
         var inputs = _.map(this.state.items, function (item, i) {
+            var imageInItem = /!\[.*\]\(([^\)]*)\)/.exec(item);
             return React.createElement(
                 "div",
                 { key: i },
@@ -30897,7 +30893,8 @@ var TextListEditor = React.createClass({
                 React.createElement(_imageLoader2.default, {
                     setUrl: this.setUrl(i).bind(this),
                     clearUrl: this.clearUrl(i).bind(this),
-                    editorMode: true
+                    editorMode: true,
+                    originImage: imageInItem ? imageInItem[1] : ''
                 })
             );
         }, this);
@@ -32516,6 +32513,7 @@ var Editor = React.createClass({
             );
         }
 
+        var imageInTextArea = /!\[.*\]\(([^\)]*)\)/.exec(this.props.content);
         return React.createElement(
             "div",
             { className: "perseus-single-editor " + (this.props.className || "") },
@@ -32523,7 +32521,8 @@ var Editor = React.createClass({
             React.createElement(_imageLoader2.default, {
                 setUrl: this.setUrl,
                 clearUrl: this.clearUrl,
-                editorMode: true
+                editorMode: true,
+                originImage: { url: imageInTextArea ? imageInTextArea[1] : '' }
             }),
             widgetsAndTemplates
         );

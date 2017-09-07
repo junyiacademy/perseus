@@ -390,7 +390,8 @@ var Editor = React.createClass({
                 {completeTextarea}
             </div>;
         }
-
+        
+        const imageInTextArea = /!\[.*\]\(([^\)]*)\)/.exec(this.props.content);
         return <div className={"perseus-single-editor " +
                 (this.props.className || "")} >
             {textareaWrapper}
@@ -398,6 +399,7 @@ var Editor = React.createClass({
                 setUrl={this.setUrl}
                 clearUrl={this.clearUrl}
                 editorMode={true}
+                originImage={{ url: imageInTextArea ? imageInTextArea[1] : '' }}
             />
             {widgetsAndTemplates}
         </div>;
