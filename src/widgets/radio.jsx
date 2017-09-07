@@ -381,6 +381,7 @@ var RadioEditor = React.createClass({
                                 this.onClueChange(i, newProps.content);
                             }}
                         }
+                        disableImageLoader={true}
                     />;
                     var deleteLink = <a href="#"
                             className="simple-button orange delete-choice"

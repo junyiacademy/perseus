@@ -578,7 +578,9 @@ var MatrixEditor = React.createClass({
                     widgetEnabled={false}
                     onChange={(newProps) => {
                         this.change({ prefix: newProps.content });
-                    }} />
+                    }}
+                    disableImageLoader={true}
+                />
             </div>
             <div className="perseus-widget-row">
                 {" "}Matrix suffix:{" "}
@@ -589,7 +591,9 @@ var MatrixEditor = React.createClass({
                     widgetEnabled={false}
                     onChange={(newProps) => {
                         this.change({ suffix: newProps.content });
-                    }} />
+                    }}
+                    disableImageLoader={true}
+                />
             </div>
         </div>;
     },

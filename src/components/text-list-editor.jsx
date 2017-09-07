@@ -63,12 +63,14 @@ var TextListEditor = React.createClass({
                             style={{width: getTextWidth(item)}}
                         />
                     </li>
-                    <ImageLoader
+                    {!this.props.disableImageLoader &&
+                        <ImageLoader
                         setUrl={this.setUrl(i).bind(this)}
                         clearUrl={this.clearUrl(i).bind(this)}
                         editorMode={true}
                         originImage={imageInItem ? imageInItem[1] : ''}
-                    />
+                        />
+                    }
                 </div>
             );
         }, this);

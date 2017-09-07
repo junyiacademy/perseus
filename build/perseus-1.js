@@ -30890,7 +30890,7 @@ var TextListEditor = React.createClass({
                         style: { width: getTextWidth(item) }
                     })
                 ),
-                React.createElement(_imageLoader2.default, {
+                !this.props.disableImageLoader && React.createElement(_imageLoader2.default, {
                     setUrl: this.setUrl(i).bind(this),
                     clearUrl: this.clearUrl(i).bind(this),
                     editorMode: true,
@@ -32518,7 +32518,7 @@ var Editor = React.createClass({
             "div",
             { className: "perseus-single-editor " + (this.props.className || "") },
             textareaWrapper,
-            React.createElement(_imageLoader2.default, {
+            !this.props.disableImageLoader && React.createElement(_imageLoader2.default, {
                 setUrl: this.setUrl,
                 clearUrl: this.clearUrl,
                 editorMode: true,
@@ -44148,7 +44148,9 @@ var MatrixEditor = React.createClass({
                     widgetEnabled: false,
                     onChange: function onChange(newProps) {
                         _this2.change({ prefix: newProps.content });
-                    } })
+                    },
+                    disableImageLoader: true
+                })
             ),
             React.createElement(
                 "div",
@@ -44163,7 +44165,9 @@ var MatrixEditor = React.createClass({
                     widgetEnabled: false,
                     onChange: function onChange(newProps) {
                         _this2.change({ suffix: newProps.content });
-                    } })
+                    },
+                    disableImageLoader: true
+                })
             )
         );
     },
@@ -47002,7 +47006,8 @@ var NumericInputEditor = React.createClass({
                         if ("content" in newProps) {
                             _this2.updateAnswer(i, { message: newProps.content });
                         }
-                    }
+                    },
+                    disableImageLoader: true
                 });
                 return React.createElement(
                     "div",
@@ -48762,7 +48767,9 @@ var PlotterEditor = React.createClass({
                         ref: "categories",
                         layout: "horizontal",
                         options: this.props.categories,
-                        onChange: this.changeCategories })
+                        onChange: this.changeCategories,
+                        disableImageLoader: true
+                    })
                 )
             ),
             React.createElement(
@@ -49394,7 +49401,8 @@ var RadioEditor = React.createClass({
                             if ("content" in newProps) {
                                 _this2.onClueChange(i, newProps.content);
                             }
-                        }
+                        },
+                        disableImageLoader: true
                     });
                     var deleteLink = React.createElement(
                         'a',

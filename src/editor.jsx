@@ -395,12 +395,14 @@ var Editor = React.createClass({
         return <div className={"perseus-single-editor " +
                 (this.props.className || "")} >
             {textareaWrapper}
-            <ImageLoader
-                setUrl={this.setUrl}
-                clearUrl={this.clearUrl}
-                editorMode={true}
-                originImage={{ url: imageInTextArea ? imageInTextArea[1] : '' }}
-            />
+            {!this.props.disableImageLoader &&
+                <ImageLoader
+                    setUrl={this.setUrl}
+                    clearUrl={this.clearUrl}
+                    editorMode={true}
+                    originImage={{ url: imageInTextArea ? imageInTextArea[1] : '' }}
+                />
+            }
             {widgetsAndTemplates}
         </div>;
     },
