@@ -1,8 +1,11 @@
 const gulp = require('gulp');
 const browserify = require('browserify');
 const watchify = require('watchify');
+const babelify = require('babelify');
+const envify = require('envify/custom');
 const source = require('vinyl-source-stream')
 const gutil = require('gulp-util');
+const bundleCollapser = require('bundle-collapser/plugin');
 
 const bundle = (b) => () => (
   b.bundle()
@@ -12,16 +15,16 @@ const bundle = (b) => () => (
 
 let b = {};
 b.build = browserify({
-  entries: './src/perseus.js',
-  plugin: ['bundle-collapser/plugin'],
+  entries: `${__dirname}/src/perseus.js`,
+  plugin: [bundleCollapser],
   standalone: 'Perseus',
-  transform: ['babelify'],
-}).transform('envify', {global: true, _: 'purge', NODE_ENV: 'production'});
+  transform: [babelify],
+}).transform(envify({_: 'purge', NODE_ENV: 'production'}), {global: true});
 
 b.watch = watchify(browserify({
-  entries: './src/perseus.js',
+  entries: `${__dirname}/src/perseus.js`,
   standalone: 'Perseus',
-  transform: ['babelify'],
+  transform: [babelify],
 }));
 
 b.watch.on('update', bundle(b.watch));
