@@ -410,6 +410,14 @@
     z-index: 3;
 
     & > .mq-root-block {
+        /* 
+            Fix that khan-exercise.css set * to content-box.
+            !important is potentially dangerous.
+        */
+        -webkit-box-sizing: border-box !important;
+        -moz-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+
         // Mimic native text input w/o using -moz/-webkit-apperance: textfield
         // border-color: rgb(78, 187, 212);
         border-color: #a4a4a4;

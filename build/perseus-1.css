@@ -1275,6 +1275,13 @@ body.mobile .perseus-matrix .math-output {
   z-index: 3;
 }
 .perseus-math-input.mq-editable-field.mq-math-mode > .mq-root-block {
+  /* 
+            Fix that khan-exercise.css set * to content-box.
+            !important is potentially dangerous.
+        */
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
   border-color: #a4a4a4;
   border-radius: 5px;
   padding: 4px;
