@@ -35758,6 +35758,10 @@ var Renderer = React.createClass({
                 // Target widget cannot show answer.
                 return { showSuccess: false, err: 'no setAnswerFromJSON implemented for ' + id + ' widget' };
             } else {
+                // Orderer doesn't need to save history
+                if (id.indexOf('orderer') > -1) {
+                    return { showSuccess: false, err: 'no save for orderer'}; 
+                }
                 // Just show the given answer.
                 if (answerData[0].length <= index) {
                     console.log("showGuess err");
@@ -35787,7 +35791,7 @@ var Renderer = React.createClass({
         var onInputError = this.props.apiOptions.onInputError || function () {};
 
         var totalGuess = _.map(this.widgetIds, function (id) {
-            if (widgetProps[id].graded === false || id.indexOf('lights-puzzle') > -1 || id.indexOf('transformer') > -1 || id.indexOf('image') > -1) {
+            if (widgetProps[id].graded === false || id.indexOf('lights-puzzle') > -1 || id.indexOf('transformer') > -1 || id.indexOf('image') > -1 || id.indexOf('orderer') > -1) {
                 return 'no save ' + id + ' widget';
             }
             var widget = this.getWidgetInstance(id);
@@ -47271,7 +47275,8 @@ var Card = React.createClass({
         startMouse: PropTypes.position,
         startOffset: PropTypes.position,
         animateTo: PropTypes.position,
-        onAnimationEnd: React.PropTypes.func
+        onAnimationEnd: React.PropTypes.func,
+        visibleInReadOnlyMode: React.PropTypes.bool
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -47299,6 +47304,9 @@ var Card = React.createClass({
         var className = ["card"];
         if (this.props.stack) {
             className.push("stack");
+        }
+        if (this.props.visibleInReadOnlyMode) {
+            className.push("visible");
         }
         if (this.props.floating && !this.props.animating) {
             className.push("dragging");
@@ -47518,7 +47526,9 @@ var Orderer = React.createClass({
                     key: i,
                     onMouseDown: _this.state.animating ? $.noop : _this.onClick.bind(null, "bank", i),
                     onMouseMove: _this.onMouseMove,
-                    onMouseUp: _this.onRelease });
+                    onMouseUp: _this.onRelease,
+                    visibleInReadOnlyMode: true
+                });
             }, this)
         );
 
