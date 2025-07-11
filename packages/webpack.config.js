@@ -13,6 +13,10 @@ module.exports = {
         libraryTarget: "umd",
     },
     mode: "production",
+    optimization: {
+        minimize: false,
+    },
+    devtool: "source-map",
     stats: {
         errorDetails: true,
     },
