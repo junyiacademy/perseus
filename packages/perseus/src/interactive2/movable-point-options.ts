@@ -95,7 +95,7 @@ const draw = {
             state.visibleShape.animate(this.highlightStyle(), 50);
         } else if (!state.isHovering && prevState.isHovering) {
             // @ts-expect-error - TS2339 - Property 'normalStyle' does not exist on type '{ readonly basic: (state: any, prevState: any) => void; readonly highlight: (state: any, prevState: any) => void; }'.
-            state.visibleShape.animate(this.normalStyle(), 50);
+            state.visibleShape?.animate(this.normalStyle(), 50);
         }
     },
 } as const;
